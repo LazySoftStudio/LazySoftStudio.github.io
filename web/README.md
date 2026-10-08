@@ -38,7 +38,7 @@ La compilación genera `dist/`, lista para un alojamiento de archivos estáticos
 
 Para añadir una pieza a la galería, guarda su imagen en `public/assets/` y añade una entrada a `artworks` en `content/site.ts` con identificador, título, categoría, tipo, ruta, descripción y texto alternativo. Indica si es un boceto, un estudio de volumen o una captura jugable.
 
-El nombre del juego sigue siendo provisional. Cuando se confirme, actualiza `site.game.title` y `site.game.provisionalTitle`. Los roles del equipo todavía no están repartidos.
+El título del juego es **El secreto de Monteviejo**, confirmado el 8 de octubre de 2026. La galería reúne 16 piezas de personajes y escenarios. Los roles del equipo todavía no están repartidos.
 
 El contacto utiliza un enlace de correo. La galería permite filtrar y ampliar imágenes; los diálogos se cierran con Escape. La portada responde al cursor y al desplazamiento, y se respeta la preferencia de movimiento reducido.
 

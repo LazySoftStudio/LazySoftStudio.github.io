@@ -26,3 +26,42 @@
 }
 @media(max-width:480px){.hero-stage{min-height:715px}.hero-title{margin-top:43px}.hero-object{top:19%;width:84vw}.hero-caption{display:block;bottom:90px}.hero-caption>p{font-size:30px}.hero-caption>div{max-width:none;margin-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px}.hero-caption .button{margin:0;font-size:13px;padding-inline:13px}.hero-caption>div>p{font-size:14px;max-width:158px}.art-grid{grid-template-columns:1fr;gap:40px}.art-card:nth-child(even){padding-top:0}.art-photo{height:300px}.filters button{padding:8px 15px}.gallery-toolbar{gap:8px}.gallery-count{font-size:12px}.art-dialog{padding:16px!important}.art-dialog>img{max-height:55dvh}.dialog-bar{font-size:12px}.team-list h3{font-size:24px}.member-initials{min-width:36px;height:36px}.team-signature img{width:100px;height:88px}.game-image img{height:260px}.journey-mobile-image{height:270px}.outline-tag{font-size:13px;padding-inline:11px}.contact-section h2{font-size:13vw}.footer-top{font-size:12px}.footer-top a{white-space:nowrap}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal-ready{opacity:1;transform:none}.hero-title{transform:none}.hero-object{left:0;right:0;margin:auto;transform:none;will-change:auto}.journey-stage img{transform:none}}
+
+/* Allow grid and flex content to shrink within the available viewport. */
+.game-intro,.section-intro,.team-layout,.journey,.process-strip{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.game-intro>*,.section-intro>*,.team-layout>*,.journey>*,.process-strip>*,.art-card,.art-caption>div,.contact-layout>*,.team-list article>div{min-width:0}
+h2,h3,.email-link{overflow-wrap:anywhere}
+.section-heading,.hero-kicker,.hero-floor,.footer-top,.footer-bottom{flex-wrap:wrap}
+.outline-tag{flex-shrink:0}
+.hero-caption>p{max-width:55%}
+.footer-wordmark{font-size:clamp(48px,15.5vw,210px);white-space:normal;overflow-wrap:anywhere}
+.footer-wordmark span{display:block;margin:12px 0 0}
+.gallery-toolbar{flex-wrap:wrap}
+.filters{min-width:0}
+.team-signature img{flex-shrink:0}
+.art-index,.member-number,.member-initials{flex-shrink:0}
+.email-link{max-width:100%}
+@media(max-width:1100px){.game-intro{grid-template-columns:1fr}}
+@media(max-width:1000px){
+ .header{position:sticky}.menu-toggle{display:block;border:1px solid #52625a;border-radius:50px;background:transparent;padding:7px 16px;font-size:14px}.header nav{display:none}
+ .header nav.nav-open{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;background:#101213;border-bottom:1px solid #52625a;padding:18px 24px;gap:0;font-size:18px;max-height:calc(100dvh - 88px);overflow:auto}
+ .header nav a{padding:13px 0;overflow-wrap:anywhere}
+}
+@media(max-width:760px){
+ .section-intro,.team-layout,.process-strip{grid-template-columns:minmax(0,1fr)}
+ .section-intro h2{font-size:clamp(42px,10vw,76px)}
+ .game-intro h2{font-size:clamp(36px,9vw,68px)}
+ .footer-wordmark{font-size:15.5vw}
+ .hero-caption{gap:18px}
+ .team-list article{gap:14px}
+}
+@media(max-width:480px){
+ .hero-caption>p{max-width:none;font-size:clamp(27px,8vw,36px)}
+ .hero-caption>div{flex-wrap:wrap}
+ .hero-floor{font-size:10px;gap:12px}
+ .gallery-toolbar{align-items:start}
+ .filters button{font-size:13px;padding:8px 12px}
+ .footer-top{flex-direction:column;align-items:start;gap:12px}
+ .team-list h3{font-size:clamp(20px,6vw,24px)}
+ .dialog-bar{flex-wrap:wrap}
+}
