@@ -35,7 +35,7 @@ function useChart() {
   const context = React.useContext(ChartContext)
 
   if (!context) {
-    throw new Error("useChart must be used within a <ChartContainer />")
+    throw new Error("useChart debe usarse dentro de <ChartContainer />")
   }
 
   return context
@@ -330,7 +330,7 @@ function ChartLegendContent({
   )
 }
 
-// Helper to extract item config from a payload.
+// Obtiene la configuración del elemento a partir de los datos.
 function getPayloadConfigFromPayload(
   config: ChartConfig,
   payload: unknown,

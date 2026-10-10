@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { site } from '@/content/site';
 
 export function Hero() {
   const scene = useRef<HTMLElement>(null);

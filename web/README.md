@@ -1,47 +1,21 @@
-# LazySoft — Portfolio web
+# Código de la web de LazySoft
 
-Portfolio de LazySoft y de nuestro videojuego ambientado en Monteviejo. Incluye la presentación del estudio, el proyecto, una galería de arte, el equipo y el contacto.
+Aquí está la versión editable de la web de **El secreto de Monteviejo**. La guía para el equipo, las rutas y los pasos de publicación están en el [README del repositorio](../README.md).
 
-## Desarrollo
-
-Requiere Node.js 22.13 o posterior.
+## Comandos desde esta carpeta
 
 ```sh
 npm ci
 npm run dev
+npm run comprobar
+npm run publicar
 ```
 
-El servidor muestra la dirección local en la consola.
+- `dev`: abre el servidor de desarrollo.
+- `comprobar`: revisa las rutas de las imágenes, los datos de la galería y los tipos.
+- `publicar`: comprueba, compila y prepara los archivos que GitHub Pages sirve desde la raíz. Después hay que crear el commit y subirlo.
+- `preview`: permite revisar la última compilación en local.
 
-## Comprobaciones y compilación
+Las imágenes originales de la web van en `public/assets/`. Las fichas están en `content/site.ts`. Cada ficha admite varias imágenes con sus propios textos alternativos y descripciones.
 
-```sh
-npm run typecheck
-npm run lint
-npm run build
-npm run preview
-```
-
-La compilación genera `dist/`, lista para un alojamiento de archivos estáticos. No necesita servidor de aplicaciones, cuentas de servicios externos ni claves de API. La instalación de dependencias requiere conexión a Internet.
-
-## Organización
-
-- `app/page.tsx`: secciones del portfolio.
-- `app/globals.css`: estilos, diseño adaptable y movimiento reducido.
-- `components/`: navegación, portada, recorrido del juego, galería y créditos.
-- `components/ui/`: componentes de interfaz reutilizables.
-- `content/site.ts`: título, sinopsis, equipo, correo y colección de arte.
-- `public/assets/`: logotipos, bocetos y estudios de volumen.
-- `index.html` y `main.tsx`: entrada de la aplicación.
-
-## Actualizar contenido
-
-Para añadir una pieza a la galería, guarda su imagen en `public/assets/` y añade una entrada a `artworks` en `content/site.ts` con identificador, título, categoría, tipo, ruta, descripción y texto alternativo. Indica si es un boceto, un estudio de volumen o una captura jugable.
-
-El título del juego es **El secreto de Monteviejo**, confirmado el 8 de octubre de 2026. La galería reúne 16 piezas de personajes y escenarios. Los roles del equipo todavía no están repartidos.
-
-El contacto utiliza un enlace de correo. La galería permite filtrar y ampliar imágenes; los diálogos se cierran con Escape. La portada responde al cursor y al desplazamiento, y se respeta la preferencia de movimiento reducido.
-
-## Tecnologías
-
-React, TypeScript, Vite y Tailwind CSS. Los componentes de interfaz utilizan Radix UI y shadcn/ui. Las versiones están fijadas en `package-lock.json`; las licencias incluidas se conservan en `vendor/`.
+Usamos React, TypeScript, Vite y Tailwind CSS. Los componentes reutilizables están en `components/ui/` y las licencias incluidas, en `vendor/`.

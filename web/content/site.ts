@@ -19,10 +19,10 @@ export const artworks: Artwork[] = [
         id: '10',
         title: 'UV de Antonio',
         category: 'Personajes',
-        type: 'UV mapping',
+        type: 'desplegado UV',
         src: [ '/assets/UVAntonio.jpg'],
-        alt: ['UV mapping de Antonio.'],
-        description: ['Hemos diespezado a Antonio y lo hemos aplanado. Este es el resultado de su UV mapping, que nos permitirá texturizarlo en 3D.']
+        alt: ['desplegado UV de Antonio.'],
+        description: ['Hemos despiezado a Antonio y lo hemos aplanado. Este es el resultado de su desplegado UV, que nos permitirá texturizarlo en 3D.']
     }, 
     {
         id: '09',
@@ -31,14 +31,14 @@ export const artworks: Artwork[] = [
         type: 'Diseño de personaje',
         src: [ '/assets/Eugenia3Dv1.png'],
         alt: ['Primer modelado 3D de Eugenia, vecina de Antonio'],
-        description: ['Eugenia comienza a tener forma en 3D. Este es la primera aproximación basica de su futuro modelado.']
+        description: ['Eugenia comienza a tener forma en 3D. Esta es la primera aproximación básica de su futuro modelado.']
     }, 
     {
         id: '08',
         title: 'Antonio: comienzo de modelado',
         category: 'Personajes',
         type: 'Diseño de personaje',
-        src: [ '/assets/Antonio3Dv2.png' , '/assets/AntonioEdv1'],
+        src: [ '/assets/Antonio3Dv2.png' , '/assets/Antonio3Dv1.png'],
         alt: ['Modelado 3D de Antonio, protagonista del juego', 
             'Primer modelado básico de Antonio, le falta el pelo y algunos detalles'],
         description: ['Antonio va tomando vida. Ya se puede comenzar a ver su forma en 3D.', 
@@ -52,11 +52,11 @@ export const artworks: Artwork[] = [
         src: [ '/assets/vecina-color.jpeg' , '/assets/vecina-vistas.jpeg', '/assets/vecina-boceto.jpeg'],
         alt: [
             'Diseño de Eugenia: Personaje de una mujer mayor con gafas, moño y vestido violeta, visto de espalda', 
-            'Turnaround de Eugenia: vistas de frente, perfiles y espalda',
-            'Boceto inicial a lapiz de Eugenia'],
+            'Vistas de referencia de Eugenia: vistas de frente, perfiles y espalda',
+            'Boceto inicial a lápiz de Eugenia'],
         description:  ['Diseño de Eugenia: Personaje de una mujer mayor con gafas, moño y vestido violeta, visto de espalda', 
-            'Turnaround de Eugenia, la vecina de Antonio. En él se muestran las vistas de frente, espalda y ambos perfiles para que posteriormente se pueda modelar el personaje en 3D.',
-            'Boceto inicial a lapiz de Eugenia'
+            'Vistas de referencia de Eugenia, la vecina de Antonio. En ellas se muestran las vistas de frente, espalda y ambos perfiles para que posteriormente se pueda modelar el personaje en 3D.',
+            'Boceto inicial a lápiz de Eugenia'
         ]
     },
     {
@@ -65,11 +65,11 @@ export const artworks: Artwork[] = [
         category: 'Personajes',
         type: 'Diseño de personaje',
         src: ['/assets/camarero-color.jpeg', '/assets/MeseroTurn.jpeg', '/assets/camarero-boceto.jpeg'],
-        alt: ['Diseño de Gustavo y Basilio: dos meseros con uniforme de chaleco, cada uno con un color de pajarita distintos',
-            'Turnaround de Gustavo y Basilio: vistas de frente, perfiles y espalda',
+        alt: ['Diseño de Gustavo y Basilio: dos meseros con uniforme de chaleco, cada uno con un color de pajarita distinto',
+            'Vistas de referencia de Gustavo y Basilio: vistas de frente, perfiles y espalda',
             'Boceto inicial a lápiz de Gustavo y Basilio'],
-        description: ['Diseño de Gustavo y Basilio: dos meseros con uniforme de chaleco, cada uno con un color de pajarita distintos',
-            'Turnaround de Gustavo y Basilio: vistas de frente, perfiles y espalda',
+        description: ['Diseño de Gustavo y Basilio: dos meseros con uniforme de chaleco, cada uno con un color de pajarita distinto',
+            'Vistas de referencia de Gustavo y Basilio: vistas de frente, perfiles y espalda',
             'Boceto inicial a lápiz de Gustavo y Basilio'
         ]
     },
@@ -78,13 +78,13 @@ export const artworks: Artwork[] = [
         title: 'Antonio: protagonista del juego',
         category: 'Personajes',
         type: 'Diseño de personaje',
-        src: ['/assets/Antonio.jpg','/assets/AntonioTurnaround.jpg','/assets/AntonioColores.jpeg', '/assets/AntonioBoceto.jpg'],
+        src: ['/assets/Antonio.jpg','/assets/AntonioTuraround.jpg','/assets/AntonioColores.jpeg', '/assets/AntonioBoceto.jpg'],
         alt: ['Dos versiones de Antonio: uno más elegante con camisa, y otro más informal con camiseta roja',
-            'Turnaround de Antonio: vistas de frente, perfiles y espalda',
+            'Vistas de referencia de Antonio: vistas de frente, perfiles y espalda',
             'Estudio de color de Antonio: cinco variantes de color para la piel, el cabello y la ropa',
             'Boceto inicial a lápiz de Antonio'],
         description: ['Diseño de Antonio: protagonista del juego, con dos versiones de vestuario',
-            'Turnaround de Antonio: vistas de frente, perfiles y espalda',
+            'Vistas de referencia de Antonio: vistas de frente, perfiles y espalda',
             'Estudio de color de Antonio: cinco variantes de color para la piel, el cabello y la ropa',
             'Boceto inicial a lápiz de Antonio'
         ]
@@ -95,7 +95,7 @@ export const artworks: Artwork[] = [
         category: 'Personajes',
         type: 'Boceto de personaje',
         src: ['/assets/JuanFranBoceto.jpeg'],
-        alt: ['Boceto de inicial de Juan Fran, un hombre mayor sentado en un banco con las manos apoyadas en un bastón'],
+        alt: ['Boceto inicial de Juan Fran, un hombre mayor sentado en un banco con las manos apoyadas en un bastón'],
         description: ['Boceto inicial de Juan Francisco, uno de los antiguos vecinos de Monteviejo. ¿Dónde estará ahora?']
     },
     {
@@ -113,11 +113,11 @@ export const artworks: Artwork[] = [
         category: 'Escenarios',
         type: 'Diseño de Escenarios',
         src: ['/assets/plaza-volumen.jpeg', '/assets/calle-volumen.png', '/assets/iglesia-volumen.png'],
-        alt: ['Primera aproximación a las fachadas de la plaza en 3D, observandose la iglesia, las dos tabernas, el ayuntamiento y algunas de las casas. ',
+        alt: ['Primera aproximación a las fachadas de la plaza en 3D, observándose la iglesia, las dos tabernas, el ayuntamiento y algunas de las casas. ',
             'Primera aproximación de modelado en 3D, en la que se ve una de las tabernas y una casa',
             'Primera aproximación de la iglesia de Monteviejo en 3D'
         ],
-        description: ['Primera aproximación a las fachadas de la plaza en 3D, observandose la iglesia, las dos tabernas, el ayuntamiento y algunas de las casas. ',
+        description: ['Primera aproximación a las fachadas de la plaza en 3D, observándose la iglesia, las dos tabernas, el ayuntamiento y algunas de las casas. ',
             'Primera aproximación de modelado en 3D, en la que se ve una de las tabernas y una casa',
             'Primera aproximación de la iglesia de Monteviejo en 3D'
         ]

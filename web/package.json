@@ -11,7 +11,9 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "vite preview"
+    "start": "vite preview",
+    "comprobar": "node scripts/comprobar-contenido.mjs && tsc --noEmit",
+    "publicar": "npm run comprobar && vite build && node scripts/preparar-publicacion.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

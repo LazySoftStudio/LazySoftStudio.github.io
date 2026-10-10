@@ -47,7 +47,7 @@ const SidebarContext = React.createContext<SidebarContextProps | null>(null)
 function useSidebar() {
   const context = React.useContext(SidebarContext)
   if (!context) {
-    throw new Error("useSidebar must be used within a SidebarProvider.")
+    throw new Error("useSidebar debe usarse dentro de SidebarProvider.")
   }
 
   return context
@@ -69,8 +69,8 @@ function SidebarProvider({
   const isMobile = useIsMobile()
   const [openMobile, setOpenMobile] = React.useState(false)
 
-  // This is the internal state of the sidebar.
-  // We use openProp and setOpenProp for control from outside the component.
+  // Estado interno del panel lateral.
+  // openProp y setOpenProp permiten controlarlo desde otro componente.
   const [_open, _setOpen] = React.useState(defaultOpen)
   const open = openProp ?? _open
   const setOpen = React.useCallback(
@@ -82,18 +82,18 @@ function SidebarProvider({
         _setOpen(openState)
       }
 
-      // This sets the cookie to keep the sidebar state.
+      // Guarda el estado del panel en una cookie.
       document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
     },
     [setOpenProp, open]
   )
 
-  // Helper to toggle the sidebar.
+  // Abre o cierra el panel.
   const toggleSidebar = React.useCallback(() => {
     return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open)
   }, [isMobile, setOpen, setOpenMobile])
 
-  // Adds a keyboard shortcut to toggle the sidebar.
+  // Atajo de teclado para abrir o cerrar el panel.
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (
@@ -109,8 +109,8 @@ function SidebarProvider({
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [toggleSidebar])
 
-  // We add a state so that we can do data-state="expanded" or "collapsed".
-  // This makes it easier to style the sidebar with Tailwind classes.
+  // El estado se refleja en data-state para distinguir el panel abierto del cerrado.
+  // Así se pueden aplicar las clases de Tailwind según el estado.
   const state = open ? "expanded" : "collapsed"
 
   const contextValue = React.useMemo<SidebarContextProps>(
@@ -196,8 +196,8 @@ function Sidebar({
           side={side}
         >
           <SheetHeader className="sr-only">
-            <SheetTitle>Sidebar</SheetTitle>
-            <SheetDescription>Displays the mobile sidebar.</SheetDescription>
+            <SheetTitle>Panel lateral</SheetTitle>
+            <SheetDescription>Muestra el panel lateral en móvil.</SheetDescription>
           </SheetHeader>
           <div className="flex h-full w-full flex-col">{children}</div>
         </SheetContent>
@@ -214,7 +214,7 @@ function Sidebar({
       data-side={side}
       data-slot="sidebar"
     >
-      {/* This is what handles the sidebar gap on desktop */}
+      {/* Reserva el espacio del panel en escritorio. */}
       <div
         data-slot="sidebar-gap"
         className={cn(
@@ -233,7 +233,7 @@ function Sidebar({
           side === "left"
             ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
             : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
-          // Adjust the padding for floating and inset variants.
+          // Ajusta el margen interior de las variantes flotante e insertada.
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
@@ -274,7 +274,7 @@ function SidebarTrigger({
       {...props}
     >
       <PanelLeftIcon />
-      <span className="sr-only">Toggle Sidebar</span>
+      <span className="sr-only">Abrir o cerrar el panel lateral</span>
     </Button>
   )
 }
@@ -286,10 +286,10 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
     <button
       data-sidebar="rail"
       data-slot="sidebar-rail"
-      aria-label="Toggle Sidebar"
+      aria-label="Abrir o cerrar el panel lateral"
       tabIndex={-1}
       onClick={toggleSidebar}
-      title="Toggle Sidebar"
+      title="Abrir o cerrar el panel lateral"
       className={cn(
         "absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border sm:flex",
         "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
@@ -427,7 +427,7 @@ function SidebarGroupAction({
       data-sidebar="group-action"
       className={cn(
         "absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground ring-sidebar-ring outline-hidden transition-transform hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
-        // Increases the hit area of the button on mobile.
+        // Amplía el área táctil del botón en móvil.
         "after:absolute after:-inset-2 md:after:hidden",
         "group-data-[collapsible=icon]:hidden",
         className
@@ -562,7 +562,7 @@ function SidebarMenuAction({
       data-sidebar="menu-action"
       className={cn(
         "absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground ring-sidebar-ring outline-hidden transition-transform peer-hover/menu-button:text-sidebar-accent-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
-        // Increases the hit area of the button on mobile.
+        // Amplía el área táctil del botón en móvil.
         "after:absolute after:-inset-2 md:after:hidden",
         "peer-data-[size=sm]/menu-button:top-1",
         "peer-data-[size=default]/menu-button:top-1.5",
