@@ -21,4 +21,4 @@ Trabajamos en este repositorio: **LazySoftStudio/LazySoftStudio.github.io**.
 
 ## Para que los cambios se vean en la web
 
-GitHub Pages muestra el `index.html` y los archivos de `assets/` de la raíz. El código que editamos está dentro de `web/`. Subir solo ese código **no actualiza la versión que ven los visitantes**: hay que compilarlo antes.
+GitHub Pages muestra el `index.html` y los archivos de `assets/` de la raíz. El código que editamos está dentro de `web/`. Subir solo ese código **no actualiza la versión que ven en la web**: hay que compilarlo antes.
