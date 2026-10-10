@@ -44,7 +44,7 @@ export function Hero() {
   return <section ref={scene} className="hero-stage" id="inicio">
     <div className="hero-kicker"><span>ESTUDIO DE DESARROLLO DE VIDEOJUEGOS</span><span>PROYECTO UNIVERSITARIO</span></div>
     <h1 className="hero-title">LAZY<span>SOFT</span><span className="sr-only"> — Estudio de videojuegos</span></h1>
-    <div className="hero-object"><img className="mascot-image" src="/assets/lazysoft-mascot-3d.png" alt="El perezoso de LazySoft abraza un mando de videojuegos" width="1254" height="1254" fetchPriority="high"/></div>
+    <div className="hero-object"><img className="mascot-image" src="/assets/logoLazysoft.png" alt="El perezoso de LazySoft abraza un mando de videojuegos" width="1254" height="1254" fetchPriority="high"/></div>
     <div className="hero-caption"><p>El secreto de<br/><em>Monteviejo</em></p><div><p>Aventura narrativa en 3D.<br/>En desarrollo.</p><a className="button light" href="#juego">Ver el videojuego</a></div></div>
     <div className="hero-floor"><span>LAZYSOFT</span><a href="#arte">Ver arte y desarrollo</a><span>PROYECTO EN DESARROLLO</span></div>
   </section>;
