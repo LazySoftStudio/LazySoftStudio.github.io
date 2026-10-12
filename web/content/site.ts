@@ -11,6 +11,13 @@ export const site = {
         ]
     },
     team: ['Ángel Bermúdez', 'Alberto Caro', 'Daniel Corbacho', 'Alejandro Hernández', 'Paula Ortiz', 'Iván Palacios'],
+        socials:{ 
+        instagram: 'https://www.instagram.com/lazysoftstudio', 
+        youtube: 'https://www.youtube.com/@LazySoftStudio',
+        x: 'https://x.com/LazySoftStudio',
+        itchio: 'https://lazysoftstudio.itch.io/',
+        linktree: 'https://linktr.ee/LazySoftStudio'
+    }
 };
 
 export type Artwork = { id: string; title: string; category: 'Escenarios' | 'Personajes'; type: string; src: string[]; alt: string[]; description: string[] };

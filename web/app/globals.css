@@ -65,3 +65,22 @@ h2,h3,.email-link{overflow-wrap:anywhere}
  .team-list h3{font-size:clamp(20px,6vw,24px)}
  .dialog-bar{flex-wrap:wrap}
 }
+
+.redesSociales {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.redesSociales img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.redesSociales a:hover img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}

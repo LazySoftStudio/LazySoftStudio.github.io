@@ -1,8 +1,14 @@
 'use client';
 import { useState } from 'react';
 import { site } from '@/content/site';
-const links = [{id:'inicio',label:'Inicio'},{id:'juego',label:site.game.title},{id:'arte',label:'Arte y desarrollo'},{id:'equipo',label:'Equipo'},{id:'contacto',label:'Contacto'}];
-export function Navigation(){
+const links = [
+    {id:'inicio',label:'Inicio'},
+    {id:'juego',label:site.game.title},
+    {id:'arte',label:'Arte y desarrollo'},
+    {id:'equipo',label:'Equipo'},
+    {id:'trayectoria',label:'Trayectoria'},
+    {id:'contacto',label:'Contacto'}
+];export function Navigation(){
  const [open,setOpen]=useState(false);
  return <header className="header"><a className="wordmark" href="#inicio" aria-label="LazySoft, inicio" onClick={()=>setOpen(false)}>lazysoft<span>ESTUDIO</span></a>
  <button className="menu-toggle" aria-expanded={open} aria-controls="main-navigation" onClick={()=>setOpen(!open)}>{open?'Cerrar':'Menú'}</button>
