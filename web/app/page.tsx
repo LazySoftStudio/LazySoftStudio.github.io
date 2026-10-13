@@ -5,6 +5,7 @@ import { ArtGallery } from '@/components/art-gallery';
 import { GameJourney } from '@/components/game-journey';
 import { ScrollMotion } from '@/components/scroll-motion';
 import { Credits } from '@/components/credits';
+import { Trayectoria } from '@/components/trayectoria';
 export default function Home(){
  return <><a className="skip-link" href="#contenido">Saltar al contenido</a><Navigation/>
  <main id="contenido"><Hero/>
@@ -58,17 +59,7 @@ export default function Home(){
         </div>
     </div>
 </section>
-<section className="trayectoria" id="trayectoria">
-    <div className="wrap">
-        <div className="section-heading">
-            <p className="eyebrow">04 / TRAYECTORIA</p>
-            <span className="outline-tag">Otros Proyectos</span>
-        </div>
-        <div className="trayectoria-content">
-            <p>En un futuro, en este apartado se podrá ver una línea del tiempo en la que se muestren los proyectos que ha ido desarrollando el equipo a lo largo de su historia.</p>
-        </div>
-    </div>
-</section>
+<Trayectoria/>
  <section className="contact-section" id="contacto">
     <div className="wrap">
         <div className="section-heading">

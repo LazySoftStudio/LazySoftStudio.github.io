@@ -84,3 +84,41 @@ h2,h3,.email-link{overflow-wrap:anywhere}
   transform: scale(1.1);
   transition: transform 0.3s ease;
 }
+/* Trayectoria: fichas editables conectadas por una línea de tiempo. */
+.trayectoria{background:#18211f;color:#eef0ec;padding:100px 0}
+.trayectoria .outline-tag{border-color:#52655e}
+.trayectoria-intro{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:6vw;align-items:end;margin-bottom:36px}
+.trayectoria-intro h2{font-size:clamp(42px,6.7vw,92px);letter-spacing:-.06em}
+.trayectoria-intro h2 em{color:var(--cyan)}
+.trayectoria-intro>p{color:#b3c1ba;max-width:340px;padding-bottom:8px}
+.trayectoria-lista{list-style:none;padding:0;margin:60px 0 0}
+.trayectoria-hito{display:grid;grid-template-columns:minmax(120px,190px) minmax(0,1fr);gap:32px;position:relative;padding:0 0 56px 30px}
+.trayectoria-hito::before{content:'';position:absolute;left:5px;top:12px;bottom:-12px;width:1px;background:#425b50}
+.trayectoria-hito:last-child{padding-bottom:0}
+.trayectoria-hito:last-child::before{bottom:0;background:linear-gradient(#425b50,transparent)}
+.trayectoria-fecha{position:relative;padding-top:2px;overflow-wrap:anywhere}
+.trayectoria-fecha .eyebrow{color:#88a596}
+.trayectoria-fecha p{font-size:clamp(18px,2vw,25px);line-height:1.3;letter-spacing:-.03em;font-weight:700;margin-top:12px}
+.trayectoria-punto{position:absolute;left:-30px;top:8px;width:11px;height:11px;background:var(--cyan);border:3px solid #18211f;outline:1px solid #79f4e3;border-radius:50%}
+.trayectoria-ficha{min-width:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:#202d28;border:1px solid #3c5146}
+.trayectoria-galeria{min-width:0;padding:14px;border-right:1px solid #3c5146}
+.trayectoria-imagen,.trayectoria-sin-imagen{width:100%;aspect-ratio:4/3;background:#17201c;object-fit:contain}
+.trayectoria-sin-imagen{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;border:1px dashed #52685b;color:#bed0c6;text-align:center;padding:20px}
+.trayectoria-sin-imagen svg{margin-bottom:10px;color:#79f4e3}
+.trayectoria-sin-imagen small{font-size:12px;color:#91a89a}
+.trayectoria-galeria figcaption{font-size:12px;line-height:1.5;color:#b3c1ba;margin-top:10px;overflow-wrap:anywhere}
+.trayectoria-miniaturas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.trayectoria-miniaturas button{width:58px;height:44px;background:#17201c;border:2px solid transparent;padding:2px}
+.trayectoria-miniaturas button[aria-pressed=true]{border-color:var(--cyan)}
+.trayectoria-miniaturas img{width:100%;height:100%;object-fit:cover}
+.trayectoria-texto{min-width:0;padding:clamp(20px,3vw,36px);align-self:center;overflow-wrap:anywhere}
+.trayectoria-etiquetas{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.trayectoria-etiquetas .eyebrow{color:#b3c1ba;font-size:10px;text-transform:uppercase}
+.trayectoria-borrador{font-size:11px;line-height:1.5;border:1px solid #5e7467;padding:3px 9px;border-radius:20px;color:#c7d6ce}
+.trayectoria-texto h3{font-size:clamp(25px,2.6vw,38px);line-height:1.1}
+.trayectoria-descripcion{white-space:pre-line;font-size:15px;line-height:1.75;color:#bac8c0;margin-top:20px}
+.trayectoria-enlace{display:inline-flex;align-items:center;gap:8px;color:var(--cyan);font-size:14px;margin-top:24px;border-bottom:1px solid #547469;padding-bottom:4px}
+.trayectoria-enlace:hover{color:white}
+.trayectoria-vacia{padding:30px 0;color:#bac8c0;border-top:1px solid #425b50}
+@media(max-width:1000px){.trayectoria-hito{grid-template-columns:110px minmax(0,1fr);gap:20px}.trayectoria-ficha{grid-template-columns:minmax(0,1fr)}.trayectoria-galeria{border-right:0;border-bottom:1px solid #3c5146}.trayectoria-imagen,.trayectoria-sin-imagen{max-height:340px}.trayectoria-texto{padding:26px}}
+@media(max-width:600px){.trayectoria{padding:65px 0}.trayectoria .section-heading{flex-wrap:wrap;gap:16px;margin-bottom:35px}.trayectoria-intro{grid-template-columns:minmax(0,1fr);gap:24px}.trayectoria-intro h2{font-size:clamp(36px,10vw,56px)}.trayectoria-lista{margin-top:36px}.trayectoria-hito{grid-template-columns:minmax(0,1fr);gap:18px;padding-left:24px;padding-bottom:40px}.trayectoria-fecha{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px}.trayectoria-fecha p{margin:0;font-size:20px}.trayectoria-punto{left:-24px}.trayectoria-texto{padding:20px}.trayectoria-texto h3{font-size:28px}.trayectoria-galeria{padding:10px}}

@@ -1,5 +1,7 @@
 # Código de la web de LazySoft
 
+Para rellenar los proyectos anteriores del estudio, consulta [la guía de trayectoria](GUIA-TRAYECTORIA.md). Las fichas se editan en `content/trayectoria.ts` y sus imágenes van en `public/assets/trayectoria/`.
+
 Aquí está la versión editable de la web de **El secreto de Monteviejo**. La guía para el equipo, las rutas y los pasos de publicación están en el [README del repositorio](../README.md).
 
 ## Comandos desde esta carpeta

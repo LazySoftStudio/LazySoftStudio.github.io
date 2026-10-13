@@ -39,3 +39,23 @@ for (const archivo of ['index.html', 'app/page.tsx', 'components/hero.tsx', 'com
  for (const coincidencia of texto.matchAll(/["'](\/(?:assets\/[^"']+|[^"']+\.svg))["']/g)) await comprobarRuta(coincidencia[1]);
 }
 console.log(`Contenido revisado: ${artworks.length} piezas y ${imagenes} imágenes. Todas las rutas existen.`);
+
+// Los borradores pueden estar incompletos; las fichas públicas deben tener sus datos e imágenes.
+const codigoTrayectoria = await readFile(join(carpetaWeb, 'content/trayectoria.ts'), 'utf8');
+const moduloTrayectoria = ts.transpileModule(codigoTrayectoria, { compilerOptions: { module: ts.ModuleKind.ESNext } });
+const { trayectoria } = await import('data:text/javascript;base64,' + Buffer.from(moduloTrayectoria.outputText).toString('base64'));
+const proyectos = new Set();
+for (const proyecto of trayectoria) {
+ if (!proyecto.id?.trim() || proyectos.has(proyecto.id)) throw new Error('Identificador vacío o repetido en trayectoria: ' + proyecto.id);
+ proyectos.add(proyecto.id);
+ if (typeof proyecto.borrador !== 'boolean') throw new Error('Indica borrador: true o false en ' + proyecto.id);
+ if (!proyecto.borrador && (['fecha', 'titulo', 'tipo', 'descripcion'].some(campo => !proyecto[campo]?.trim()) || !proyecto.imagenes.length)) {
+  throw new Error('Completa fecha, título, tipo, descripción e imágenes antes de publicar: ' + proyecto.id);
+ }
+ if (proyecto.enlace && !/^https?:\/\/[^\s]+$/i.test(proyecto.enlace)) throw new Error('El enlace debe empezar por https:// o http:// en ' + proyecto.id);
+ for (const imagen of proyecto.imagenes) {
+  if (!imagen.alt?.trim()) throw new Error('Falta describir una imagen de ' + proyecto.id);
+  await comprobarRuta(imagen.src);
+ }
+}
+console.log(`Trayectoria revisada: ${trayectoria.filter(proyecto => !proyecto.borrador).length} fichas completas y ${trayectoria.filter(proyecto => proyecto.borrador).length} borradores locales.`);
