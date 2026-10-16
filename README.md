@@ -1,7 +1,5 @@
 # LazySoft · El secreto de Monteviejo
 
-Aquí tengo la web de nuestro estudio y del videojuego. Trabajo con HTML, CSS y JavaScript. He separado el contenido del diseño para que podamos añadir avances sin rehacer la página.
-
 ## Dónde edito cada cosa
 
 | Archivo o carpeta | Para qué lo uso |
