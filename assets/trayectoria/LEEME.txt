@@ -1,7 +1,3 @@
-Guarda aquí las imágenes de los proyectos anteriores de LazySoft.
-
-Ejemplo de nombre: mi-juego-portada.jpg
-Ruta en la ficha: /assets/trayectoria/mi-juego-portada.jpg
-
-Fichas: web/content/trayectoria.ts
-Instrucciones: web/GUIA-TRAYECTORIA.md
+Guardo aquí las imágenes de los proyectos anteriores.
+Completo sus fichas en web/js/trayectoria.js.
+Tengo los pasos y un ejemplo en el README de la raíz.
