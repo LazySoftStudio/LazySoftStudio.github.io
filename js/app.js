@@ -2,7 +2,7 @@
 
 // Completo las partes que se repiten a partir de los datos del proyecto.
 (() => {
-  const { site, artworks, trayectoria } = window.LazySoft;
+  const { site, artworks, trayectoria, similares = [] } = window.LazySoft;
   const buscar = (selector, dentro = document) => dentro.querySelector(selector);
   const buscarTodos = (selector, dentro = document) => [...dentro.querySelectorAll(selector)];
   const clonar = id => buscar(id).content.firstElementChild.cloneNode(true);
@@ -13,14 +13,43 @@
   const mostrarBorradores = esLocal && !document.body.hasAttribute('data-version-publica');
 
   buscarTodos('[data-titulo-juego]').forEach(elemento => { elemento.textContent = site.game.title; });
-  escribir('.footer-bottom span:last-child', site.game.title.toUpperCase());
-  escribir('#sinopsis', site.game.description);
   escribir('.email-link', site.email);
   buscar('.email-link').href = 'mailto:' + site.email;
   buscarTodos('[data-red]').forEach(enlace => {
     const url = site.socials[enlace.dataset.red];
     if (enlaceValido(url)) enlace.href = url;
   });
+  buscarTodos('[data-enlace-jugar]').forEach(enlace => {
+    if (enlaceValido(site.game.playUrl)) enlace.href = site.game.playUrl;
+  });
+
+  // Muestro el tráiler cuando está configurado; mientras tanto se ve el aviso sobre la imagen.
+  const reproductor = buscar('#reproductor');
+  const trailer = site.trailer || {};
+  const codigoYoutube = (trailer.youtube || '').trim().match(/(?:v=|youtu\.be\/|embed\/|shorts\/|^)([\w-]{11})(?:[?&#]|$)/)?.[1];
+  if (trailer.poster) buscar('.trailer-poster', reproductor).src = trailer.poster;
+  if (trailer.video) {
+    const video = document.createElement('video');
+    video.controls = true;
+    video.preload = 'none';
+    video.playsInline = true;
+    video.poster = trailer.poster || '';
+    video.src = trailer.video;
+    reproductor.replaceChildren(video);
+  } else if (codigoYoutube) {
+    buscar('.trailer-aviso', reproductor).hidden = true;
+    const botonTrailer = buscar('.trailer-play', reproductor);
+    botonTrailer.hidden = false;
+    // Cargo YouTube solo cuando se pulsa el botón para que la página no espere al vídeo.
+    botonTrailer.addEventListener('click', () => {
+      const marco = document.createElement('iframe');
+      marco.src = `https://www.youtube-nocookie.com/embed/${codigoYoutube}?autoplay=1&rel=0`;
+      marco.title = 'Tráiler de ' + site.game.title;
+      marco.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      marco.allowFullscreen = true;
+      reproductor.replaceChildren(marco);
+    });
+  }
 
   // Cierro el menú móvil al navegar, pulsar Escape o volver a la vista de escritorio.
   const botonMenu = buscar('.menu-toggle');
@@ -39,6 +68,21 @@
     }
   });
   matchMedia('(min-width:1001px)').addEventListener('change', evento => { if (evento.matches) cambiarMenu(false); });
+
+  // Pongo en negrita el apartado del menú que se está viendo.
+  // Vigilo una franja fina a media pantalla: la sección que la cruza es la actual.
+  const enlacesMenu = buscarTodos('#main-navigation a[href^="#"]');
+  enlacesMenu.forEach(enlace => { enlace.dataset.texto = enlace.textContent; });
+  const observadorMenu = new IntersectionObserver(entradas => {
+    entradas.forEach(entrada => {
+      if (!entrada.isIntersecting) return;
+      enlacesMenu.forEach(enlace => {
+        if (enlace.getAttribute('href') === '#' + entrada.target.id) enlace.setAttribute('aria-current', 'true');
+        else enlace.removeAttribute('aria-current');
+      });
+    });
+  }, { rootMargin: '-45% 0px -54% 0px' });
+  buscarTodos('main > section[id]').forEach(seccion => observadorMenu.observe(seccion));
 
   // Uso dialog y devuelvo el foco al botón de origen cuando se cierra.
   function abrirVentana(ventana) {
@@ -118,14 +162,53 @@
   // Uso la misma lista de integrantes para el equipo y los créditos.
   site.team.forEach((nombre, indice) => {
     const ficha = clonar('#plantilla-integrante');
-    escribir('.member-number', numero(indice + 1), ficha);
     escribir('h3', nombre, ficha);
-    escribir('.member-initials', nombre.split(' ').map(parte => parte[0]).join(''), ficha);
     buscar('img', ficha).src = `assets/equipo/${indice}.jpeg`;
     buscar('#lista-equipo').append(ficha);
   });
   escribir('#numero-integrantes', `${site.team.length} integrantes`);
   escribir('#creditos-equipo', new Intl.ListFormat('es').format(site.team) + '.');
+
+  // Juegos parecidos del apartado de marketing.
+  similares.forEach(juego => {
+    const ficha = clonar('#plantilla-similar');
+    escribir('h4', juego.titulo, ficha);
+    escribir('.similar-datos', `${juego.estudio}, ${juego.anio}`, ficha);
+    escribir('.similar-motivo', juego.motivo, ficha);
+    buscar('#lista-similares').append(ficha);
+  });
+  buscar('.similares').hidden = similares.length === 0;
+
+  // Envío el formulario al servicio configurado o, si no hay ninguno, preparo el correo.
+  const formulario = buscar('#formulario-contacto');
+  const estadoFormulario = buscar('.form-estado', formulario);
+  const servicioFormulario = enlaceValido(site.contactForm || '') ? site.contactForm : '';
+  buscar('#nota-formulario').hidden = Boolean(servicioFormulario);
+  formulario.addEventListener('submit', async evento => {
+    evento.preventDefault();
+    const datos = new FormData(formulario);
+    if (datos.get('_gotcha')) return;
+    if (!servicioFormulario) {
+      const asunto = `${datos.get('motivo')}: mensaje de ${datos.get('nombre')}`;
+      const cuerpo = `${datos.get('mensaje')}\n\n${datos.get('nombre')}\n${datos.get('correo')}`;
+      location.href = `mailto:${site.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+      estadoFormulario.textContent = 'Hemos abierto tu programa de correo con el mensaje. Solo falta enviarlo desde allí.';
+      return;
+    }
+    const botonEnviar = buscar('button[type="submit"]', formulario);
+    botonEnviar.disabled = true;
+    estadoFormulario.textContent = 'Enviando el mensaje…';
+    try {
+      const respuesta = await fetch(servicioFormulario, { method: 'POST', body: datos, headers: { Accept: 'application/json' } });
+      if (!respuesta.ok) throw new Error(respuesta.status);
+      formulario.reset();
+      estadoFormulario.textContent = 'Mensaje enviado. Te responderemos al correo que nos has dejado.';
+    } catch {
+      estadoFormulario.textContent = `No se ha podido enviar el mensaje. Escríbenos a ${site.email}.`;
+    } finally {
+      botonEnviar.disabled = false;
+    }
+  });
 
   // Mantengo la trayectoria en el orden del archivo.
   const proyectos = trayectoria.filter(proyecto => mostrarBorradores || !proyecto.borrador);
@@ -178,25 +261,7 @@
     buscar('#lista-trayectoria').append(ficha);
   });
 
-  // Cambio la imagen según la parte del recorrido que se está viendo.
-  const escenas = ['El espacio / Estudio de volumen', 'Sus habitantes / Estudio de personaje', 'Las conexiones / Plano del pueblo'];
-  buscarTodos('[data-journey-step]').forEach((paso, indice) => {
-    escribir('h3', site.game.pillars[indice].title, paso);
-    escribir('p', site.game.pillars[indice].text, paso);
-  });
-  const observadorRecorrido = new IntersectionObserver(entradas => {
-    entradas.forEach(entrada => {
-      if (!entrada.isIntersecting) return;
-      const activa = Number(entrada.target.dataset.journeyStep);
-      buscarTodos('.journey-stage img').forEach((imagen, indice) => imagen.classList.toggle('scene-active', activa === indice));
-      buscarTodos('.journey-progress span').forEach((barra, indice) => barra.classList.toggle('is-active', activa === indice));
-      escribir('#escena-titulo', escenas[activa]);
-      escribir('#escena-numero', `${numero(activa + 1)} / 03`);
-    });
-  }, { rootMargin: '-35% 0px -35% 0px', threshold: 0 });
-  buscarTodos('[data-journey-step]').forEach(paso => observadorRecorrido.observe(paso));
-
-  // Animo la portada y las secciones respetando la preferencia de movimiento reducido.
+  // Animo solo la portada y respeto la preferencia de movimiento reducido.
   const movimientoReducido = matchMedia('(prefers-reduced-motion: reduce)');
   const portada = buscar('.hero-stage');
   let fotograma = 0;
@@ -221,16 +286,4 @@
   window.addEventListener('scroll', solicitarFotograma, { passive: true });
   movimientoReducido.addEventListener('change', solicitarFotograma);
   pintarPortada();
-  const observadorAparicion = new IntersectionObserver(entradas => {
-    entradas.forEach(entrada => {
-      if (entrada.isIntersecting) {
-        entrada.target.classList.add('is-visible');
-        observadorAparicion.unobserve(entrada.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  buscarTodos('[data-reveal]').forEach(elemento => {
-    elemento.classList.add('reveal-ready');
-    observadorAparicion.observe(elemento);
-  });
 })();

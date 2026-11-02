@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import vm from 'node:vm';
 import { carpetaWeb, leerDatos } from './leer-datos.mjs';
 
-const { site, artworks, trayectoria } = await leerDatos();
+const { site, artworks, trayectoria, similares = [] } = await leerDatos();
 const texto = valor => typeof valor === 'string' && valor.trim().length > 0;
 const enlaceValido = valor => { try { return ['http:', 'https:'].includes(new URL(valor).protocol); } catch { return false; } };
 
@@ -44,6 +44,13 @@ for (const proyecto of trayectoria) {
 }
 for (let i = 0; i < site.team.length; i++) await comprobarRuta(`assets/equipo/${i}.jpeg`);
 for (const enlace of Object.values(site.socials)) if (!enlaceValido(enlace)) throw new Error('Revisa el enlace de una red social.');
+if (!enlaceValido(site.game.playUrl)) throw new Error('Revisa el enlace para jugar (game.playUrl).');
+if (site.contactForm && !enlaceValido(site.contactForm)) throw new Error('La dirección del formulario (contactForm) debe ser una URL http o https.');
+if (site.trailer?.video) await comprobarRuta(site.trailer.video);
+if (site.trailer?.poster) await comprobarRuta(site.trailer.poster);
+for (const juego of similares) {
+  if (['titulo', 'estudio', 'anio', 'motivo'].some(campo => !texto(String(juego[campo] ?? '')))) throw new Error('Completa los datos del juego parecido: ' + (juego.titulo || 'sin título'));
+}
 const html = await readFile(join(carpetaWeb, 'index.html'), 'utf8');
 for (const coincidencia of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
   if (!/^(#|https?:|mailto:)/.test(coincidencia[1])) await comprobarRuta(coincidencia[1]);
@@ -54,4 +61,5 @@ for (const archivo of await readdir(join(carpetaWeb, 'js'))) {
 }
 console.log(`Contenido revisado: ${artworks.length} fichas, ${imagenes} imágenes y ${site.team.length} integrantes.`);
 console.log(`Trayectoria: ${trayectoria.filter(p => !p.borrador).length} fichas completas y ${trayectoria.filter(p => p.borrador).length} borradores locales.`);
+console.log(`Marketing: ${similares.length} juegos parecidos. Tráiler: ${site.trailer?.youtube || site.trailer?.video ? 'configurado' : 'pendiente'}.`);
 console.log('HTML y JavaScript revisados. Todas las rutas locales existen.');

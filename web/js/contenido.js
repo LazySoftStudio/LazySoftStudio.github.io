@@ -6,15 +6,17 @@ window.LazySoft.site = {
     studio: 'LazySoft', email: 'lazysoftstudio@gmail.com',
     game: {
         title: 'El secreto de Monteviejo', provisionalTitle: false,
-        description: 'Antonio llega a Monteviejo por trabajo y comienza a investigar el pasado del pueblo. El jugador explora sus calles, habla con los vecinos y consulta documentos para relacionar las pistas.',
-        pillars: [
-            { title: 'Explora el pueblo', text: 'Calles, viviendas y una plaza donde se cruzan las historias. Un entorno rural pensado para descubrirlo a pie.' },
-            { title: 'Escucha a sus habitantes', text: 'Cada vecino tiene su propia versión. El diálogo será la puerta de entrada a los vínculos y tensiones del pueblo.' },
-            { title: 'Conecta las pistas', text: 'Observa, consulta documentos y contrasta testimonios para reconstruir lo que ocurrió.' },
-        ]
+        // Página del juego en itch.io: la usan todos los botones de «Jugar».
+        playUrl: 'https://lazysoftstudio.itch.io/el-secreto-de-monteviejo'
     },
+    // Cuando subamos el tráiler, pego aquí el enlace de YouTube (vale el enlace completo o solo el código del vídeo).
+    // Si preferimos un archivo propio, lo guardo en assets/ y escribo su ruta en video, por ejemplo 'assets/trailer.mp4'.
+    trailer: { youtube: '', video: '', poster: 'assets/plaza-volumen.jpeg' },
+    // Dirección de envío de un servicio de formularios (por ejemplo, Formspree).
+    // Si la dejo vacía, el formulario de contacto abre el programa de correo con el mensaje escrito.
+    contactForm: '',
     team: ['Ángel Bermúdez', 'Alberto Caro', 'Daniel Corbacho', 'Alejandro Hernández', 'Paula Ortiz', 'Iván Palacios'],
-        socials:{ 
+        socials:{
         instagram: 'https://www.instagram.com/lazysoftstudio', 
         youtube: 'https://www.youtube.com/@LazySoftStudio',
         x: 'https://x.com/LazySoftStudio',
@@ -22,6 +24,34 @@ window.LazySoft.site = {
         linktree: 'https://linktr.ee/LazySoftStudio'
     }
 };
+
+// Juegos parecidos del apartado de marketing. Es una lista provisional: la cambiamos cuando lo decidamos en equipo.
+window.LazySoft.similares = [
+    {
+        titulo: 'Return of the Obra Dinn',
+        estudio: 'Lucas Pope',
+        anio: 2018,
+        motivo: 'Hay que averiguar quién era cada persona cruzando pistas sueltas. Es la referencia más cercana a nuestra investigación.'
+    },
+    {
+        titulo: 'Life is Strange',
+        estudio: 'Dontnod Entertainment',
+        anio: 2015,
+        motivo: 'Un pueblo pequeño, cámara en tercera persona y conversaciones en las que eliges qué decir.'
+    },
+    {
+        titulo: 'Mutazione',
+        estudio: 'Die Gute Fabrik',
+        anio: 2019,
+        motivo: 'Una comunidad pequeña donde todos se conocen y los cotilleos mueven la historia.'
+    },
+    {
+        titulo: 'Super Mario 64',
+        estudio: 'Nintendo',
+        anio: 1996,
+        motivo: 'Referencia visual del documento de diseño: modelos de pocos polígonos y texturas sencillas.'
+    },
+];
 
 window.LazySoft.artworks = [
     {

@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="El secreto de Monteviejo, una aventura narrativa en 3D de LazySoft. Consulta el videojuego, los diseños de personajes y escenarios y el equipo de desarrollo.">
+  <meta name="description" content="El secreto de Monteviejo, una aventura narrativa en 3D de LazySoft. Mira el tráiler, juega a la versión en desarrollo y consulta el arte del juego y el equipo.">
   <meta name="theme-color" content="#101213">
   <link rel="icon" href="icono-lazysoft.svg">
+  <!-- Alegreya para los textos del juego y Alegreya Sans para el resto de la web. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:wght@400;500;700;800;900&display=swap">
   <link rel="stylesheet" href="css/estilos.css">
   <title>LazySoft | El secreto de Monteviejo</title>
   <!-- Cargo primero los datos y después las interacciones. -->
@@ -19,66 +23,106 @@
     <a class="wordmark" href="#inicio" aria-label="LazySoft, inicio">lazysoft<span>ESTUDIO</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">Menú</button>
     <nav id="main-navigation" aria-label="Navegación principal">
-      <a href="#inicio">Inicio</a>
-      <a href="#juego" data-titulo-juego>El secreto de Monteviejo</a>
+      <a href="#trailer" data-titulo-juego>El secreto de Monteviejo</a>
+      <a href="#marketing">Marketing</a>
       <a href="#arte">Arte y desarrollo</a>
       <a href="#equipo">Equipo</a>
       <a href="#trayectoria">Trayectoria</a>
       <a href="#contacto">Contacto</a>
+      <a class="nav-jugar" href="https://lazysoftstudio.itch.io/el-secreto-de-monteviejo" target="_blank" rel="noopener noreferrer" data-enlace-jugar>Jugar</a>
     </nav>
   </header>
 
   <main id="contenido">
     <!-- Portada del estudio. -->
     <section class="hero-stage" id="inicio">
-      <div class="hero-kicker"><span>ESTUDIO DE DESARROLLO DE VIDEOJUEGOS</span><span>PROYECTO UNIVERSITARIO</span></div>
+      <div class="hero-kicker"><span>Estudio de desarrollo de videojuegos</span><span>Proyecto universitario</span></div>
       <h1 class="hero-title">LAZY<span>SOFT</span><span class="sr-only"> — Estudio de videojuegos</span></h1>
       <div class="hero-object"><img class="mascot-image" src="assets/logoLazysoft.png" alt="El perezoso de LazySoft abraza un mando de videojuegos" width="1254" height="1254" fetchpriority="high"></div>
       <div class="hero-caption">
-        <p>El secreto de<br><em>Monteviejo</em></p>
-        <div><p>Aventura narrativa en 3D.<br>En desarrollo.</p><a class="button light" href="#juego">Ver el videojuego</a></div>
+        <p class="hero-juego" data-titulo-juego>El secreto de Monteviejo</p>
+        <div>
+          <p>Aventura narrativa en 3D. Ya puedes probar la versión en desarrollo.</p>
+          <div class="hero-acciones">
+            <a class="button light" href="https://lazysoftstudio.itch.io/el-secreto-de-monteviejo" target="_blank" rel="noopener noreferrer" data-enlace-jugar>Jugar en itch.io</a>
+            <a class="button ghost" href="#trailer">Ver el tráiler</a>
+          </div>
+        </div>
       </div>
-      <div class="hero-floor"><span>LAZYSOFT</span><a href="#arte">Ver arte y desarrollo</a><span>PROYECTO EN DESARROLLO</span></div>
+      <div class="hero-floor">
+        <span>LazySoft</span>
+        <nav class="hero-atajos" aria-label="Ir a una sección"><a href="#marketing">Ver el juego</a><a href="#arte">Ver el arte</a></nav>
+        <span>En desarrollo</span>
+      </div>
     </section>
 
-    <!-- Presentación del videojuego y recorrido por sus tres pilares. -->
-    <section class="game-section" id="juego">
+    <!-- Tráiler y versión jugable. El vídeo se configura en js/contenido.js. -->
+    <section class="trailer-section" id="trailer" aria-labelledby="titulo-trailer">
+      <div class="wrap trailer-layout">
+        <div class="trailer-player" id="reproductor">
+          <img class="trailer-poster" src="assets/plaza-volumen.jpeg" alt="" loading="lazy">
+          <div class="trailer-aviso">
+            <p><strong>Estamos montando el tráiler.</strong></p>
+            <p>Cuando esté listo lo verás aquí y en nuestro <a data-red="youtube" href="https://www.youtube.com/@LazySoftStudio" target="_blank" rel="noopener noreferrer">canal de YouTube</a>.</p>
+          </div>
+          <button class="trailer-play" type="button" hidden><span aria-hidden="true">▶</span> Reproducir el tráiler</button>
+        </div>
+        <div class="trailer-info">
+          <h2 id="titulo-trailer">Tráiler y versión jugable</h2>
+          <p>La versión en desarrollo está en itch.io. Es temprana y la vamos actualizando según avanza el proyecto.</p>
+          <a class="button light" href="https://lazysoftstudio.itch.io/el-secreto-de-monteviejo" target="_blank" rel="noopener noreferrer" data-enlace-jugar>Jugar en itch.io</a>
+          <h3>Controles</h3>
+          <dl class="controles">
+            <div><dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></dt><dd>Moverse</dd></div>
+            <div><dt><kbd>Ratón</kbd></dt><dd>Girar la cámara</dd></div>
+            <div><dt><kbd>Espacio</kbd></dt><dd>Avanzar diálogo</dd></div>
+            <div><dt><kbd>E</kbd></dt><dd>Interactuar</dd></div>
+            <div><dt><kbd>Clic izquierdo</kbd></dt><dd>Elegir respuesta en los diálogos</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marketing: a quién va dirigido el juego. Los juegos parecidos se editan en js/contenido.js. -->
+    <section class="marketing-section" id="marketing" aria-labelledby="titulo-marketing">
       <div class="wrap">
-        <div class="section-heading"><p class="eyebrow">01 / NUESTRO PRIMER JUEGO</p><span class="outline-tag">En desarrollo</span></div>
-        <div class="game-intro" data-reveal>
-          <h2 data-titulo-juego>El secreto de Monteviejo</h2>
-          <div><p class="display-copy">Aventura narrativa<br>de investigación.</p><p id="sinopsis">Antonio llega a Monteviejo por trabajo y comienza a investigar el pasado del pueblo. El jugador explora sus calles, habla con los vecinos y consulta documentos para relacionar las pistas.</p></div>
+        <div class="section-heading"><span class="outline-tag">Marketing</span></div>
+        <div class="marketing-intro">
+          <h2 id="titulo-marketing">¿Para quién hacemos este juego?</h2>
+          <p>Antonio trabaja para la consejería y llega a Monteviejo en septiembre para pasar dos meses haciendo un informe. Se encuentra un pueblo partido en dos bandos desde hace años, vecinos que se vigilan desde la ventana y una historia de la que nadie habla en voz alta. Tú decides con quién hablar, qué preguntar y a quién creer.</p>
         </div>
-        <figure class="game-image" data-reveal>
-          <img loading="lazy" src="assets/iglesia-volumen.png" alt="Estudio de volumen de la iglesia del pueblo, sin materiales finales">
-          <figcaption><span>MONTEVIEJO / PRIMERAS FORMAS</span><span>Estudio de volumen · Material de desarrollo</span></figcaption>
+        <figure class="marketing-cita">
+          <blockquote><p>«Elige bien tu bando, hijo».</p></blockquote>
+          <figcaption>Eugenia, la vecina de Antonio, el día que él llega al pueblo.</figcaption>
         </figure>
-        <div class="journey">
-          <div class="journey-visual" aria-hidden="true">
-            <div class="journey-stage">
-              <img class="scene-active" src="assets/calle-volumen.png" alt="" loading="lazy">
-              <img src="assets/personaje-boceto.jpg" alt="" loading="lazy">
-              <img src="assets/plano-pueblo.png" alt="" loading="lazy">
-            </div>
-            <div class="journey-caption"><span id="escena-titulo">El espacio / Estudio de volumen</span><span id="escena-numero">01 / 03</span></div>
-            <div class="journey-progress"><span class="is-active"></span><span></span><span></span></div>
-          </div>
-          <div class="journey-steps">
-            <article class="journey-step" data-journey-step="0"><span class="chapter-number">01</span><h3>Explora el pueblo</h3><p>Calles, viviendas y una plaza donde se cruzan las historias. Un entorno rural pensado para descubrirlo a pie.</p><img class="journey-mobile-image" src="assets/calle-volumen.png" alt="Estudio de volumen de las calles y viviendas de Monteviejo" loading="lazy"><p class="material-note">El espacio / Estudio de volumen · Material de desarrollo</p></article>
-            <article class="journey-step" data-journey-step="1"><span class="chapter-number">02</span><h3>Escucha a sus habitantes</h3><p>Cada vecino tiene su propia versión. El diálogo será la puerta de entrada a los vínculos y tensiones del pueblo.</p><img class="journey-mobile-image" src="assets/personaje-boceto.jpg" alt="Boceto de un personaje, de frente y de perfil" loading="lazy"><p class="material-note">Sus habitantes / Estudio de personaje · Material de desarrollo</p></article>
-            <article class="journey-step" data-journey-step="2"><span class="chapter-number">03</span><h3>Conecta las pistas</h3><p>Observa, consulta documentos y contrasta testimonios para reconstruir lo que ocurrió.</p><img class="journey-mobile-image" src="assets/plano-pueblo.png" alt="Plano dibujado a mano con los primeros recorridos del pueblo" loading="lazy"><p class="material-note">Las conexiones / Plano del pueblo · Material de desarrollo</p></article>
+        <div class="publico">
+          <h3>A quién va dirigido</h3>
+          <div class="publico-lista">
+            <div><h4>Jugadores de aventuras narrativas</h4><p>Gente que juega por la historia y los personajes más que por la acción. No hay combates: se avanza hablando y prestando atención.</p></div>
+            <div><h4>Quien disfruta atando cabos</h4><p>Cada vecino cuenta su versión. Hay que contrastar lo que dicen con documentos, fotos y objetos para reconstruir lo que pasó.</p></div>
+            <div><h4>Quien conoce la vida de pueblo</h4><p>La plaza, los dos bares de los gemelos, la vecina que lo ve todo. Situaciones que reconoce cualquiera que haya pasado veranos en un pueblo.</p></div>
           </div>
         </div>
-        <div class="game-facts"><span>Aventura narrativa</span><span>3D estilizado</span><span>Tercera persona</span><span>Exploración e investigación</span></div>
-        <p class="development-note">Estos son los pilares de nuestra propuesta. El juego está en desarrollo y seguirá evolucionando.</p>
+        <!-- Edad orientativa provisional: la confirmamos en equipo antes de publicarla en itch.io. -->
+        <dl class="ficha-juego">
+          <div><dt>Género</dt><dd>Aventura narrativa de investigación</dd></div>
+          <div><dt>Perspectiva</dt><dd>Tercera persona en un pueblo abierto</dd></div>
+          <div><dt>Plataforma</dt><dd>PC, con teclado y ratón</dd></div>
+          <div><dt>Motor</dt><dd>Unity</dd></div>
+          <div><dt>Idioma</dt><dd>Español</dd></div>
+          <div><dt>Edad orientativa</dt><dd>+16, por los temas que trata</dd></div>
+        </dl>
+        <div class="similares">
+          <div class="similares-cabecera"><h3>Juegos parecidos</h3><p>Una selección provisional de las referencias que manejamos en el equipo.</p></div>
+          <ul class="similares-lista" id="lista-similares"></ul>
+        </div>
       </div>
     </section>
 
     <!-- Relleno las fichas con los datos de js/contenido.js. -->
     <section class="art-section" id="arte">
       <div class="wrap">
-        <div class="section-heading"><p class="eyebrow">02 / DENTRO DEL PROCESO</p><span class="small-note">DEL PAPEL AL MUNDO DEL JUEGO</span></div>
-        <div class="section-intro" data-reveal><h2>Arte &amp;<br><em>desarrollo.</em></h2><p>Bocetos, diseños de personajes y estudios de escenarios de <span data-titulo-juego>El secreto de Monteviejo</span>.</p></div>
+        <div class="section-intro"><h2>Arte &amp;<br>desarrollo.</h2><p>Bocetos, diseños de personajes y estudios de escenarios de <span data-titulo-juego>El secreto de Monteviejo</span>.</p></div>
         <div class="gallery-toolbar">
           <div class="filters" role="group" aria-label="Filtrar material por categoría">
             <button type="button" data-filtro="Todo" aria-pressed="true">Todo</button>
@@ -94,48 +138,68 @@
 
     <section class="team-section" id="equipo">
       <div class="wrap">
-        <div class="section-heading"><p class="eyebrow">03 / EQUIPO</p><span class="outline-tag" id="numero-integrantes">6 integrantes</span></div>
-        <div class="team-layout">
-          <div class="team-story" data-reveal>
-            <h2>Equipo de<br><em>LazySoft.</em></h2>
+        <div class="section-heading"><span class="outline-tag" id="numero-integrantes">6 integrantes</span></div>
+        <div class="team-intro">
+          <h2>Equipo de LazySoft.</h2>
+          <div>
             <p>Somos un equipo de seis estudiantes que desarrolla el videojuego "<span data-titulo-juego>El secreto de Monteviejo</span>" como proyecto universitario.</p>
-            <div class="team-signature"><img loading="lazy" src="assets/lazysoft-brand.jpeg" alt="Logotipo original de LazySoft" width="545" height="464"><span>LAZYSOFT<br>EQUIPO DE DESARROLLO</span></div>
+            <div class="team-signature"><img loading="lazy" src="assets/lazysoft-brand.jpeg" alt="Logotipo original de LazySoft" width="545" height="464"><span>LazySoft,<br>equipo de desarrollo</span></div>
           </div>
-          <div class="team-list" id="lista-equipo"></div>
         </div>
+        <div class="team-list" id="lista-equipo"></div>
       </div>
     </section>
 
     <!-- Edito los proyectos anteriores en js/trayectoria.js. -->
     <section class="trayectoria" id="trayectoria" aria-labelledby="titulo-trayectoria">
       <div class="wrap">
-        <div class="section-heading"><p class="eyebrow">04 / TRAYECTORIA</p><span class="outline-tag">Nuestros proyectos</span></div>
-        <div class="trayectoria-intro"><h2 id="titulo-trayectoria">La trayectoria<br>de <em>LazySoft.</em></h2><p>Los juegos y proyectos que hemos desarrollado como equipo.</p></div>
+        <div class="trayectoria-intro"><h2 id="titulo-trayectoria">La trayectoria<br>de LazySoft.</h2><p>Los juegos y proyectos que hemos desarrollado como equipo.</p></div>
         <ol class="trayectoria-lista" id="lista-trayectoria"></ol>
         <p class="trayectoria-vacia" hidden>Próximamente compartiremos aquí nuestros proyectos anteriores.</p>
       </div>
     </section>
 
+    <!-- Si no hay servicio de formularios configurado en js/contenido.js, el formulario prepara un correo. -->
     <section class="contact-section" id="contacto">
-      <div class="wrap">
-        <div class="section-heading"><p class="eyebrow">05 / CONTACTO</p><span class="small-note">CORREO DEL ESTUDIO</span></div>
-        <h2 data-reveal>Contacto</h2>
-        <div class="contact-layout"><p>Para conocer más sobre el proyecto,<br>compartir una idea o saludar al equipo.</p><a class="email-link" href="mailto:lazysoftstudio@gmail.com">lazysoftstudio@gmail.com</a></div>
-      </div>
-      <div class="redesSociales">
-        <a data-red="instagram" href="https://www.instagram.com/lazysoftstudio" aria-label="Instagram de LazySoft"><img src="assets/redesSociales/instagram.png" alt="Logo de Instagram"></a>
-        <a data-red="youtube" href="https://www.youtube.com/@LazySoftStudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube de LazySoft"><img loading="lazy" src="assets/redesSociales/youtube.png" alt="Logo de YouTube"></a>
-        <a data-red="x" href="https://x.com/LazySoftStudio" target="_blank" rel="noopener noreferrer" aria-label="X de LazySoft"><img loading="lazy" src="assets/redesSociales/x.png" alt="Logo de X"></a>
-        <a data-red="itchio" href="https://lazysoftstudio.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="Itch.io de LazySoft"><img loading="lazy" src="assets/redesSociales/itchio.png" alt="Logo de Itch.io"></a>
-        <a data-red="linktree" href="https://linktr.ee/LazySoftStudio" target="_blank" rel="noopener noreferrer" aria-label="Linktree de LazySoft"><img loading="lazy" src="assets/redesSociales/linktree.png" alt="Logo de Linktree"></a>
+      <div class="wrap contact-layout">
+        <div class="contact-text">
+          <h2>Contacto</h2>
+          <p>Para comentarnos algo del juego, proponer una colaboración o saludar al equipo. También puedes escribirnos directamente:</p>
+          <a class="email-link" href="mailto:lazysoftstudio@gmail.com">lazysoftstudio@gmail.com</a>
+          <div class="redesSociales">
+            <a data-red="instagram" href="https://www.instagram.com/lazysoftstudio" target="_blank" rel="noopener noreferrer" aria-label="Instagram de LazySoft"><img loading="lazy" src="assets/redesSociales/instagram.png" alt=""></a>
+            <a data-red="youtube" href="https://www.youtube.com/@LazySoftStudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube de LazySoft"><img loading="lazy" src="assets/redesSociales/youtube.png" alt=""></a>
+            <a data-red="x" href="https://x.com/LazySoftStudio" target="_blank" rel="noopener noreferrer" aria-label="X de LazySoft"><img loading="lazy" src="assets/redesSociales/x.png" alt=""></a>
+            <a data-red="itchio" href="https://lazysoftstudio.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="Itch.io de LazySoft"><img loading="lazy" src="assets/redesSociales/itchio.png" alt=""></a>
+            <a data-red="linktree" href="https://linktr.ee/LazySoftStudio" target="_blank" rel="noopener noreferrer" aria-label="Linktree de LazySoft"><img loading="lazy" src="assets/redesSociales/linktree.png" alt=""></a>
+          </div>
+        </div>
+        <form class="contact-form" id="formulario-contacto">
+          <div class="campo"><label for="contacto-nombre">Nombre</label><input id="contacto-nombre" name="nombre" type="text" autocomplete="name" required></div>
+          <div class="campo"><label for="contacto-correo">Correo electrónico</label><input id="contacto-correo" name="correo" type="email" autocomplete="email" required></div>
+          <div class="campo"><label for="contacto-motivo">Motivo</label>
+            <select id="contacto-motivo" name="motivo">
+              <option>Comentario sobre el juego</option>
+              <option>Prensa y difusión</option>
+              <option>Colaboración</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="campo"><label for="contacto-mensaje">Mensaje</label><textarea id="contacto-mensaje" name="mensaje" rows="6" required></textarea></div>
+          <!-- Campo oculto para frenar el spam automático. -->
+          <input class="campo-trampa" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="button dark" type="submit">Enviar mensaje</button>
+          <p class="form-nota" id="nota-formulario">Al enviar se abrirá tu programa de correo con el mensaje ya escrito.</p>
+          <p class="form-estado" role="status"></p>
+        </form>
       </div>
     </section>
   </main>
   <footer class="footer">
     <div class="wrap">
-      <div class="footer-top"><span>LAZYSOFT · DESARROLLO DE VIDEOJUEGOS</span><a href="#inicio">Volver al inicio</a></div>
+      <div class="footer-top"><span>LazySoft, estudio de videojuegos</span><a href="#inicio">Volver al inicio</a></div>
       <a class="footer-wordmark" href="#inicio" aria-label="LazySoft, volver al inicio">LAZYSOFT<span>ESTUDIO</span></a>
-      <div class="footer-bottom"><span>© 2026 LazySoft · Proyecto universitario</span><button class="text-button" type="button" id="abrir-creditos">Créditos</button><span data-titulo-juego>EL SECRETO DE MONTEVIEJO</span></div>
+      <div class="footer-bottom"><span>© 2026 LazySoft. Proyecto universitario</span><button class="text-button" type="button" id="abrir-creditos">Créditos</button><span data-titulo-juego>El secreto de Monteviejo</span></div>
     </div>
   </footer>
 
@@ -151,9 +215,10 @@
     <h2 id="visor-titulo"></h2><p class="dialog-description" id="visor-descripcion"></p>
   </dialog>
   <dialog class="credits-dialog" id="creditos" aria-labelledby="creditos-titulo" aria-describedby="creditos-descripcion">
-    <h2 id="creditos-titulo">Créditos del proyecto</h2><p id="creditos-descripcion">LazySoft · Proyecto universitario en desarrollo.</p>
+    <h2 id="creditos-titulo">Créditos del proyecto</h2><p id="creditos-descripcion">LazySoft. Proyecto universitario en desarrollo.</p>
     <p id="creditos-equipo">Ángel Bermúdez, Alberto Caro, Daniel Corbacho, Alejandro Hernández, Paula Ortiz e Iván Palacios.</p>
     <p>Logotipo facilitado por LazySoft. La mascota de la portada forma parte de la presentación visual del estudio. Bocetos, diseños de personajes y estudios de escenarios facilitados por el equipo. Las imágenes muestran material de trabajo; no son capturas de una versión final del videojuego.</p>
+    <p>Los juegos citados en el apartado de marketing pertenecen a sus respectivos estudios y solo se mencionan como referencia.</p>
     <button class="button dark" type="button" data-cerrar autofocus>Cerrar</button>
   </dialog>
 
@@ -168,7 +233,10 @@
     </article>
   </template>
   <template id="plantilla-integrante">
-    <article data-reveal><span class="member-number"></span><div><h3></h3><p>Equipo LazySoft</p></div><span class="member-photo" aria-hidden="true"><img loading="lazy" alt="" width="200" height="200"></span><span class="member-initials" aria-hidden="true"></span></article>
+    <article class="miembro"><span class="member-photo" aria-hidden="true"><img loading="lazy" alt="" width="600" height="800"></span><h3></h3></article>
+  </template>
+  <template id="plantilla-similar">
+    <li class="similar"><h4></h4><p class="similar-datos"></p><p class="similar-motivo"></p></li>
   </template>
   <template id="plantilla-trayectoria">
     <li class="trayectoria-hito">
