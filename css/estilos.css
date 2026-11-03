@@ -7,6 +7,11 @@ html {
   -webkit-text-size-adjust:100%;
   tab-size:4
 }
+@font-face{
+  font-family:"Monteviejo";
+  src:url("../assets/Tipografia/Monteviejo.ttf") format("truetype");
+
+}
 body {
   margin:0
 }
@@ -42,19 +47,19 @@ img {
   border:0
 }
 :root {
-  --ink:#eef0ec;
-  --cyan:#79f4e3;
-  --paper:#101213;
+  --ink:#ffedd1;
+  --orange:#cb8b00;
+  --paper:#211c17;
   --muted:#a8b0ae;
   --line:#353b3b;
   --max:1440px;
   /* Colores del pueblo, sacados de la paleta del documento de diseño. */
   --ocre:#c49421;
   --ocre-claro:#e2b54a;
-  --oliva:#24220f;
+  --oliva:#241c0f;
   --cal:#efeadb;
-  --sans:'Alegreya Sans',Arial,Helvetica,sans-serif;
-  --serif:'Alegreya',Georgia,'Times New Roman',serif
+  --sans:'Monteviejo',Arial,Helvetica,sans-serif;
+  --serif:'Monteviejo',Georgia,'Times New Roman',serif
 }
 * {
   box-sizing:border-box
@@ -68,7 +73,7 @@ body {
   background:var(--paper);
   color:var(--ink);
   font-family:var(--sans);
-  font-size:18px;
+  font-size:12px;
   line-height:1.6
 }
 a {
@@ -90,11 +95,11 @@ button {
   cursor:pointer
 }
 a:focus-visible,button:focus-visible {
-  outline:3px solid #078f84;
+  outline:3px solid #8f5b07;
   outline-offset:6px
 }
 ::selection {
-  background:var(--cyan);
+  background:var(--orange);
   color:#101213
 }
 h1,h2,h3,p,figure {
@@ -117,7 +122,7 @@ em {
   padding-inline:4vw
 }
 .eyebrow,.small-note {
-  font-size:12px;
+  font-size:8px;
   letter-spacing:.13em;
   font-weight:600
 }
@@ -129,7 +134,7 @@ em {
   margin-bottom:55px
 }
 .outline-tag {
-  font-size:14px;
+  font-size:10px;
   padding:6px 16px;
   border:1px solid #5b6866;
   border-radius:30px
@@ -140,18 +145,18 @@ em {
   justify-content:center;
   padding:14px 25px;
   border-radius:100px;
-  font-size:15px;
+  font-size:10px;
   font-weight:700;
   border:1px solid transparent;
   transition:background .2s,transform .25s
 }
 .button.light {
-  background:var(--cyan);
+  background:var(--orange);
   color:#132622;
   margin-top:22px
 }
 .button.light:hover {
-  background:#b6fff2;
+  background:#ffe2b6;
   transform:translateY(-3px)
 }
 .button.dark {
@@ -159,15 +164,15 @@ em {
   color:#fff
 }
 .button.dark:hover {
-  background:#28564d
+  background:#564d28
 }
 .button.ghost {
-  border-color:#8fb4ac;
+  border-color:#b4a88f;
   color:#e6f3ef
 }
 .button.ghost:hover {
-  border-color:var(--cyan);
-  color:var(--cyan)
+  border-color:var(--orange);
+  color:var(--orange)
 }
 .button:disabled {
   opacity:.6;
@@ -195,18 +200,18 @@ em {
   position:sticky;
   top:0;
   z-index:30;
-  background:#101213ed;
+  background:#131110ed;
   backdrop-filter:blur(18px);
-  border-bottom:1px solid #353b3b
+  border-bottom:1px solid #3b3735
 }
 .wordmark {
-  font-size:30px;
+  font-size: 25px;
   line-height:1;
   font-weight:900;
   letter-spacing:-.5px
 }
 .wordmark span {
-  font-size:12px;
+  font-size:8px;
   letter-spacing:.12em;
   margin-left:10px;
   font-weight:500
@@ -215,7 +220,7 @@ em {
   display:flex;
   align-items:center;
   gap:26px;
-  font-size:15px
+  font-size:12px
 }
 .header nav a {
   position:relative;
@@ -228,7 +233,7 @@ em {
   left:0;
   width:100%;
   height:1px;
-  background:var(--cyan);
+  background:var(--orange);
   transform:scaleX(0);
   transform-origin:left;
   transition:transform .25s
@@ -254,15 +259,15 @@ em {
 .header nav .nav-jugar {
   padding:7px 18px;
   border-radius:100px;
-  background:var(--cyan);
-  color:#132622;
+  background:var(--orange);
+  color:#261813;
   font-weight:700
 }
 .header nav .nav-jugar::after {
   display:none
 }
 .header nav .nav-jugar:hover {
-  background:#b6fff2
+  background:#fff3b6
 }
 .menu-toggle {
   display:none
@@ -279,34 +284,34 @@ em {
   isolation:isolate;
   overflow:hidden;
   padding:30px 4vw 0;
-  background:radial-gradient(ellipse at 50% 66%,#15504c 0,#162a2c 24%,#101213 62%)
+  background:radial-gradient(ellipse at 50% 66%,#503f15 0,#2c2216 24%,#131210 62%)
 }
 .hero-kicker,.hero-floor {
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:20px;
-  font-size:14px;
+  font-size:10px;
   font-weight:500;
   letter-spacing:.01em
 }
 .hero-kicker {
   position:relative;
   z-index:3;
-  color:#bdc5c3
+  color:#c5c3bd
 }
 .hero-title {
-  font-size:clamp(80px,16vw,320px);
+  font-size:clamp(70px,12vw,310px);
   font-weight:900;
   line-height:1;
   letter-spacing:-.07em;
   text-align:center;
   margin:32px 0 0;
   transform:translateY(calc(var(--hero-scroll)*-65px));
-  color:#edf1ed
+  color:#d2c3a7
 }
 .hero-title>span:not(.sr-only) {
-  color:var(--cyan)
+  color:var(--orange)
 }
 .hero-object {
   position:absolute;
@@ -325,7 +330,7 @@ em {
 }
 .hero-caption {
   position:absolute;
-  bottom:102px;
+  bottom:160px;
   left:4vw;
   right:4vw;
   z-index:3;
@@ -338,14 +343,14 @@ em {
 .hero-caption>p {
   font-family:var(--serif);
   font-style:italic;
-  font-size:clamp(28px,3.4vw,50px);
+  font-size:clamp(20px,3.4vw,40px);
   line-height:1.08;
   letter-spacing:-.01em;
   font-weight:500;
   max-width:8.5em
 }
 .hero-caption>div {
-  font-size:17px;
+  font-size:12px;
   line-height:1.45;
   max-width:340px
 }
@@ -365,8 +370,7 @@ em {
   left:4vw;
   right:4vw;
   padding:23px 0;
-  border-top:1px solid #44615e;
-  color:#a4b8b4;
+  color:#b8ada4;
   z-index:3
 }
 .hero-atajos {
@@ -374,21 +378,21 @@ em {
   gap:10px
 }
 .hero-atajos a {
-  color:#e2f2ed;
-  border:1px solid #5f7e78;
+  color:#f2ede2;
+  border:1px solid #7e715f;
   border-radius:100px;
   padding:6px 16px;
   transition:border-color .2s,color .2s
 }
 .hero-atajos a:hover {
-  border-color:var(--cyan);
-  color:var(--cyan)
+  border-color:var(--orange);
+  color:var(--orange)
 }
 /* Tráiler y versión jugable, justo debajo de la portada. */
 .trailer-section {
-  background:#0c1415;
+  background:#15110c;
   padding:90px 0 100px;
-  border-top:1px solid #213634
+  border-top:1px solid #362c21
 }
 .trailer-layout {
   display:grid;
@@ -399,7 +403,7 @@ em {
 .trailer-player {
   position:relative;
   aspect-ratio:16/9;
-  background:#18211f;
+  background:#211d18;
   overflow:hidden;
   border-radius:4px
 }
@@ -420,15 +424,15 @@ em {
   bottom:clamp(18px,3vw,34px);
   right:clamp(18px,3vw,36px);
   max-width:440px;
-  color:#e9efec;
-  font-size:16px
+  color:#efede9;
+  font-size:8px
 }
 .trailer-aviso strong {
   display:block;
   font-family:var(--serif);
   font-style:italic;
   font-weight:500;
-  font-size:clamp(24px,2.6vw,36px);
+  font-size:clamp(16px,2.6vw,30px);
   line-height:1.15;
   margin-bottom:8px
 }
@@ -445,30 +449,31 @@ em {
   gap:12px;
   padding:16px 26px;
   border-radius:100px;
-  background:var(--cyan);
-  color:#132622;
+  background:var(--orange);
+  color:#261d13;
   font-weight:700;
-  font-size:16px
+  font-size:12px
 }
 .trailer-play:hover {
-  background:#b6fff2
+  background:#ffe3b6
 }
 .trailer-info h2 {
-  font-size:clamp(34px,3.4vw,52px);
+  font-size:clamp(28px,3.4vw,46px);
   margin-bottom:18px
 }
 .trailer-info>p {
-  color:#b3c4be;
-  max-width:420px
+  color:#c4beb3;
+  max-width:420px;
+  margin: 40px 0px 0px 0px; 
 }
 .trailer-info .button {
   margin-top:24px
 }
 .trailer-info h3 {
-  font-size:15px;
+  font-size:12px;
   letter-spacing:0;
   font-weight:700;
-  color:#9fb7b0;
+  color:#b7ad9f;
   margin:44px 0 6px
 }
 .controles {
@@ -480,7 +485,7 @@ em {
   justify-content:space-between;
   gap:16px;
   padding:11px 0;
-  border-bottom:1px solid #253532
+  border-bottom:1px solid #352e25
 }
 .controles dt {
   display:flex;
@@ -489,21 +494,21 @@ em {
 }
 .controles dd {
   margin:0;
-  font-size:15px;
-  color:#c9d6d2;
+  font-size:12px;
+  color:#d6d0c9;
   text-align:right
 }
 kbd {
   font-family:var(--sans);
-  font-size:13px;
+  font-size:8px;
   font-weight:700;
   min-width:30px;
   padding:3px 9px;
   text-align:center;
-  border:1px solid #4a625c;
+  border:1px solid #625b4a;
   border-bottom-width:3px;
   border-radius:5px;
-  color:#e6f0ed
+  color:#f0ebe6
 }
 /* Marketing: tonos ocres y oliva del pueblo para separarlo del resto de la web. */
 .marketing-section {
@@ -524,14 +529,14 @@ kbd {
 .marketing-intro h2 {
   font-family:var(--serif);
   font-weight:700;
-  font-size:clamp(44px,5.6vw,84px);
+  font-size:clamp(36px,5.6vw,70px);
   letter-spacing:-.02em;
   line-height:1
 }
 .marketing-intro p {
   color:#d4ccb0;
   max-width:560px;
-  font-size:19px
+  font-size:14px
 }
 .marketing-cita {
   margin:80px 0 90px;
@@ -545,14 +550,14 @@ kbd {
   font-family:var(--serif);
   font-style:italic;
   font-weight:500;
-  font-size:clamp(48px,8.4vw,128px);
+  font-size:clamp(20px,8.4vw,70px);
   line-height:1;
   letter-spacing:-.02em;
   color:var(--ocre-claro)
 }
 .marketing-cita figcaption {
-  margin-top:2z2px;
-  font-size:16px;
+  margin-top:52px;
+  font-size:12px;
   color:#b9b08c
 }
 .publico {
@@ -563,7 +568,7 @@ kbd {
   border-top:1px solid #4a4626
 }
 .publico h3,.similares-cabecera h3 {
-  font-size:clamp(26px,2.4vw,34px);
+  font-size:clamp(20px,2.4vw,28px);
   letter-spacing:-.02em
 }
 .publico-lista {
@@ -572,7 +577,7 @@ kbd {
   gap:clamp(24px,3vw,44px)
 }
 .publico-lista h4 {
-  font-size:21px;
+  font-size:16px;
   line-height:1.2;
   letter-spacing:-.01em;
   font-weight:700;
@@ -580,7 +585,7 @@ kbd {
   margin-bottom:12px
 }
 .publico-lista p {
-  font-size:16px;
+  font-size:12px;
   color:#c4bb98
 }
 .ficha-juego {
@@ -594,12 +599,12 @@ kbd {
   border-top:1px solid #4a4626
 }
 .ficha-juego dt {
-  font-size:14px;
+  font-size:12px;
   color:#a59d78
 }
 .ficha-juego dd {
   margin:4px 0 0;
-  font-size:18px;
+  font-size:14px;
   color:#f0e9d2
 }
 .similares {
@@ -610,7 +615,7 @@ kbd {
 }
 .similares-cabecera p {
   margin-top:14px;
-  font-size:15px;
+  font-size:10px;
   color:#a59d78;
   max-width:260px
 }
@@ -631,22 +636,22 @@ kbd {
 .similar h4 {
   font-family:var(--serif);
   font-weight:700;
-  font-size:clamp(22px,2vw,28px);
+  font-size:clamp(18px,2vw,20px);
   letter-spacing:-.01em;
   line-height:1.15;
   color:#f3ecd5
 }
 .similar-datos {
-  font-size:15px;
+  font-size:10px;
   color:var(--ocre-claro)
 }
 .similar-motivo {
-  font-size:16px;
+  font-size:12px;
   color:#c4bb98
 }
 /* Galería con filtros y ampliación de imágenes. */
 .art-section {
-  background:#f5f4ef;
+  background:#baae9a;
   color:#202521;
   padding:105px 0 90px
 }
@@ -657,12 +662,12 @@ kbd {
   align-items:end
 }
 .section-intro h2 {
-  font-size:clamp(65px,8.4vw,116px);
+  font-size:clamp(40px,8.4vw,8px);
   letter-spacing:-.025em
 }
 .section-intro>p {
   max-width:370px;
-  color:#58635c;
+  color:#635f58;
   margin-bottom:10px
 }
 .gallery-toolbar {
@@ -670,7 +675,7 @@ kbd {
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  border-bottom:1px solid #c5ccc5;
+  border-bottom:1px solid #cccac5;
   margin:50px 0 38px;
   padding-bottom:20px
 }
@@ -680,25 +685,25 @@ kbd {
   gap:8px
 }
 .filters button {
-  border:1px solid #acb8ad;
+  border:1px solid #b8b6ac;
   background:transparent;
-  color:#253127;
+  color:#312e25;
   border-radius:100px;
   padding:9px 21px;
-  font-size:14px;
+  font-size:10px;
   transition:background .2s
 }
 .filters button:hover {
-  background:#dde5dd
+  background:#e5e1dd
 }
 .filters button[aria-pressed=true] {
-  background:#26372b;
-  border-color:#26372b;
+  background:#373326;
+  border-color:#373226;
   color:#fff
 }
 .gallery-count {
-  font-size:13px;
-  color:#637367;
+  font-size:8px;
+  color:#736f63;
   white-space:nowrap
 }
 .art-grid {
@@ -723,7 +728,7 @@ kbd {
   height:clamp(250px,30vw,430px);
   position:relative;
   overflow:hidden;
-  background:#d5d8d0
+  background:#d8d8d0
 }
 .art-photo img {
   width:100%;
@@ -738,11 +743,11 @@ kbd {
   position:absolute;
   bottom:18px;
   right:18px;
-  background:#f8faf0;
+  background:#faf6f0;
   padding:9px 16px;
   border-radius:30px;
-  font-size:13px;
-  color:#26352b
+  font-size:8px;
+  color:#353026
 }
 .art-caption {
   display:flex;
@@ -751,24 +756,24 @@ kbd {
   padding-top:20px
 }
 .art-caption p {
-  font-size:12px;
+  font-size:8px;
   text-transform:uppercase;
   letter-spacing:.08em;
-  color:#687468;
+  color:#747068;
   margin-bottom:12px
 }
 .art-caption h3 {
-  font-size:27px;
+  font-size:22px;
   line-height:1.12;
   letter-spacing:-.015em
 }
 .art-index {
-  font-size:14px;
-  color:#687468
+  font-size:10px;
+  color:#747168
 }
 .art-summary {
-  font-size:15px;
-  color:#5c685e;
+  font-size:10px;
+  color:#68645c;
   margin-top:12px;
   max-width:480px
 }
@@ -776,18 +781,18 @@ kbd {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:6vw;
-  border-top:1px solid #bdc6bc;
+  border-top:1px solid #c6c2bc;
   padding-top:32px;
   margin-top:70px
 }
 .process-strip strong {
-  font-size:24px;
+  font-size:20px;
   letter-spacing:-.035em;
   line-height:1.3
 }
 .process-strip p {
-  color:#5a665d;
-  font-size:16px
+  color:#66635a;
+  font-size:12px
 }
 .art-dialog {
   width:min(1000px,calc(100vw - 32px));
@@ -796,46 +801,46 @@ kbd {
   overflow:auto;
   padding:24px!important;
   background:#f5f4ef!important;
-  color:#202521;
-  border:1px solid #c5ccc5;
+  color:#252420;
+  border:1px solid #cccac5;
   gap:16px
 }
 .art-dialog>img {
   width:100%;
   max-height:62dvh;
   object-fit:contain;
-  background:#d9ddd5
+  background:#dddbd5
 }
 .dialog-bar {
   display:flex;
   justify-content:space-between;
   gap:15px;
   align-items:center;
-  font-size:13px
+  font-size:8px
 }
 .close-dialog {
   border:0;
   border-radius:100px;
   padding:8px 16px;
-  background:#26372b;
+  background:#373126;
   color:white;
   white-space:nowrap
 }
 .dialog-description {
-  font-size:15px!important;
-  color:#56645a
+  font-size:10px!important;
+  color:#646056
 }
 .credits-dialog {
   background:#f5f4ef!important;
-  color:#202521;
+  color:#252420;
   max-height:90dvh;
   overflow:auto
 }
 .credits-dialog p {
-  font-size:16px
+  font-size:12px
 }
 .credits-dialog h2 {
-  font-size:27px
+  font-size:22px
 }
 .credits-dialog .button {
   margin-top:8px
@@ -843,12 +848,12 @@ kbd {
 /* Equipo, contacto y pie de página. */
 /* Equipo: presentación arriba y los seis integrantes en rejilla, sin columnas vacías. */
 .team-section {
-  background:#e1e7e3;
-  color:#17201c;
+  background:#e7e5e1;
+  color:#201d17;
   padding:105px 0
 }
 .team-section .outline-tag {
-  border-color:#8b9a92
+  border-color:#9a968b
 }
 .team-intro {
   display:grid;
@@ -856,14 +861,14 @@ kbd {
   gap:7vw;
   align-items:end;
   padding-bottom:50px;
-  border-bottom:1px solid #b9c5be
+  border-bottom:1px solid #c5c1b9
 }
 .team-intro h2 {
-  font-size:clamp(50px,5.8vw,82px);
+  font-size:clamp(45px,5.8vw,76px);
   letter-spacing:-.025em
 }
 .team-intro p {
-  color:#46564e;
+  color:#565146;
   max-width:460px
 }
 .team-signature {
@@ -880,9 +885,9 @@ kbd {
   border-radius:3px
 }
 .team-signature span {
-  font-size:14px;
+  font-size:10px;
   line-height:1.35;
-  color:#56665d
+  color:#666356
 }
 .team-list {
   display:grid;
@@ -894,7 +899,7 @@ kbd {
   display:block;
   aspect-ratio:3/4;
   overflow:hidden;
-  background:#cdd5d0;
+  background:#d5d2cd;
   border-radius:3px
 }
 .member-photo img {
@@ -904,17 +909,17 @@ kbd {
   object-position:50% 30%
 }
 .team-list h3 {
-  font-size:clamp(19px,1.6vw,24px);
+  font-size:clamp(15px,1.6vw,20px);
   line-height:1.15;
   margin-top:14px
 }
 .contact-section {
-  background:var(--cyan);
-  color:#132924;
+  background:var(--orange);
+  color:#292313;
   padding:90px 0 100px
 }
 .contact-section h2 {
-  font-size:clamp(64px,10vw,150px);
+  font-size:clamp(40px,10vw,90px);
   letter-spacing:-.03em;
   line-height:1
 }
@@ -925,13 +930,13 @@ kbd {
   align-items:start
 }
 .contact-text>p {
-  font-size:18px;
-  color:#235a4e;
+  font-size:14px;
+  color:#5a4023;
   max-width:420px;
   margin:34px 0 14px
 }
 .contact-section a:focus-visible,.contact-section button:focus-visible,.contact-form :is(input,select,textarea):focus-visible {
-  outline:3px solid #132924;
+  outline:3px solid #292513;
   outline-offset:3px
 }
 /* Formulario de contacto. */
@@ -945,17 +950,17 @@ kbd {
   gap:6px
 }
 .campo label {
-  font-size:15px;
+  font-size:10px;
   font-weight:700
 }
 .campo :is(input,select,textarea) {
   width:100%;
   padding:12px 14px;
-  border:1px solid #2a6b5e;
+  border:1px solid #6b5b2a;
   border-radius:4px;
-  background:#eafffb;
-  color:#132924;
-  font-size:17px
+  background:#fff7ea;
+  color:#292313;
+  font-size:12px
 }
 .campo textarea {
   resize:vertical;
@@ -973,46 +978,46 @@ kbd {
   margin-top:4px
 }
 .form-nota {
-  font-size:14px;
-  color:#2d6458
+  font-size:10px;
+  color:#64562d
 }
 .form-estado {
-  font-size:16px;
+  font-size:12px;
   font-weight:700
 }
 .form-estado:empty {
   display:none
 }
 .email-link {
-  font-size:clamp(20px,2.5vw,36px);
+  font-size:clamp(15px,2.5vw,32px);
   font-weight:600;
   letter-spacing:-.02em;
-  border-bottom:1px solid #28685a;
+  border-bottom:1px solid #685a28;
   padding-bottom:7px;
   overflow-wrap:anywhere
 }
 .email-link:hover {
-  color:#22725e
+  color:#725622
 }
 .footer {
-  background:#101213;
+  background:#131210;
   padding:45px 0 25px
 }
 .footer-top {
   display:flex;
   justify-content:space-between;
   gap:25px;
-  font-size:12px;
+  font-size:8x;
   letter-spacing:.07em;
-  color:#a7b4ad
+  color:#b4aea7
 }
 .footer-top a {
-  font-size:14px;
+  font-size:10px;
   letter-spacing:0;
-  border-bottom:1px solid #61746a
+  border-bottom:1px solid #746d61
 }
 .footer-wordmark {
-  font-size:clamp(54px,16.6vw,255px);
+  font-size:clamp(50px,16.6vw,250px);
   letter-spacing:-.045em;
   line-height:1;
   font-weight:900;
@@ -1021,7 +1026,7 @@ kbd {
   white-space:nowrap
 }
 .footer-wordmark span {
-  font-size:12px;
+  font-size:8px;
   letter-spacing:.1em;
   vertical-align:top;
   display:inline-block;
@@ -1034,16 +1039,16 @@ kbd {
   justify-content:space-between;
   gap:24px;
   padding-top:25px;
-  border-top:1px solid #37433d;
-  font-size:12px;
-  color:#acb7b0
+  border-top:1px solid #434137;
+  font-size:8px;
+  color:#b7b3ac
 }
 .text-button {
   border:0;
   border-bottom:1px solid currentColor;
   background:transparent;
   padding:0;
-  font-size:14px
+  font-size:10px
 }
 @media(min-width:1800px) {
   .hero-stage {
@@ -1061,7 +1066,7 @@ kbd {
     gap:22px
   }
   .hero-caption>p {
-    font-size:34px
+    font-size:30px
   }
   .hero-caption>div {
     max-width:300px
@@ -1095,7 +1100,7 @@ kbd {
     grid-template-columns:repeat(3,minmax(0,1fr))
   }
   .footer-wordmark {
-    font-size:17vw
+    font-size:12vw
   }
   .footer-wordmark span {
     display:none
@@ -1114,11 +1119,11 @@ kbd {
   }
   .menu-toggle {
     display:block;
-    border:1px solid #52625a;
+    border:1px solid #625d52;
     border-radius:50px;
     background:transparent;
     padding:7px 16px;
-    font-size:14px
+    font-size:10px
   }
   .header nav {
     display:none
@@ -1130,11 +1135,11 @@ kbd {
     right:0;
     top:75px;
     flex-direction:column;
-    background:#101213;
-    border-bottom:1px solid #52625a;
+    background:#131210;
+    border-bottom:1px solid #625c52;
     padding:18px 24px;
     gap:0;
-    font-size:18px;
+    font-size:14px;
     max-height:calc(100dvh - 76px);
     overflow:auto
   }
@@ -1148,14 +1153,14 @@ kbd {
     padding:24px 22px 0
   }
   .hero-kicker {
-    font-size:12px;
+    font-size:8px;
     letter-spacing:.06em
   }
   .hero-kicker span:last-child {
     display:none
   }
   .hero-title {
-    font-size:16vw;
+    font-size:12vw;
     margin-top:50px
   }
   .hero-object {
@@ -1169,25 +1174,25 @@ kbd {
     display:block
   }
   .hero-caption>p {
-    font-size:32px;
+    font-size:28px;
     max-width:none
   }
   .hero-caption>div {
     max-width:none;
-    font-size:15px;
+    font-size:10px;
     margin-top:10px
   }
   .hero-acciones {
     margin-top:14px
   }
   .hero-caption .button {
-    font-size:15px;
+    font-size:10px;
     padding:12px 18px
   }
   .hero-floor {
     left:22px;
     right:22px;
-    font-size:13px
+    font-size:8px
   }
   .hero-floor span:last-child {
     display:none
@@ -1205,7 +1210,7 @@ kbd {
     margin-top:38px
   }
   .trailer-aviso {
-    font-size:14px
+    font-size:10px
   }
   .trailer-aviso p:last-child {
     display:none
@@ -1218,7 +1223,7 @@ kbd {
     gap:24px
   }
   .marketing-intro p {
-    font-size:17px
+    font-size:12px
   }
   .marketing-cita {
     margin:50px 0 56px;
@@ -1257,7 +1262,7 @@ kbd {
     gap:28px
   }
   .section-intro h2 {
-    font-size:clamp(58px,11vw,84px)
+    font-size:clamp(50px,11vw,80px)
   }
   .section-intro>p {
     max-width:520px
@@ -1275,7 +1280,7 @@ kbd {
     height:260px
   }
   .art-caption h3 {
-    font-size:23px
+    font-size:18px
   }
   .process-strip {
     grid-template-columns:1fr;
@@ -1296,14 +1301,14 @@ kbd {
     margin-top:40px
   }
   .team-list h3 {
-    font-size:22px;
+    font-size:18px;
     margin-top:12px
   }
   .contact-section {
     padding:55px 0 60px
   }
   .contact-section h2 {
-    font-size:clamp(58px,15vw,96px)
+    font-size:clamp(50px,15vw,92px)
   }
   .contact-layout {
     grid-template-columns:minmax(0,1fr);
@@ -1314,7 +1319,7 @@ kbd {
   }
   .email-link {
     display:inline-block;
-    font-size:clamp(19px,5vw,31px);
+    font-size:clamp(15px,5vw,25px);
     margin-top:25px
   }
   .footer {
@@ -1324,7 +1329,7 @@ kbd {
     max-width:190px
   }
   .footer-wordmark {
-    font-size:16.6vw;
+    font-size:12vw;
     margin:40px 0
   }
   .footer-bottom {
@@ -1350,10 +1355,10 @@ kbd {
     bottom:84px
   }
   .hero-caption>p {
-    font-size:30px
+    font-size:25px
   }
   .hero-caption .button {
-    font-size:14px;
+    font-size:10px;
     padding-inline:15px
   }
   .art-grid {
@@ -1373,7 +1378,7 @@ kbd {
     gap:8px
   }
   .gallery-count {
-    font-size:12px
+    font-size:8px
   }
   .art-dialog {
     padding:16px!important
@@ -1382,23 +1387,23 @@ kbd {
     max-height:55dvh
   }
   .dialog-bar {
-    font-size:12px
+    font-size:8px
   }
   .team-list h3 {
-    font-size:19px
+    font-size:15px
   }
   .ficha-juego {
     grid-template-columns:minmax(0,1fr)
   }
   .controles dd {
-    font-size:14px
+    font-size:10px
   }
   .outline-tag {
-    font-size:13px;
+    font-size:8px;
     padding-inline:11px
   }
   .footer-top {
-    font-size:12px
+    font-size:8px
   }
   .footer-top a {
     white-space:nowrap
@@ -1440,7 +1445,7 @@ h2,h3,.email-link {
   flex-shrink:0
 }
 .footer-wordmark {
-  font-size:clamp(48px,15.5vw,210px);
+  font-size:clamp(42px,15.5vw,160px);
   white-space:normal;
   overflow-wrap:anywhere
 }
@@ -1469,11 +1474,11 @@ h2,h3,.email-link {
   }
   .menu-toggle {
     display:block;
-    border:1px solid #52625a;
+    border:1px solid #625b52;
     border-radius:50px;
     background:transparent;
     padding:7px 16px;
-    font-size:14px
+    font-size:10px
   }
   .header nav {
     display:none
@@ -1485,11 +1490,11 @@ h2,h3,.email-link {
     right:0;
     top:100%;
     flex-direction:column;
-    background:#101213;
-    border-bottom:1px solid #52625a;
+    background:#131210;
+    border-bottom:1px solid #625d52;
     padding:18px 24px;
     gap:0;
-    font-size:18px;
+    font-size:14px;
     max-height:calc(100dvh - 88px);
     overflow:auto
   }
@@ -1511,26 +1516,26 @@ h2,h3,.email-link {
     grid-template-columns:minmax(0,1fr)
   }
   .section-intro h2 {
-    font-size:clamp(42px,10vw,76px)
+    font-size:clamp(38px,10vw,72px)
   }
   .footer-wordmark {
-    font-size:15.5vw
+    font-size:10vw
   }
 }
 @media(max-width:480px) {
   .hero-caption>p {
     max-width:none;
-    font-size:clamp(27px,8vw,36px)
+    font-size:clamp(22px,8vw,32px)
   }
   .hero-floor {
-    font-size:12px;
+    font-size:8px;
     gap:12px
   }
   .gallery-toolbar {
     align-items:start
   }
   .filters button {
-    font-size:13px;
+    font-size:8px;
     padding:8px 12px
   }
   .footer-top {
@@ -1539,7 +1544,7 @@ h2,h3,.email-link {
     gap:12px
   }
   .team-list h3 {
-    font-size:clamp(18px,5vw,22px)
+    font-size:clamp(12px,5vw,18px)
   }
   .dialog-bar {
     flex-wrap:wrap
@@ -1563,12 +1568,12 @@ h2,h3,.email-link {
 }
 /* Trayectoria: fichas editables conectadas por una línea de tiempo. */
 .trayectoria {
-  background:#18211f;
-  color:#eef0ec;
+  background:#211e18;
+  color:#f0eeec;
   padding:100px 0
 }
 .trayectoria .outline-tag {
-  border-color:#52655e
+  border-color:#655e52
 }
 .trayectoria-intro {
   display:grid;
@@ -1578,11 +1583,11 @@ h2,h3,.email-link {
   margin-bottom:36px
 }
 .trayectoria-intro h2 {
-  font-size:clamp(42px,6.7vw,92px);
+  font-size:clamp(38px,6.7vw,88px);
   letter-spacing:-.025em
 }
 .trayectoria-intro>p {
-  color:#b3c1ba;
+  color:#c1bbb3;
   max-width:340px;
   padding-bottom:8px
 }
@@ -1605,14 +1610,14 @@ h2,h3,.email-link {
   top:12px;
   bottom:-12px;
   width:1px;
-  background:#425b50
+  background:#5b5242
 }
 .trayectoria-hito:last-child {
   padding-bottom:0
 }
 .trayectoria-hito:last-child::before {
   bottom:0;
-  background:linear-gradient(#425b50,transparent)
+  background:linear-gradient(#5b5342,transparent)
 }
 .trayectoria-fecha {
   position:relative;
@@ -1620,10 +1625,10 @@ h2,h3,.email-link {
   overflow-wrap:anywhere
 }
 .trayectoria-fecha .eyebrow {
-  color:#88a596
+  color:#a59788
 }
 .trayectoria-fecha p {
-  font-size:clamp(18px,2vw,25px);
+  font-size:clamp(14px,2vw,20px);
   line-height:1.3;
   letter-spacing:-.03em;
   font-weight:700;
@@ -1635,27 +1640,27 @@ h2,h3,.email-link {
   top:8px;
   width:11px;
   height:11px;
-  background:var(--cyan);
-  border:3px solid #18211f;
-  outline:1px solid #79f4e3;
+  background:var(--orange);
+  border:3px solid #211d18;
+  outline:1px solid #f4cb79;
   border-radius:50%
 }
 .trayectoria-ficha {
   min-width:0;
   display:grid;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  background:#202d28;
-  border:1px solid #3c5146
+  background:#2d2920;
+  border:1px solid #514b3c
 }
 .trayectoria-galeria {
   min-width:0;
   padding:14px;
-  border-right:1px solid #3c5146
+  border-right:1px solid #514b3c
 }
 .trayectoria-imagen,.trayectoria-sin-imagen {
   width:100%;
   aspect-ratio:4/3;
-  background:#17201c;
+  background:#201c17;
   object-fit:contain
 }
 .trayectoria-sin-imagen {
@@ -1664,23 +1669,23 @@ h2,h3,.email-link {
   justify-content:center;
   align-items:center;
   gap:8px;
-  border:1px dashed #52685b;
-  color:#bed0c6;
+  border:1px dashed #686052;
+  color:#d0cabe;
   text-align:center;
   padding:20px
 }
 .trayectoria-sin-imagen svg {
   margin-bottom:10px;
-  color:#79f4e3
+  color:#f4c779
 }
 .trayectoria-sin-imagen small {
-  font-size:12px;
-  color:#91a89a
+  font-size:8px;
+  color:#a8a291
 }
 .trayectoria-galeria figcaption {
-  font-size:12px;
+  font-size:8px;
   line-height:1.5;
-  color:#b3c1ba;
+  color:#c1beb3;
   margin-top:10px;
   overflow-wrap:anywhere
 }
@@ -1693,12 +1698,12 @@ h2,h3,.email-link {
 .trayectoria-miniaturas button {
   width:58px;
   height:44px;
-  background:#17201c;
+  background:#201d17;
   border:2px solid transparent;
   padding:2px
 }
 .trayectoria-miniaturas button[aria-pressed=true] {
-  border-color:var(--cyan)
+  border-color:var(--orange)
 }
 .trayectoria-miniaturas img {
   width:100%;
@@ -1719,37 +1724,37 @@ h2,h3,.email-link {
   margin-bottom:20px
 }
 .trayectoria-etiquetas .eyebrow {
-  color:#b3c1ba;
-  font-size:10px;
+  color:#c1bcb3;
+  font-size:6px;
   text-transform:uppercase
 }
 .trayectoria-borrador {
-  font-size:11px;
+  font-size:6px;
   line-height:1.5;
-  border:1px solid #5e7467;
+  border:1px solid #74705e;
   padding:3px 9px;
   border-radius:20px;
-  color:#c7d6ce
+  color:#d6d0c7
 }
 .trayectoria-texto h3 {
-  font-size:clamp(25px,2.6vw,38px);
+  font-size:clamp(20px,2.6vw,34px);
   line-height:1.1
 }
 .trayectoria-descripcion {
   white-space:pre-line;
-  font-size:15px;
+  font-size:10px;
   line-height:1.75;
-  color:#bac8c0;
+  color:#c8c1ba;
   margin-top:20px
 }
 .trayectoria-enlace {
   display:inline-flex;
   align-items:center;
   gap:8px;
-  color:var(--cyan);
-  font-size:14px;
+  color:var(--orange);
+  font-size:10px;
   margin-top:24px;
-  border-bottom:1px solid #547469;
+  border-bottom:1px solid #746254;
   padding-bottom:4px
 }
 .trayectoria-enlace:hover {
@@ -1757,8 +1762,8 @@ h2,h3,.email-link {
 }
 .trayectoria-vacia {
   padding:30px 0;
-  color:#bac8c0;
-  border-top:1px solid #425b50
+  color:#c8c3ba;
+  border-top:1px solid #5b5642
 }
 @media(max-width:1000px) {
   .trayectoria-hito {
@@ -1770,7 +1775,7 @@ h2,h3,.email-link {
   }
   .trayectoria-galeria {
     border-right:0;
-    border-bottom:1px solid #3c5146
+    border-bottom:1px solid #51473c
   }
   .trayectoria-imagen,.trayectoria-sin-imagen {
     max-height:340px
@@ -1793,10 +1798,10 @@ h2,h3,.email-link {
     gap:24px
   }
   .trayectoria-intro h2 {
-    font-size:clamp(36px,10vw,56px)
+    font-size:clamp(32px,10vw,52px)
   }
   .trayectoria-lista {
-    margin-top:36px
+    margin-top:32px
   }
   .trayectoria-hito {
     grid-template-columns:minmax(0,1fr);
@@ -1812,7 +1817,7 @@ h2,h3,.email-link {
   }
   .trayectoria-fecha p {
     margin:0;
-    font-size:20px
+    font-size:15px
   }
   .trayectoria-punto {
     left:-24px
@@ -1821,7 +1826,7 @@ h2,h3,.email-link {
     padding:20px
   }
   .trayectoria-texto h3 {
-    font-size:28px
+    font-size:24px
   }
   .trayectoria-galeria {
     padding:10px
@@ -1832,7 +1837,7 @@ dialog {
   position:fixed;
   inset:0;
   margin:auto;
-  border:1px solid #c5ccc5;
+  border:1px solid #cccac5;
   border-radius:8px;
   box-shadow:0 25px 50px #0004;
   padding:24px;
@@ -1852,14 +1857,14 @@ body.ventana-abierta {
   width:512px
 }
 .credits-dialog h2,.art-dialog h2 {
-  font-size:18px;
+  font-size:14px;
   letter-spacing:normal;
   font-weight:600;
   line-height:1.3
 }
 .credits-dialog>p:first-of-type {
-  font-size:14px;
-  color:#56645a
+  font-size:10px;
+  color:#645d56
 }
 .credits-dialog .button {
   justify-self:start
@@ -1867,7 +1872,7 @@ body.ventana-abierta {
 .trayectoria-sin-imagen .icono-imagen {
   width:38px;
   height:38px;
-  color:var(--cyan);
-  font-size:32px;
+  color:var(--orange);
+  font-size:28px;
   line-height:1
 }
