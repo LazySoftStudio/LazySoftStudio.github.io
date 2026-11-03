@@ -1,5 +1,7 @@
 # LazySoft · El secreto de Monteviejo
 
+https://lazysoftstudio.github.io/
+
 ## Dónde edito cada cosa
 
 | Archivo o carpeta | Para qué lo uso |
