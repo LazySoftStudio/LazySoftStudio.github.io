@@ -11,7 +11,7 @@ window.LazySoft.site = {
     },
     // Cuando subamos el tráiler, pego aquí el enlace de YouTube (vale el enlace completo o solo el código del vídeo).
     // Si preferimos un archivo propio, lo guardo en assets/ y escribo su ruta en video, por ejemplo 'assets/trailer.mp4'.
-    trailer: { youtube: '', video: '', poster: 'assets/plaza-volumen.jpeg' },
+    trailer: { youtube: '', video: '', poster: 'assets/pueblo-iglesia.jpg' },
     // Dirección de envío de un servicio de formularios (por ejemplo, Formspree).
     // Si la dejo vacía, el formulario de contacto abre el programa de correo con el mensaje escrito.
     contactForm: '',
@@ -53,7 +53,52 @@ window.LazySoft.similares = [
     },
 ];
 
+// Grupos de la galería de arte, en el orden en que se muestran. Cada ficha usa uno de estos nombres en category.
+window.LazySoft.categoriasArte = [
+    { nombre: 'Escenarios', texto: 'Del plano dibujado a mano al pueblo en 3D con sus primeras texturas.' },
+    { nombre: 'Personajes', texto: 'Bocetos, vistas de referencia, estudios de color y primeros modelos de los vecinos de Monteviejo.' },
+    { nombre: 'Interfaces', texto: 'Prototipos de las pantallas del juego y del recorrido entre ellas.' },
+];
+
 window.LazySoft.artworks = [
+    {
+        id: '12',
+        title: 'Interfaces: primeros prototipos',
+        category: 'Interfaces',
+        type: 'Prototipo de interfaz',
+        src: ['assets/interfaz-titulo.png', 'assets/interfaz-nueva-partida.png', 'assets/interfaz-cargar-partida.png', 'assets/interfaz-ajustes.png', 'assets/interfaz-creditos.png', 'assets/interfaz-dialogos.png', 'assets/interfaz-flujo.png'],
+        alt: ['Pantalla de título con los botones Jugar, Ajustes y Créditos',
+            'Pantalla de nueva partida con un campo para escribir su nombre',
+            'Pantalla para cargar una de las tres partidas guardadas',
+            'Pantalla de ajustes con sonido, gráficos, controles y accesibilidad',
+            'Pantalla de créditos con los miembros del equipo',
+            'Interfaz de diálogo con el texto del personaje y las respuestas',
+            'Esquema con las conexiones entre todas las pantallas'],
+        description: ['Pantalla de título: lo primero que se ve al abrir el juego.',
+            'Antes de empezar, cada partida lleva su propio nombre.',
+            'Se pueden guardar hasta tres partidas y volver a cualquiera de ellas.',
+            'Ajustes de sonido, gráficos, controles y accesibilidad, con subtítulos y tamaño de texto.',
+            'Los créditos, con todo el equipo de LazySoft.',
+            'Así se ven las conversaciones: el texto abajo y las respuestas para elegir a la derecha.',
+            'El flujo completo entre pantallas, desde el título hasta la pausa dentro del juego.']
+    },
+    {
+        id: '11',
+        title: 'Monteviejo con texturas',
+        category: 'Escenarios',
+        type: 'Render de escenario',
+        src: ['assets/pueblo-vista.jpg', 'assets/pueblo-iglesia.jpg', 'assets/pueblo-calle.jpg', 'assets/pueblo-edificio.jpg', 'assets/pueblo-fachadas.jpg'],
+        alt: ['Vista aérea del pueblo de Monteviejo en 3D con texturas',
+            'Iglesia de piedra con su torre, ya texturizada',
+            'Calle estrecha de piedra con la torre de la iglesia al fondo',
+            'Edificio de dos plantas con fachada ocre y balcón central',
+            'Fachadas de piedra, cal y ocre junto a la plaza'],
+        description: ['El pueblo entero desde arriba, ya con los primeros materiales aplicados.',
+            'La iglesia, ahora con piedra, tejas y su torre.',
+            'Una de las calles estrechas que llevan a la plaza, con la torre de la iglesia al fondo.',
+            'Uno de los edificios de la plaza, de dos plantas y con balcón.',
+            'Piedra, cal y ocre: los colores con los que estamos vistiendo Monteviejo.']
+    },
     {
         id: '10',
         title: 'UV de Antonio',
@@ -68,9 +113,10 @@ window.LazySoft.artworks = [
         title: 'Eugenia: comienzo de modelado',
         category: 'Personajes',
         type: 'Diseño de personaje',
-        src: [ 'assets/Eugenia3Dv1.png'],
-        alt: ['Primer modelado 3D de Eugenia, vecina de Antonio'],
-        description: ['Eugenia comienza a tener forma en 3D. Esta es la primera aproximación básica de su futuro modelado.']
+        src: [ 'assets/Eugenia3Dv1.png', 'assets/UVEugenia.jpg'],
+        alt: ['Primer modelado 3D de Eugenia, vecina de Antonio', 'Desplegado UV de Eugenia'],
+        description: ['Eugenia comienza a tener forma en 3D. Esta es la primera aproximación básica de su futuro modelado.',
+            'Igual que con Antonio, hemos desplegado las UV de Eugenia para poder texturizarla.']
     }, 
     {
         id: '08',
@@ -117,15 +163,19 @@ window.LazySoft.artworks = [
         title: 'Antonio: protagonista del juego',
         category: 'Personajes',
         type: 'Diseño de personaje',
-        src: ['assets/Antonio.jpg','assets/AntonioTuraround.jpg','assets/AntonioColores.jpeg', 'assets/AntonioBoceto.jpg'],
+        src: ['assets/Antonio.jpg','assets/AntonioTuraround.jpg','assets/AntonioColores.jpeg', 'assets/AntonioBoceto.jpg', 'assets/AntonioBeauty.jpg', 'assets/AntonioPose.jpg'],
         alt: ['Dos versiones de Antonio: uno más elegante con camisa, y otro más informal con camiseta roja',
             'Vistas de referencia de Antonio: vistas de frente, perfiles y espalda',
             'Estudio de color de Antonio: cinco variantes de color para la piel, el cabello y la ropa',
-            'Boceto inicial a lápiz de Antonio'],
+            'Boceto inicial a lápiz de Antonio',
+            'Antonio de cuerpo entero con camiseta roja y vaqueros',
+            'Antonio sentado en el suelo con camisa azul'],
         description: ['Diseño de Antonio: protagonista del juego, con dos versiones de vestuario',
             'Vistas de referencia de Antonio: vistas de frente, perfiles y espalda',
             'Estudio de color de Antonio: cinco variantes de color para la piel, el cabello y la ropa',
-            'Boceto inicial a lápiz de Antonio'
+            'Boceto inicial a lápiz de Antonio',
+            'Antonio de cuerpo entero con su versión informal: camiseta roja y vaqueros.',
+            'Prueba de pose: Antonio sentado en el suelo.'
         ]
     },
     {

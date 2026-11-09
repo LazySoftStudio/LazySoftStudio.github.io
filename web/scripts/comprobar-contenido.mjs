@@ -3,7 +3,8 @@ import { join } from 'node:path';
 import vm from 'node:vm';
 import { carpetaWeb, leerDatos } from './leer-datos.mjs';
 
-const { site, artworks, trayectoria, similares = [] } = await leerDatos();
+const { site, artworks, trayectoria, similares = [], categoriasArte = [] } = await leerDatos();
+const categorias = categoriasArte.map(grupo => grupo.nombre);
 const texto = valor => typeof valor === 'string' && valor.trim().length > 0;
 const enlaceValido = valor => { try { return ['http:', 'https:'].includes(new URL(valor).protocol); } catch { return false; } };
 
@@ -19,10 +20,11 @@ async function comprobarRuta(ruta) {
 
 let imagenes = 0;
 const identificadores = new Set();
+for (const grupo of categoriasArte) if (!texto(grupo.nombre) || !texto(grupo.texto)) throw new Error('Completa el nombre y el texto de los grupos de arte (categoriasArte).');
 for (const pieza of artworks) {
   if (!texto(pieza.id) || identificadores.has(pieza.id)) throw new Error('Identificador de arte vacío o repetido: ' + pieza.id);
   identificadores.add(pieza.id);
-  if (!['Personajes', 'Escenarios'].includes(pieza.category)) throw new Error('Categoría desconocida: ' + pieza.id);
+  if (!categorias.includes(pieza.category)) throw new Error('Categoría desconocida (añádela a categoriasArte): ' + pieza.id);
   if (!texto(pieza.title) || !pieza.src.length || pieza.src.length !== pieza.alt.length || pieza.src.length !== pieza.description.length) throw new Error('Revisa los datos de: ' + pieza.id);
   for (let i = 0; i < pieza.src.length; i++) {
     if (!texto(pieza.alt[i]) || !texto(pieza.description[i])) throw new Error('Falta describir una imagen de: ' + pieza.id);

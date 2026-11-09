@@ -69,11 +69,14 @@
           <a class="button light" href="https://lazysoftstudio.itch.io/el-secreto-de-monteviejo" target="_blank" rel="noopener noreferrer" data-enlace-jugar>Jugar en itch.io</a>
           <h3>Controles</h3>
           <dl class="controles">
-            <div><dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></dt><dd>Moverse</dd></div>
-            <div><dt><kbd>Ratón</kbd></dt><dd>Girar la cámara</dd></div>
-            <div><dt><kbd>Espacio</kbd></dt><dd>Avanzar diálogo</dd></div>
+            <div><dt><kbd>W</kbd><kbd>S</kbd></dt><dd>Avanzar y retroceder</dd></div>
+            <div><dt><kbd>A</kbd><kbd>D</kbd></dt><dd>Girar</dd></div>
+            <div><dt><kbd>Ratón</kbd></dt><dd>Mirar alrededor en interiores</dd></div>
             <div><dt><kbd>E</kbd></dt><dd>Interactuar</dd></div>
+            <div><dt><kbd>Espacio</kbd></dt><dd>Avanzar diálogo</dd></div>
             <div><dt><kbd>Clic izquierdo</kbd></dt><dd>Elegir respuesta en los diálogos</dd></div>
+            <div><dt><kbd>Q</kbd></dt><dd>Inventario</dd></div>
+            <div><dt><kbd>Esc</kbd></dt><dd>Pausa</dd></div>
           </dl>
         </div>
       </div>
@@ -95,18 +98,18 @@
           <h3>A quién va dirigido</h3>
           <div class="publico-lista">
             <div><h4>Jugadores de aventuras narrativas</h4><p>Gente que juega por la historia y los personajes más que por la acción. No hay combates: se avanza hablando y prestando atención.</p></div>
-            <div><h4>Quien disfruta atando cabos</h4><p>Cada vecino cuenta su versión. Hay que contrastar lo que dicen con documentos, fotos y objetos para reconstruir lo que pasó.</p></div>
+            <div><h4>Quien disfruta atando cabos</h4><p>Cada vecino cuenta su versión. Las pistas se guardan en el inventario y se ordenan arrastrando objetos y nombres hasta reconstruir lo que pasó.</p></div>
             <div><h4>Quien conoce la vida de pueblo</h4><p>La plaza, los dos bares de los gemelos, la vecina que lo ve todo. Situaciones que reconoce cualquiera que haya pasado veranos en un pueblo.</p></div>
           </div>
         </div>
-        <!-- Edad orientativa provisional: la confirmamos en equipo antes de publicarla en itch.io. -->
         <dl class="ficha-juego">
           <div><dt>Género</dt><dd>Aventura narrativa de investigación</dd></div>
           <div><dt>Perspectiva</dt><dd>Tercera persona en exteriores / Primera persona en interiores</dd></div>
           <div><dt>Plataforma</dt><dd>PC, con teclado y ratón</dd></div>
           <div><dt>Motor</dt><dd>Unity</dd></div>
           <div><dt>Idioma</dt><dd>Español</dd></div>
-          <div><dt>Edad orientativa</dt><dd>+16, por los temas que trata</dd></div>
+          <div><dt>Edad</dt><dd>A partir de 7 años</dd></div>
+          <div><dt>Modelo de negocio</dt><dd>Compra única, con crowdfunding inicial y DLC con nuevos cuerpos que identificar</dd></div>
         </dl>
         <div class="similares">
           <div class="similares-cabecera"><h3>Juegos parecidos</h3><p>Una selección provisional de las referencias que manejamos en el equipo.</p></div>
@@ -118,16 +121,15 @@
     <!-- Relleno las fichas con los datos de js/contenido.js. -->
     <section class="art-section" id="arte">
       <div class="wrap">
-        <div class="section-intro"><h2>Arte &amp;<br>desarrollo.</h2><p>Bocetos, diseños de personajes y estudios de escenarios de <span data-titulo-juego>El secreto de Monteviejo</span>.</p></div>
+        <div class="section-intro"><h2>Arte &amp;<br>desarrollo.</h2><p>Bocetos, diseños de personajes, escenarios e interfaces de <span data-titulo-juego>El secreto de Monteviejo</span>.</p></div>
         <div class="gallery-toolbar">
+          <!-- Los botones de cada grupo se crean a partir de categoriasArte en js/contenido.js. -->
           <div class="filters" role="group" aria-label="Filtrar material por categoría">
-            <button type="button" data-filtro="Todo" aria-pressed="true">Todo</button>
-            <button type="button" data-filtro="Escenarios" aria-pressed="false">Escenarios</button>
-            <button type="button" data-filtro="Personajes" aria-pressed="false">Personajes</button>
+            <button type="button" data-filtro="Todo" aria-pressed="true">Todo <span class="filtro-numero"></span></button>
           </div>
           <p class="gallery-count" aria-live="polite"></p>
         </div>
-        <div class="art-grid" id="galeria"></div>
+        <div class="art-grupos" id="galeria"></div>
         <div class="process-strip"><strong>Material en desarrollo.</strong><p>Compartiremos nuevas piezas conforme avance el desarrollo: escenarios, personajes y pruebas en el motor.</p></div>
       </div>
     </section>
@@ -201,31 +203,44 @@
 
   <!-- Uso dialog para que el navegador gestione el foco y el cierre con Escape. -->
   <dialog class="art-dialog" id="visor-arte" aria-labelledby="visor-titulo" aria-describedby="visor-descripcion">
-    <div class="dialog-bar"><span id="visor-categoria"></span><button type="button" class="close-dialog" data-cerrar autofocus>Cerrar ×</button></div>
-    <img id="visor-imagen" alt="">
-    <div class="dialog-bar" id="visor-controles" aria-label="Imágenes de la pieza">
-      <button type="button" class="close-dialog" id="imagen-anterior">Anterior</button>
-      <span id="visor-contador" aria-live="polite"></span>
-      <button type="button" class="close-dialog" id="imagen-siguiente">Siguiente</button>
+    <div class="visor-escena"><img id="visor-imagen" alt=""></div>
+    <div class="visor-panel">
+      <div class="dialog-bar"><span id="visor-categoria"></span><button type="button" class="close-dialog" data-cerrar autofocus>Cerrar ×</button></div>
+      <h2 id="visor-titulo"></h2>
+      <p class="dialog-description" id="visor-descripcion"></p>
+      <div class="visor-controles" id="visor-controles">
+        <div class="dialog-bar">
+          <button type="button" class="close-dialog" id="imagen-anterior">Anterior</button>
+          <span id="visor-contador" aria-live="polite"></span>
+          <button type="button" class="close-dialog" id="imagen-siguiente">Siguiente</button>
+        </div>
+        <div class="visor-miniaturas" id="visor-miniaturas" role="group" aria-label="Imágenes de la pieza"></div>
+      </div>
     </div>
-    <h2 id="visor-titulo"></h2><p class="dialog-description" id="visor-descripcion"></p>
   </dialog>
   <dialog class="credits-dialog" id="creditos" aria-labelledby="creditos-titulo" aria-describedby="creditos-descripcion">
     <h2 id="creditos-titulo">Créditos del proyecto</h2><p id="creditos-descripcion">LazySoft. Proyecto universitario en desarrollo.</p>
     <p id="creditos-equipo">Ángel Bermúdez, Alberto Caro, Daniel Corbacho, Alejandro Hernández, Paula Ortiz e Iván Palacios.</p>
-    <p>Logotipo facilitado por LazySoft. La mascota de la portada forma parte de la presentación visual del estudio. Bocetos, diseños de personajes y estudios de escenarios facilitados por el equipo. Las imágenes muestran material de trabajo; no son capturas de una versión final del videojuego.</p>
+    <p>Logotipo facilitado por LazySoft. La mascota de la portada forma parte de la presentación visual del estudio. Bocetos, diseños de personajes, renders de escenarios, prototipos de interfaz y retratos del equipo facilitados por LazySoft. Las imágenes muestran material de trabajo; no son capturas de una versión final del videojuego.</p>
     <p>Los juegos citados en el apartado de marketing pertenecen a sus respectivos estudios y solo se mencionan como referencia.</p>
     <button class="button dark" type="button" data-cerrar autofocus>Cerrar</button>
   </dialog>
 
   <!-- Reutilizo estas plantillas para crear las fichas con JavaScript. -->
+  <template id="plantilla-grupo-arte">
+    <section class="art-grupo">
+      <div class="art-grupo-cabecera"><h3></h3><span class="art-grupo-numero"></span><p class="art-grupo-texto"></p></div>
+      <div class="art-grid"></div>
+    </section>
+  </template>
   <template id="plantilla-arte">
     <article class="art-card">
-      <button class="art-trigger" type="button" aria-haspopup="dialog">
-        <div class="art-photo"><img loading="lazy" alt=""><span class="zoom-label">Ampliar +</span></div>
-        <div class="art-caption"><div><p></p><h3></h3></div><span class="art-index"></span></div>
-      </button>
-      <p class="art-summary"></p>
+      <div class="art-photo"><img loading="lazy" alt=""><span class="art-cantidad"></span></div>
+      <div class="art-texto">
+        <p class="art-tipo"></p>
+        <h4><button class="art-trigger" type="button" aria-haspopup="dialog"></button></h4>
+        <p class="art-summary"></p>
+      </div>
     </article>
   </template>
   <template id="plantilla-integrante">

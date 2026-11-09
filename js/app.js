@@ -117,6 +117,29 @@
     escribir('#visor-descripcion', piezaActual.description[imagenActual] + ' Material de desarrollo del proyecto.');
     escribir('#visor-contador', `Imagen ${imagenActual + 1} de ${piezaActual.src.length}`);
     buscar('#visor-controles').hidden = piezaActual.src.length < 2;
+    buscarTodos('#visor-miniaturas button').forEach((boton, indice) => boton.setAttribute('aria-pressed', String(indice === imagenActual)));
+  }
+  // Abro el visor con la primera imagen y una miniatura por cada imagen de la ficha.
+  function abrirPieza(pieza) {
+    piezaActual = pieza;
+    imagenActual = 0;
+    buscar('#visor-miniaturas').replaceChildren(...pieza.src.map((src, indice) => {
+      const boton = document.createElement('button');
+      boton.type = 'button';
+      boton.setAttribute('aria-label', `Ver la imagen ${indice + 1} de ${pieza.src.length}`);
+      const miniatura = document.createElement('img');
+      miniatura.src = src;
+      miniatura.alt = '';
+      miniatura.loading = 'lazy';
+      boton.append(miniatura);
+      boton.addEventListener('click', () => {
+        imagenActual = indice;
+        mostrarImagen();
+      });
+      return boton;
+    }));
+    mostrarImagen();
+    abrirVentana(visor);
   }
   function pasarImagen(paso) {
     imagenActual = (imagenActual + paso + piezaActual.src.length) % piezaActual.src.length;
@@ -130,30 +153,53 @@
       pasarImagen(evento.key === 'ArrowLeft' ? -1 : 1);
     }
   });
+  // Muestro la galería por grupos (escenarios, personajes...) con fichas del mismo formato.
+  const plural = (cantidad, una, varias) => `${cantidad} ${cantidad === 1 ? una : varias}`;
+  const grupos = window.LazySoft.categoriasArte || [...new Set(artworks.map(pieza => pieza.category))].map(nombre => ({ nombre, texto: '' }));
+  const filtros = buscar('.filters');
+  escribir('[data-filtro="Todo"] .filtro-numero', artworks.length);
+  grupos.forEach(grupo => {
+    const boton = document.createElement('button');
+    boton.type = 'button';
+    boton.dataset.filtro = grupo.nombre;
+    boton.setAttribute('aria-pressed', 'false');
+    const numeroPiezas = document.createElement('span');
+    numeroPiezas.className = 'filtro-numero';
+    numeroPiezas.textContent = artworks.filter(pieza => pieza.category === grupo.nombre).length;
+    boton.append(grupo.nombre + ' ', numeroPiezas);
+    filtros.append(boton);
+  });
+  function crearFicha(pieza) {
+    const ficha = clonar('#plantilla-arte');
+    const imagen = buscar('img', ficha);
+    imagen.src = pieza.src[0];
+    imagen.alt = pieza.alt[0];
+    escribir('.art-tipo', pieza.type, ficha);
+    escribir('.art-summary', pieza.description[0], ficha);
+    const cantidad = buscar('.art-cantidad', ficha);
+    cantidad.textContent = plural(pieza.src.length, 'imagen', 'imágenes');
+    cantidad.hidden = pieza.src.length < 2;
+    const boton = buscar('.art-trigger', ficha);
+    boton.textContent = pieza.title;
+    boton.addEventListener('click', () => abrirPieza(pieza));
+    return ficha;
+  }
   function mostrarGaleria(filtro = 'Todo') {
-    const piezas = artworks.filter(pieza => filtro === 'Todo' || pieza.category === filtro);
-    const lista = buscar('#galeria');
-    lista.replaceChildren();
-    piezas.forEach(pieza => {
-      const ficha = clonar('#plantilla-arte');
-      const imagen = buscar('img', ficha);
-      imagen.src = pieza.src[0];
-      imagen.alt = pieza.alt[0];
-      escribir('.art-caption p', pieza.type, ficha);
-      escribir('h3', pieza.title, ficha);
-      escribir('.art-index', pieza.id, ficha);
-      escribir('.art-summary', pieza.description[0], ficha);
-      const boton = buscar('button', ficha);
-      boton.setAttribute('aria-label', 'Ampliar: ' + pieza.title);
-      boton.addEventListener('click', () => {
-        piezaActual = pieza;
-        imagenActual = 0;
-        mostrarImagen();
-        abrirVentana(visor);
-      });
-      lista.append(ficha);
+    const galeria = buscar('#galeria');
+    galeria.replaceChildren();
+    grupos.filter(grupo => filtro === 'Todo' || grupo.nombre === filtro).forEach(grupo => {
+      const piezas = artworks.filter(pieza => pieza.category === grupo.nombre);
+      if (!piezas.length) return;
+      const bloque = clonar('#plantilla-grupo-arte');
+      escribir('h3', grupo.nombre, bloque);
+      escribir('.art-grupo-numero', plural(piezas.length, 'pieza', 'piezas'), bloque);
+      escribir('.art-grupo-texto', grupo.texto, bloque);
+      buscar('.art-grid', bloque).append(...piezas.map(crearFicha));
+      galeria.append(bloque);
     });
-    escribir('.gallery-count', `${piezas.length} ${piezas.length === 1 ? 'pieza' : 'piezas'}`);
+    const visibles = artworks.filter(pieza => filtro === 'Todo' || pieza.category === filtro);
+    const imagenes = visibles.reduce((total, pieza) => total + pieza.src.length, 0);
+    escribir('.gallery-count', `${plural(visibles.length, 'pieza', 'piezas')} y ${plural(imagenes, 'imagen', 'imágenes')}`);
     buscarTodos('[data-filtro]').forEach(boton => boton.setAttribute('aria-pressed', String(boton.dataset.filtro === filtro)));
   }
   buscarTodos('[data-filtro]').forEach(boton => boton.addEventListener('click', () => mostrarGaleria(boton.dataset.filtro)));
