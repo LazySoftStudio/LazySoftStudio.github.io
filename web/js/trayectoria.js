@@ -3,36 +3,59 @@
 // Ordeno las fichas desde el proyecto más antiguo hasta el más reciente.
 // Mantengo borrador: true mientras falten datos; lo cambio a false cuando termino la ficha.
 // Guardo las imágenes en assets/trayectoria/ y escribo esa misma ruta en src.
-// Tengo el ejemplo completo y los pasos en el README de la raíz del repositorio.
+// Los juegos anteriores siguen en borrador hasta que tengan su portada en assets/trayectoria/.
 window.LazySoft.trayectoria = [
   {
-    id: 'proyecto-01',
+    id: 'time-trouble',
     borrador: true,
-    fecha: '', // Año, mes y año o periodo; por ejemplo: '2023–2024'.
-    titulo: '',
-    tipo: '', // Videojuego, prototipo, game jam, proyecto de clase…
-    descripcion: '', // Cuento de qué trata, qué hicimos y qué aprendimos.
+    fecha: 'GameGen Game Jam, 5.ª edición', // Año, mes y año o periodo; por ejemplo: '2023–2024'.
+    titulo: 'Time Trouble',
+    tipo: 'Game jam', // Videojuego, prototipo, game jam, proyecto de clase…
+    descripcion: 'Shooter de supervivencia hecho en Unity. Un científico prueba su máquina del tiempo, se le cuela un insecto en el salto y acaba en la prehistoria sin memoria. Tiene que sobrevivir a los enemigos para recordar quién es, con la ayuda de un poder que para el tiempo durante unos segundos.\nEn el equipo estuvimos Iván, Dani, Paula y Alex.',
     imagenes: [], // Ejemplo: [{ src: 'assets/trayectoria/mi-juego.jpg', alt: 'Captura de mi juego' }].
-    enlace: '', // Opcional: URL completa de la demo, vídeo o página del proyecto.
+    enlace: 'https://mippim.itch.io/time-trouble', // Opcional: URL completa de la demo, vídeo o página del proyecto.
   },
   {
-    id: 'proyecto-02',
+    id: 'plof-battle',
     borrador: true,
-    fecha: '',
-    titulo: '',
-    tipo: '',
-    descripcion: '',
+    fecha: 'Proyecto de asignatura',
+    titulo: 'Plof Battle',
+    tipo: 'Videojuego multijugador',
+    descripcion: 'Juego de batallas multijugador en pixel art, hecho en Unity para la asignatura de Proceso de Desarrollo de Videojuegos. El equipo se organizó con Scrum: Paula estuvo en arte e interfaz e Iván en programación.',
     imagenes: [],
-    enlace: '',
+    enlace: 'https://mippim.itch.io/plof-battle',
   },
   {
-    id: 'proyecto-03',
+    id: 'el-enigma-de-la-torre-encantada',
     borrador: true,
-    fecha: '',
-    titulo: '',
-    tipo: '',
-    descripcion: '',
+    fecha: 'Juego para navegador',
+    titulo: 'El Enigma de la Torre Encantada',
+    tipo: 'Multijugador colaborativo',
+    descripcion: 'Cada jugador es un mago de una parte del mundo y entre todos hay que resolver los enigmas de la Torre Encantada para llegar al elixir de la vida eterna. Se puede jugar en equipo o traicionar a los demás.\nLo hicieron Paula y Alex.',
     imagenes: [],
-    enlace: '',
+    enlace: 'https://laupaa.itch.io/el-enigma-de-la-torre-encantada',
+  },
+  {
+    id: 'el-mago-canijo',
+    borrador: true,
+    fecha: 'Plataformas en 2D',
+    titulo: 'El Mago Canijo',
+    tipo: 'Videojuego',
+    descripcion: 'Plataformas en 2D hecho en Unity. El mago canijo recorre los niveles buscando pergaminos que le enseñan hechizos nuevos, que se lanzan con las teclas del 1 al 5, para conseguir el elixir de la vida antes de que le pase algo malo.\nLo hicieron Iván y Paula.',
+    imagenes: [],
+    enlace: 'https://mippim.itch.io/el-mago-canijo',
+  },
+  {
+    id: 'el-secreto-de-monteviejo',
+    borrador: false,
+    fecha: '2026, en desarrollo',
+    titulo: 'El secreto de Monteviejo',
+    tipo: 'Aventura narrativa en 3D',
+    descripcion: 'Nuestro primer juego como LazySoft, con los seis integrantes del equipo. Una aventura narrativa en 3D hecha en Unity que ya se puede jugar en el navegador, aquí en la web y en itch.io.',
+    imagenes: [
+      { src: 'assets/pueblo-vista.jpg', alt: 'Vista aérea del pueblo de Monteviejo en 3D con texturas' },
+      { src: 'assets/interfaz-titulo.png', alt: 'Pantalla de título de El secreto de Monteviejo' },
+    ],
+    enlace: 'https://lazysoftstudio.itch.io/el-secreto-de-monteviejo',
   },
 ];

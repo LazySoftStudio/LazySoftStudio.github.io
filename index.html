@@ -25,7 +25,7 @@
       <a href="#equipo">Equipo</a>
       <a href="#trayectoria">Trayectoria</a>
       <a href="#contacto">Contacto</a>
-      <a class="nav-jugar" href="https://lazysoftstudio.itch.io/el-secreto-de-monteviejo" target="_blank" rel="noopener noreferrer" data-enlace-jugar>Jugar</a>
+      <a class="nav-jugar" href="#jugar">Jugar</a>
     </nav>
   </header>
 
@@ -40,15 +40,10 @@
         <div>
           <p>Aventura narrativa en 3D. Ya puedes probar la versión en desarrollo.</p>
           <div class="hero-acciones">
-            <a class="button light" href="https://lazysoftstudio.itch.io/el-secreto-de-monteviejo" target="_blank" rel="noopener noreferrer" data-enlace-jugar>Jugar en itch.io</a>
+            <a class="button light" href="#jugar">Jugar</a>
             <a class="button ghost" href="#trailer">Ver el tráiler</a>
           </div>
         </div>
-      </div>
-      <div class="hero-floor">
-        <span>LazySoft</span>
-        <nav class="hero-atajos" aria-label="Ir a una sección"><a href="#marketing">Ver el juego</a><a href="#arte">Ver el arte</a></nav>
-        <span>En desarrollo</span>
       </div>
     </section>
 
@@ -65,24 +60,47 @@
         </div>
         <div class="trailer-info">
           <h2 id="titulo-trailer">Tráiler y versión jugable</h2>
-          <p>La versión en desarrollo está en itch.io. Es temprana y la vamos actualizando según avanza el proyecto.</p>
-          <a class="button light" href="https://lazysoftstudio.itch.io/el-secreto-de-monteviejo" target="_blank" rel="noopener noreferrer" data-enlace-jugar>Jugar en itch.io</a>
-          <h3>Controles</h3>
-          <dl class="controles">
-            <div><dt><kbd>W</kbd><kbd>S</kbd></dt><dd>Avanzar y retroceder</dd></div>
-            <div><dt><kbd>A</kbd><kbd>D</kbd></dt><dd>Girar</dd></div>
-            <div><dt><kbd>Ratón</kbd></dt><dd>Mirar alrededor en interiores</dd></div>
-            <div><dt><kbd>E</kbd></dt><dd>Interactuar</dd></div>
-            <div><dt><kbd>Espacio</kbd></dt><dd>Avanzar diálogo</dd></div>
-            <div><dt><kbd>Clic izquierdo</kbd></dt><dd>Elegir respuesta en los diálogos</dd></div>
-            <div><dt><kbd>Q</kbd></dt><dd>Inventario</dd></div>
-            <div><dt><kbd>Esc</kbd></dt><dd>Pausa</dd></div>
-          </dl>
+          <p>La versión en desarrollo se puede jugar aquí mismo, sin instalar nada. Es temprana y la vamos actualizando según avanza el proyecto.</p>
+          <a class="button light" href="#jugar">Jugar aquí</a>
         </div>
+      </div>
+      <!-- El juego se carga desde itch.io al pulsar el botón. La dirección está en js/contenido.js (game.embedUrl). -->
+      <div class="wrap juego-bloque" id="jugar">
+        <div class="juego-cabecera">
+          <h3>Juega en el navegador</h3>
+          <p>Haz clic dentro del juego para empezar.</p>
+        </div>
+        <div class="juego-zona">
+          <div class="juego-marco" id="marco-juego">
+            <img class="juego-portada" src="assets/pueblo-calle.jpg" alt="" loading="lazy">
+            <button class="juego-cargar" type="button"><span aria-hidden="true">▶</span> Cargar el juego</button>
+          </div>
+          <!-- Controles de la versión publicada en itch.io, con el aspecto de los periódicos del juego. Si cambian, los actualizo aquí. -->
+          <aside class="periodico" aria-labelledby="titulo-controles">
+            <h4 class="periodico-titulo" id="titulo-controles">Controles</h4>
+            <div class="periodico-hoja">
+              <div class="periodico-cabecera"><span>El secreto de Monteviejo</span><span>Guía del jugador</span></div>
+              <p class="periodico-titular">Cómo moverse por el pueblo</p>
+              <dl class="controles-lista">
+                <div><dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></dt><dd>Moverse</dd></div>
+                <div><dt><kbd>Shift</kbd></dt><dd>Correr (solo en el pueblo)</dd></div>
+                <div><dt><kbd>Ratón</kbd></dt><dd>Mover la cámara</dd></div>
+                <div><dt><kbd>E</kbd></dt><dd>Interactuar con personas y objetos</dd></div>
+                <div><dt><kbd>Espacio</kbd></dt><dd>Avanzar los diálogos y saltar la cinemática inicial</dd></div>
+                <div><dt><kbd>Clic</kbd></dt><dd>Elegir respuesta y ampliar objetos del inventario</dd></div>
+                <div><dt><kbd>Q</kbd></dt><dd>Abrir el inventario</dd></div>
+                <div><dt><kbd>Esc</kbd></dt><dd>Pausar y liberar el ratón (a veces hay que pulsarlo dos veces)</dd></div>
+                <div><dt><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd></dt><dd>Animaciones de Antonio</dd></div>
+              </dl>
+              <p class="controles-nota">Un día entero en Monteviejo dura unos 15 minutos: mientras juegas, el pueblo pasa del día a la noche.</p>
+            </div>
+          </aside>
+        </div>
+        <p class="juego-nota">Necesitas teclado y ratón. Si lo prefieres a pantalla completa, <a href="https://lazysoftstudio.itch.io/el-secreto-de-monteviejo" target="_blank" rel="noopener noreferrer" data-enlace-jugar>ábrelo en itch.io</a>.</p>
       </div>
     </section>
 
-    <!-- Marketing: a quién va dirigido el juego. Los juegos parecidos se editan en js/contenido.js. -->
+    <!-- Marketing: a quién va dirigido el juego y su ficha técnica. -->
     <section class="marketing-section" id="marketing" aria-labelledby="titulo-marketing">
       <div class="wrap">
         <div class="section-heading"><span class="outline-tag">Marketing</span></div>
@@ -96,32 +114,41 @@
         </figure>
         <div class="publico">
           <h3>A quién va dirigido</h3>
+          <!-- Cada tarjeta gira al pasar el ratón; en móvil o con teclado, al pulsarla. -->
           <div class="publico-lista">
-            <div><h4>Jugadores de aventuras narrativas</h4><p>Gente que juega por la historia y los personajes más que por la acción. No hay combates: se avanza hablando y prestando atención.</p></div>
-            <div><h4>Quien disfruta atando cabos</h4><p>Cada vecino cuenta su versión. Las pistas se guardan en el inventario y se ordenan arrastrando objetos y nombres hasta reconstruir lo que pasó.</p></div>
-            <div><h4>Quien conoce la vida de pueblo</h4><p>La plaza, los dos bares de los gemelos, la vecina que lo ve todo. Situaciones que reconoce cualquiera que haya pasado veranos en un pueblo.</p></div>
+            <button class="tarjeta-giro" type="button" aria-pressed="false">
+              <span class="tarjeta-cara tarjeta-frente"><span class="tarjeta-titulo">Jugadores de aventuras narrativas</span><span class="tarjeta-pista">Ver más</span></span>
+              <span class="tarjeta-cara tarjeta-dorso">Gente que juega por la historia y los personajes más que por la acción. No hay combates: se avanza hablando y prestando atención.</span>
+            </button>
+            <button class="tarjeta-giro" type="button" aria-pressed="false">
+              <span class="tarjeta-cara tarjeta-frente"><span class="tarjeta-titulo">Quien disfruta atando cabos</span><span class="tarjeta-pista">Ver más</span></span>
+              <span class="tarjeta-cara tarjeta-dorso">Cada vecino cuenta su versión. Las pistas se guardan en el inventario y se ordenan arrastrando objetos y nombres hasta reconstruir lo que pasó.</span>
+            </button>
+            <button class="tarjeta-giro" type="button" aria-pressed="false">
+              <span class="tarjeta-cara tarjeta-frente"><span class="tarjeta-titulo">Quien conoce la vida de pueblo</span><span class="tarjeta-pista">Ver más</span></span>
+              <span class="tarjeta-cara tarjeta-dorso">La plaza, los dos bares de los gemelos, la vecina que lo ve todo. Situaciones que reconoce cualquiera que haya pasado veranos en un pueblo.</span>
+            </button>
           </div>
         </div>
-        <dl class="ficha-juego">
-          <div><dt>Género</dt><dd>Aventura narrativa de investigación</dd></div>
-          <div><dt>Perspectiva</dt><dd>Tercera persona en exteriores / Primera persona en interiores</dd></div>
-          <div><dt>Plataforma</dt><dd>PC, con teclado y ratón</dd></div>
-          <div><dt>Motor</dt><dd>Unity</dd></div>
-          <div><dt>Idioma</dt><dd>Español</dd></div>
-          <div><dt>Edad</dt><dd>A partir de 7 años</dd></div>
-          <div><dt>Modelo de negocio</dt><dd>Compra única, con crowdfunding inicial y DLC con nuevos cuerpos que identificar</dd></div>
-        </dl>
-        <div class="similares">
-          <div class="similares-cabecera"><h3>Juegos parecidos</h3><p>Una selección provisional de las referencias que manejamos en el equipo.</p></div>
-          <ul class="similares-lista" id="lista-similares"></ul>
-        </div>
+        <details class="plegable">
+          <summary>Ver detalles técnicos</summary>
+          <dl class="ficha-juego">
+            <div><dt>Género</dt><dd>Aventura narrativa de investigación</dd></div>
+            <div><dt>Perspectiva</dt><dd>Tercera persona en exteriores / Primera persona en interiores</dd></div>
+            <div><dt>Plataforma</dt><dd>PC, con teclado y ratón</dd></div>
+            <div><dt>Motor</dt><dd>Unity</dd></div>
+            <div><dt>Idioma</dt><dd>Español</dd></div>
+            <div><dt>Edad</dt><dd>A partir de 7 años</dd></div>
+            <div><dt>Modelo de negocio</dt><dd>Compra única, con crowdfunding inicial y DLC con nuevos cuerpos que identificar</dd></div>
+          </dl>
+        </details>
       </div>
     </section>
 
     <!-- Relleno las fichas con los datos de js/contenido.js. -->
     <section class="art-section" id="arte">
       <div class="wrap">
-        <div class="section-intro"><h2>Arte &amp;<br>desarrollo.</h2><p>Bocetos, diseños de personajes, escenarios e interfaces de <span data-titulo-juego>El secreto de Monteviejo</span>.</p></div>
+        <div class="section-intro"><h2>Arte &amp;<br>desarrollo.</h2><p>Bocetos, diseños de personajes, escenarios, interfaces y la tipografía de <span data-titulo-juego>El secreto de Monteviejo</span>.</p></div>
         <div class="gallery-toolbar">
           <!-- Los botones de cada grupo se crean a partir de categoriasArte en js/contenido.js. -->
           <div class="filters" role="group" aria-label="Filtrar material por categoría">
@@ -222,7 +249,6 @@
     <h2 id="creditos-titulo">Créditos del proyecto</h2><p id="creditos-descripcion">LazySoft. Proyecto universitario en desarrollo.</p>
     <p id="creditos-equipo">Ángel Bermúdez, Alberto Caro, Daniel Corbacho, Alejandro Hernández, Paula Ortiz e Iván Palacios.</p>
     <p>Logotipo facilitado por LazySoft. La mascota de la portada forma parte de la presentación visual del estudio. Bocetos, diseños de personajes, renders de escenarios, prototipos de interfaz y retratos del equipo facilitados por LazySoft. Las imágenes muestran material de trabajo; no son capturas de una versión final del videojuego.</p>
-    <p>Los juegos citados en el apartado de marketing pertenecen a sus respectivos estudios y solo se mencionan como referencia.</p>
     <button class="button dark" type="button" data-cerrar autofocus>Cerrar</button>
   </dialog>
 
@@ -245,9 +271,6 @@
   </template>
   <template id="plantilla-integrante">
     <article class="miembro"><span class="member-photo" aria-hidden="true"><img loading="lazy" alt="" width="600" height="800"></span><h3></h3></article>
-  </template>
-  <template id="plantilla-similar">
-    <li class="similar"><h4></h4><p class="similar-datos"></p><p class="similar-motivo"></p></li>
   </template>
   <template id="plantilla-trayectoria">
     <li class="trayectoria-hito">

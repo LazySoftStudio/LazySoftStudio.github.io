@@ -224,7 +224,8 @@ em {
 }
 .header nav a {
   position:relative;
-  padding:13px 0
+  padding:13px 0;
+  white-space:nowrap
 }
 .header nav a::after {
   content:'';
@@ -277,7 +278,7 @@ em {
   --hero-scroll:0;
   --pointer-x:0;
   --pointer-y:0;
-  min-height:730px;
+  min-height:560px;
   height:calc(100svh - 88px);
   max-height:1100px;
   position:relative;
@@ -286,7 +287,7 @@ em {
   padding:30px 4vw 0;
   background:radial-gradient(ellipse at 50% 66%,#503f15 0,#2c2216 24%,#131210 62%)
 }
-.hero-kicker,.hero-floor {
+.hero-kicker {
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -318,7 +319,8 @@ em {
   z-index:2;
   left:50%;
   top:17%;
-  width:min(46vw,610px);
+  /* También depende del alto para que la portada entera quepa en pantallas bajas. */
+  width:min(46vw,610px,(100svh - 88px)*.62);
   transform:translateX(-50%) translateY(calc(var(--hero-scroll)*90px)) perspective(900px) rotateY(calc(var(--pointer-x)*16deg)) rotateX(calc(var(--pointer-y)*-10deg)) rotateZ(calc(var(--hero-scroll)*-8deg));
   filter:drop-shadow(0 40px 35px #0007);
   will-change:transform;
@@ -330,7 +332,7 @@ em {
 }
 .hero-caption {
   position:absolute;
-  bottom:160px;
+  bottom:clamp(28px,7svh,72px);
   left:4vw;
   right:4vw;
   z-index:3;
@@ -362,31 +364,9 @@ em {
 }
 .hero-acciones .button {
   margin:0;
+  padding:17px 34px;
+  font-size:13px;
   pointer-events:auto
-}
-.hero-floor {
-  position:absolute;
-  bottom:0;
-  left:4vw;
-  right:4vw;
-  padding:23px 0;
-  color:#b8ada4;
-  z-index:3
-}
-.hero-atajos {
-  display:flex;
-  gap:10px
-}
-.hero-atajos a {
-  color:#f2ede2;
-  border:1px solid #7e715f;
-  border-radius:100px;
-  padding:6px 16px;
-  transition:border-color .2s,color .2s
-}
-.hero-atajos a:hover {
-  border-color:var(--orange);
-  color:var(--orange)
 }
 /* Tráiler y versión jugable, justo debajo de la portada. */
 .trailer-section {
@@ -469,46 +449,160 @@ em {
 .trailer-info .button {
   margin-top:24px
 }
-.trailer-info h3 {
+/* Versión jugable dentro de la web, debajo del tráiler. */
+.juego-bloque {
+  margin-top:80px
+}
+.juego-cabecera {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:10px 30px;
+  padding-bottom:16px;
+  margin-bottom:24px;
+  border-bottom:1px solid #362c21
+}
+.juego-cabecera h3 {
+  font-size:clamp(22px,2.4vw,32px)
+}
+.juego-cabecera p {
   font-size:12px;
-  letter-spacing:0;
-  font-weight:700;
-  color:#b7ad9f;
-  margin:44px 0 6px
+  color:#c4beb3
 }
-.controles {
-  margin:0
+.juego-marco {
+  position:relative;
+  width:min(100%,960px);
+  aspect-ratio:960/670;
+  margin:0 auto;
+  overflow:hidden;
+  border-radius:4px;
+  background:#211d18
 }
-.controles>div {
+.juego-marco>img,.juego-marco iframe {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  object-fit:cover
+}
+.juego-marco>img {
+  filter:saturate(.75) brightness(.5)
+}
+.juego-cargar {
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  padding:11px 0;
-  border-bottom:1px solid #352e25
-}
-.controles dt {
-  display:flex;
-  gap:5px;
-  flex-shrink:0
-}
-.controles dd {
-  margin:0;
-  font-size:12px;
-  color:#d6d0c9;
-  text-align:right
-}
-kbd {
-  font-family:var(--sans);
-  font-size:8px;
+  gap:12px;
+  padding:18px 34px;
+  border-radius:100px;
+  background:var(--orange);
+  color:#261d13;
   font-weight:700;
-  min-width:30px;
-  padding:3px 9px;
+  font-size:14px;
+  white-space:nowrap
+}
+.juego-cargar:hover {
+  background:#ffe3b6
+}
+.juego-nota {
+  margin-top:16px;
   text-align:center;
-  border:1px solid #625b4a;
+  font-size:12px;
+  color:#a89f92
+}
+.juego-nota a {
+  color:#efe7d8;
+  border-bottom:1px solid currentColor
+}
+/* El juego a la izquierda y, a su derecha, los controles plegados como un periódico del pueblo. */
+.juego-zona {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 340px;
+  gap:24px;
+  align-items:start
+}
+.juego-zona .juego-marco {
+  width:100%
+}
+/* Mismo papel, rayas y letra que los periódicos que aparecen en el juego. */
+.periodico {
+  --tinta:#2a2116;
+  border-radius:3px;
+  background:radial-gradient(ellipse at 50% 30%,#e6d8ac 0,#d6c393 55%,#b9a36d 100%);
+  color:var(--tinta);
+  box-shadow:0 12px 30px #0007
+}
+.periodico-titulo {
+  padding:16px 20px 14px;
+  border-bottom:4px double var(--tinta);
+  font-size:22px;
+  font-weight:700;
+  line-height:1.2
+}
+.periodico-hoja {
+  padding:4px 20px 20px
+}
+.periodico-cabecera {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 0 6px;
+  border-bottom:2px solid var(--tinta);
+  box-shadow:0 4px 0 -3px var(--tinta);
+  font-size:9px;
+  white-space:nowrap
+}
+.periodico-titular {
+  margin:14px 0 8px;
+  text-align:center;
+  font-size:22px;
+  line-height:1.1;
+  font-weight:700
+}
+.controles-lista {
+  margin:0
+}
+.controles-lista>div {
+  display:grid;
+  grid-template-columns:114px minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  padding:6px 0;
+  border-top:1px solid #8c7a52
+}
+.controles-lista dt {
+  display:flex;
+  gap:3px
+}
+.controles-lista dd {
+  margin:0;
+  font-size:11px;
+  line-height:1.35
+}
+.controles-lista kbd {
+  min-width:22px;
+  padding:3px 6px;
+  border:1px solid var(--tinta);
   border-bottom-width:3px;
-  border-radius:5px;
-  color:#f0ebe6
+  border-radius:4px;
+  background:#efe3bd;
+  color:var(--tinta);
+  font-family:var(--sans);
+  font-size:9px;
+  font-weight:700;
+  text-align:center
+}
+.controles-nota {
+  margin-top:10px;
+  padding-top:10px;
+  border-top:2px solid var(--tinta);
+  font-size:10px;
+  line-height:1.45
 }
 /* Marketing: tonos ocres y oliva del pueblo para separarlo del resto de la web. */
 .marketing-section {
@@ -567,32 +661,126 @@ kbd {
   padding-top:34px;
   border-top:1px solid #4a4626
 }
-.publico h3,.similares-cabecera h3 {
+.publico h3 {
   font-size:clamp(20px,2.4vw,28px);
   letter-spacing:-.02em
 }
 .publico-lista {
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:clamp(24px,3vw,44px)
+  gap:clamp(16px,2vw,28px)
 }
-.publico-lista h4 {
-  font-size:16px;
+/* Tarjetas que giran: el frente lleva el perfil y el dorso la explicación. */
+.tarjeta-giro {
+  position:relative;
+  height:200px;
+  padding:0;
+  border:0;
+  background:none;
+  color:inherit;
+  font:inherit;
+  text-align:left;
+  perspective:1000px
+}
+.tarjeta-cara {
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:22px;
+  border-radius:8px;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  transition:transform .6s cubic-bezier(.2,.7,.2,1)
+}
+.tarjeta-frente {
+  background:#32291a;
+  border:1px solid #5c4d30
+}
+.tarjeta-dorso {
+  justify-content:center;
+  background:var(--ocre-claro);
+  color:#241c0f;
+  font-size:13px;
+  line-height:1.5;
+  transform:rotateY(180deg)
+}
+.tarjeta-titulo {
+  font-size:clamp(17px,1.6vw,21px);
   line-height:1.2;
-  letter-spacing:-.01em;
   font-weight:700;
-  color:#f3ecd5;
-  margin-bottom:12px
+  color:#f3ecd5
 }
-.publico-lista p {
-  font-size:12px;
-  color:#c4bb98
+.tarjeta-pista {
+  align-self:flex-start;
+  font-size:10px;
+  color:#c4bb98;
+  border-bottom:1px solid #6d6638
+}
+.tarjeta-giro[aria-pressed=true] .tarjeta-frente {
+  transform:rotateY(-180deg)
+}
+.tarjeta-giro[aria-pressed=true] .tarjeta-dorso {
+  transform:rotateY(0)
+}
+@media(hover:hover) {
+  .tarjeta-giro:hover .tarjeta-frente {
+    transform:rotateY(-180deg)
+  }
+  .tarjeta-giro:hover .tarjeta-dorso {
+    transform:rotateY(0)
+  }
+}
+.tarjeta-giro:focus-visible {
+  outline:3px solid var(--ocre-claro);
+  outline-offset:4px;
+  border-radius:8px
+}
+/* Apartados plegables: solo se abren si el usuario quiere verlos. */
+.plegable {
+  margin-top:48px;
+  border-top:1px solid #4a4626;
+  border-bottom:1px solid #4a4626
+}
+.plegable+.plegable {
+  margin-top:0;
+  border-top:0
+}
+.plegable summary {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:22px 0;
+  cursor:pointer;
+  list-style:none;
+  font-size:clamp(17px,1.8vw,22px);
+  font-weight:700;
+  color:#f3ecd5
+}
+.plegable summary::-webkit-details-marker {
+  display:none
+}
+.plegable summary::after {
+  content:'+';
+  font-size:26px;
+  line-height:1;
+  color:var(--ocre-claro);
+  transition:transform .25s
+}
+.plegable[open] summary::after {
+  transform:rotate(45deg)
+}
+.plegable summary:focus-visible {
+  outline:3px solid var(--ocre-claro);
+  outline-offset:4px
 }
 .ficha-juego {
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:0 clamp(24px,3vw,44px);
-  margin:70px 0 0
+  margin:0 0 24px
 }
 .ficha-juego>div {
   padding:16px 0;
@@ -606,48 +794,6 @@ kbd {
   margin:4px 0 0;
   font-size:14px;
   color:#f0e9d2
-}
-.similares {
-  display:grid;
-  grid-template-columns:minmax(180px,.55fr) minmax(0,2fr);
-  gap:5vw;
-  margin-top:90px
-}
-.similares-cabecera p {
-  margin-top:14px;
-  font-size:10px;
-  color:#a59d78;
-  max-width:260px
-}
-.similares-lista {
-  list-style:none;
-  margin:0;
-  padding:0;
-  border-top:1px solid #4a4626
-}
-.similar {
-  display:grid;
-  grid-template-columns:minmax(0,1.1fr) minmax(110px,.6fr) minmax(0,1.5fr);
-  gap:24px;
-  align-items:baseline;
-  padding:22px 0;
-  border-bottom:1px solid #4a4626
-}
-.similar h4 {
-  font-family:var(--serif);
-  font-weight:700;
-  font-size:clamp(18px,2vw,20px);
-  letter-spacing:-.01em;
-  line-height:1.15;
-  color:#f3ecd5
-}
-.similar-datos {
-  font-size:10px;
-  color:var(--ocre-claro)
-}
-.similar-motivo {
-  font-size:12px;
-  color:#c4bb98
 }
 /* Galería con filtros y ampliación de imágenes. */
 .art-section {
@@ -1162,25 +1308,10 @@ kbd {
   .trailer-layout {
     grid-template-columns:minmax(0,1fr)
   }
-  .trailer-info {
-    display:grid;
-    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-    gap:0 5vw;
-    align-items:start
-  }
-  .trailer-info h3 {
-    grid-column:2;
-    grid-row:1;
-    margin-top:0
-  }
-  .trailer-info .controles {
-    grid-column:2;
-    grid-row:2/span 3
-  }
   .trailer-info .button {
     justify-self:start
   }
-  .publico,.similares {
+  .publico {
     grid-template-columns:minmax(0,1fr);
     gap:28px
   }
@@ -1189,6 +1320,14 @@ kbd {
   }
   .art-grid {
     grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+  .juego-zona {
+    grid-template-columns:minmax(0,1fr)
+  }
+  .controles-lista {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0 24px
   }
   .footer-wordmark {
     font-size:12vw
@@ -1239,7 +1378,7 @@ kbd {
   }
   .hero-stage {
     height:calc(100svh - 76px);
-    min-height:740px;
+    min-height:560px;
     max-height:none;
     padding:24px 22px 0
   }
@@ -1255,13 +1394,13 @@ kbd {
     margin-top:50px
   }
   .hero-object {
-    width:min(83vw,430px);
+    width:min(83vw,430px,(100svh - 76px)*.5);
     top:20%
   }
   .hero-caption {
     left:22px;
     right:22px;
-    bottom:92px;
+    bottom:28px;
     display:block
   }
   .hero-caption>p {
@@ -1277,28 +1416,24 @@ kbd {
     margin-top:14px
   }
   .hero-caption .button {
-    font-size:10px;
-    padding:12px 18px
-  }
-  .hero-floor {
-    left:22px;
-    right:22px;
-    font-size:8px
-  }
-  .hero-floor span:last-child {
-    display:none
-  }
-  .hero-atajos a {
-    padding:5px 13px
+    font-size:12px;
+    padding:15px 26px
   }
   .trailer-section {
     padding:60px 0 70px
   }
-  .trailer-info {
-    display:block
+  .juego-bloque {
+    margin-top:56px
   }
-  .trailer-info h3 {
-    margin-top:38px
+  .juego-cargar {
+    padding:13px 22px;
+    font-size:12px
+  }
+  .periodico-hoja {
+    padding:4px 16px 16px
+  }
+  .controles-lista {
+    grid-template-columns:minmax(0,1fr)
   }
   .trailer-aviso {
     font-size:10px
@@ -1322,18 +1457,16 @@ kbd {
   }
   .publico-lista {
     grid-template-columns:minmax(0,1fr);
-    gap:26px
+    gap:14px
+  }
+  .tarjeta-giro {
+    height:170px
   }
   .ficha-juego {
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    margin-top:50px
+    grid-template-columns:repeat(2,minmax(0,1fr))
   }
-  .similares {
-    margin-top:60px
-  }
-  .similar {
-    grid-template-columns:minmax(0,1fr);
-    gap:6px
+  .plegable {
+    margin-top:36px
   }
   .section-heading {
     margin-bottom:36px;
@@ -1442,24 +1575,24 @@ kbd {
 }
 @media(max-width:480px) {
   .hero-stage {
-    min-height:715px
+    min-height:540px
   }
   .hero-title {
     margin-top:43px
   }
   .hero-object {
     top:19%;
-    width:84vw
+    width:min(84vw,(100svh - 76px)*.5)
   }
   .hero-caption {
-    bottom:84px
+    bottom:24px
   }
   .hero-caption>p {
     font-size:25px
   }
   .hero-caption .button {
-    font-size:10px;
-    padding-inline:15px
+    font-size:12px;
+    padding-inline:22px
   }
   .art-grid {
     grid-template-columns:minmax(0,1fr);
@@ -1485,9 +1618,6 @@ kbd {
   }
   .ficha-juego {
     grid-template-columns:minmax(0,1fr)
-  }
-  .controles dd {
-    font-size:10px
   }
   .outline-tag {
     font-size:8px;
@@ -1529,16 +1659,16 @@ kbd {
 h2,h3,.email-link {
   overflow-wrap:anywhere
 }
-.section-heading,.hero-kicker,.hero-floor,.footer-top,.footer-bottom {
+.section-heading,.hero-kicker,.footer-top,.footer-bottom {
   flex-wrap:wrap
 }
 .outline-tag {
   flex-shrink:0
 }
+/* Con la tipografía Monteviejo la palabra es más ancha: la mantengo en una sola línea. */
 .footer-wordmark {
-  font-size:clamp(42px,15.5vw,160px);
-  white-space:normal;
-  overflow-wrap:anywhere
+  font-size:clamp(42px,11.5vw,160px);
+  white-space:nowrap
 }
 .footer-wordmark span {
   display:block;
@@ -1556,7 +1686,13 @@ h2,h3,.email-link {
 .email-link {
   max-width:100%
 }
-@media(max-width:1000px) {
+@media(max-width:1300px) {
+  .header nav {
+    gap:16px
+  }
+}
+/* El menú completo solo cabe en una línea a partir de unos 1150 px con esta tipografía. */
+@media(max-width:1150px) {
   .header {
     position:sticky
   }
@@ -1614,10 +1750,6 @@ h2,h3,.email-link {
   .hero-caption>p {
     max-width:none;
     font-size:clamp(22px,8vw,32px)
-  }
-  .hero-floor {
-    font-size:8px;
-    gap:12px
   }
   .gallery-toolbar {
     align-items:start

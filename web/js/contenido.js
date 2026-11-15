@@ -6,8 +6,11 @@ window.LazySoft.site = {
     studio: 'LazySoft', email: 'lazysoftstudio@gmail.com',
     game: {
         title: 'El secreto de Monteviejo', provisionalTitle: false,
-        // Página del juego en itch.io: la usan todos los botones de «Jugar».
-        playUrl: 'https://lazysoftstudio.itch.io/el-secreto-de-monteviejo'
+        // Página del juego en itch.io: la usa el enlace para abrirlo a pantalla completa.
+        playUrl: 'https://lazysoftstudio.itch.io/el-secreto-de-monteviejo',
+        // Versión jugable dentro de la web. En itch.io sale en Editar juego > Distribute > Embed game.
+        // Si subimos una versión nueva del juego, el número cambia y hay que copiar el nuevo aquí.
+        embedUrl: 'https://itch.io/embed-upload/20515256?color=15110c'
     },
     // Cuando subamos el tráiler, pego aquí el enlace de YouTube (vale el enlace completo o solo el código del vídeo).
     // Si preferimos un archivo propio, lo guardo en assets/ y escribo su ruta en video, por ejemplo 'assets/trailer.mp4'.
@@ -25,42 +28,28 @@ window.LazySoft.site = {
     }
 };
 
-// Juegos parecidos del apartado de marketing. Es una lista provisional: la cambiamos cuando lo decidamos en equipo.
-window.LazySoft.similares = [
-    {
-        titulo: 'Return of the Obra Dinn',
-        estudio: 'Lucas Pope',
-        anio: 2018,
-        motivo: 'Hay que averiguar quién era cada persona cruzando pistas sueltas. Es la referencia más cercana a nuestra investigación.'
-    },
-    {
-        titulo: 'Life is Strange',
-        estudio: 'Dontnod Entertainment',
-        anio: 2015,
-        motivo: 'Un pueblo pequeño, cámara en tercera persona y conversaciones en las que eliges qué decir.'
-    },
-    {
-        titulo: 'Mutazione',
-        estudio: 'Die Gute Fabrik',
-        anio: 2019,
-        motivo: 'Una comunidad pequeña donde todos se conocen y los cotilleos mueven la historia.'
-    },
-    {
-        titulo: 'Super Mario 64',
-        estudio: 'Nintendo',
-        anio: 1996,
-        motivo: 'Referencia visual del documento de diseño: modelos de pocos polígonos y texturas sencillas.'
-    },
-];
-
 // Grupos de la galería de arte, en el orden en que se muestran. Cada ficha usa uno de estos nombres en category.
 window.LazySoft.categoriasArte = [
     { nombre: 'Escenarios', texto: 'Del plano dibujado a mano al pueblo en 3D con sus primeras texturas.' },
     { nombre: 'Personajes', texto: 'Bocetos, vistas de referencia, estudios de color y primeros modelos de los vecinos de Monteviejo.' },
     { nombre: 'Interfaces', texto: 'Prototipos de las pantallas del juego y del recorrido entre ellas.' },
+    { nombre: 'Tipografía', texto: 'La letra del juego, dibujada carácter a carácter. Es también la que usa esta web.' },
 ];
 
 window.LazySoft.artworks = [
+    {
+        id: '13',
+        title: 'Tipografía Monteviejo',
+        category: 'Tipografía',
+        type: 'Diseño tipográfico',
+        src: ['assets/tipografia-muestra.png', 'assets/tipografia-mayusculas.png', 'assets/tipografia-minusculas.png'],
+        alt: ['Muestra de la tipografía Monteviejo con el título del juego, el abecedario y los números',
+            'Las 26 letras mayúsculas de la tipografía Monteviejo dibujadas una a una',
+            'Las 26 letras minúsculas de la tipografía Monteviejo dibujadas una a una'],
+        description: ['La tipografía Monteviejo escrita con la fuente final: título, abecedario completo con ñ y números.',
+            'Las mayúsculas, tal como las dibujamos antes de convertirlas en fuente.',
+            'Las minúsculas, dibujadas con el mismo trazo para que el texto del juego tenga un aire antiguo.']
+    },
     {
         id: '12',
         title: 'Interfaces: primeros prototipos',

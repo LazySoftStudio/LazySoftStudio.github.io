@@ -2,7 +2,7 @@
 
 // Completo las partes que se repiten a partir de los datos del proyecto.
 (() => {
-  const { site, artworks, trayectoria, similares = [] } = window.LazySoft;
+  const { site, artworks, trayectoria } = window.LazySoft;
   const buscar = (selector, dentro = document) => dentro.querySelector(selector);
   const buscarTodos = (selector, dentro = document) => [...dentro.querySelectorAll(selector)];
   const clonar = id => buscar(id).content.firstElementChild.cloneNode(true);
@@ -51,6 +51,22 @@
     });
   }
 
+  // El juego pesa bastante, así que solo lo cargo desde itch.io cuando se pulsa el botón.
+  const marcoJuego = buscar('#marco-juego');
+  if (enlaceValido(site.game.embedUrl || '')) {
+    buscar('.juego-cargar', marcoJuego).addEventListener('click', () => {
+      const juego = document.createElement('iframe');
+      juego.src = site.game.embedUrl;
+      juego.title = site.game.title + ', versión jugable';
+      juego.allow = 'autoplay; fullscreen; gamepad';
+      juego.allowFullscreen = true;
+      marcoJuego.replaceChildren(juego);
+      juego.focus();
+    });
+  } else {
+    buscar('#jugar').hidden = true;
+  }
+
   // Cierro el menú móvil al navegar, pulsar Escape o volver a la vista de escritorio.
   const botonMenu = buscar('.menu-toggle');
   const navegacion = buscar('#main-navigation');
@@ -67,7 +83,7 @@
       botonMenu.focus();
     }
   });
-  matchMedia('(min-width:1001px)').addEventListener('change', evento => { if (evento.matches) cambiarMenu(false); });
+  matchMedia('(min-width:1151px)').addEventListener('change', evento => { if (evento.matches) cambiarMenu(false); });
 
   // Pongo en negrita el apartado del menú que se está viendo.
   // Vigilo una franja fina a media pantalla: la sección que la cruza es la actual.
@@ -215,15 +231,10 @@
   escribir('#numero-integrantes', `${site.team.length} integrantes`);
   escribir('#creditos-equipo', new Intl.ListFormat('es').format(site.team) + '.');
 
-  // Juegos parecidos del apartado de marketing.
-  similares.forEach(juego => {
-    const ficha = clonar('#plantilla-similar');
-    escribir('h4', juego.titulo, ficha);
-    escribir('.similar-datos', `${juego.estudio}, ${juego.anio}`, ficha);
-    escribir('.similar-motivo', juego.motivo, ficha);
-    buscar('#lista-similares').append(ficha);
-  });
-  buscar('.similares').hidden = similares.length === 0;
+  // Las tarjetas de público giran al pasar el ratón; al pulsarlas se quedan giradas (móvil y teclado).
+  buscarTodos('.tarjeta-giro').forEach(tarjeta => tarjeta.addEventListener('click', () => {
+    tarjeta.setAttribute('aria-pressed', String(tarjeta.getAttribute('aria-pressed') !== 'true'));
+  }));
 
   // Envío el formulario al servicio configurado o, si no hay ninguno, preparo el correo.
   const formulario = buscar('#formulario-contacto');
