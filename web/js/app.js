@@ -2,7 +2,7 @@
 
 // Completo las partes que se repiten a partir de los datos del proyecto.
 (() => {
-  const { site, artworks, trayectoria } = window.LazySoft;
+  const { site, artworks, trayectoria, similares = [] } = window.LazySoft;
   const buscar = (selector, dentro = document) => dentro.querySelector(selector);
   const buscarTodos = (selector, dentro = document) => [...dentro.querySelectorAll(selector)];
   const clonar = id => buscar(id).content.firstElementChild.cloneNode(true);
@@ -231,7 +231,18 @@
   escribir('#numero-integrantes', `${site.team.length} integrantes`);
   escribir('#creditos-equipo', new Intl.ListFormat('es').format(site.team) + '.');
 
-  // Las tarjetas de público giran al pasar el ratón; al pulsarlas se quedan giradas (móvil y teclado).
+  // Juegos parecidos del apartado de marketing, como recortes de periódico que giran.
+  similares.forEach(juego => {
+    const tarjeta = clonar('#plantilla-similar');
+    escribir('.recorte-anio', juego.anio, tarjeta);
+    escribir('.tarjeta-titulo', juego.titulo, tarjeta);
+    escribir('.recorte-estudio', juego.estudio, tarjeta);
+    escribir('.recorte-motivo', juego.motivo, tarjeta);
+    buscar('#lista-similares').append(tarjeta);
+  });
+  buscar('.similares').hidden = similares.length === 0;
+
+  // Las tarjetas de marketing giran al pasar el ratón; al pulsarlas se quedan giradas (móvil y teclado).
   buscarTodos('.tarjeta-giro').forEach(tarjeta => tarjeta.addEventListener('click', () => {
     tarjeta.setAttribute('aria-pressed', String(tarjeta.getAttribute('aria-pressed') !== 'true'));
   }));

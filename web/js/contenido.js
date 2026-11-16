@@ -28,6 +28,34 @@ window.LazySoft.site = {
     }
 };
 
+// Juegos parecidos del apartado de marketing. Cada uno sale como una tarjeta que gira: delante el juego y detrás el motivo.
+window.LazySoft.similares = [
+    {
+        titulo: 'Return of the Obra Dinn',
+        estudio: 'Lucas Pope',
+        anio: 2018,
+        motivo: 'Hay que averiguar quién era cada persona cruzando pistas sueltas. Es la referencia más cercana a nuestra investigación.'
+    },
+    {
+        titulo: 'Life is Strange',
+        estudio: 'Dontnod Entertainment',
+        anio: 2015,
+        motivo: 'Un pueblo pequeño, cámara en tercera persona y conversaciones en las que eliges qué decir.'
+    },
+    {
+        titulo: 'Mutazione',
+        estudio: 'Die Gute Fabrik',
+        anio: 2019,
+        motivo: 'Una comunidad pequeña donde todos se conocen y los cotilleos mueven la historia.'
+    },
+    {
+        titulo: 'Super Mario 64',
+        estudio: 'Nintendo',
+        anio: 1996,
+        motivo: 'Referencia visual del documento de diseño: modelos de pocos polígonos y texturas sencillas.'
+    },
+];
+
 // Grupos de la galería de arte, en el orden en que se muestran. Cada ficha usa uno de estos nombres en category.
 window.LazySoft.categoriasArte = [
     { nombre: 'Escenarios', texto: 'Del plano dibujado a mano al pueblo en 3D con sus primeras texturas.' },

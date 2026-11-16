@@ -130,6 +130,11 @@
             </button>
           </div>
         </div>
+        <!-- Las tarjetas se crean con los datos de window.LazySoft.similares (js/contenido.js). -->
+        <div class="publico similares">
+          <h3>Juegos parecidos</h3>
+          <div class="similares-lista" id="lista-similares"></div>
+        </div>
         <details class="plegable">
           <summary>Ver detalles técnicos</summary>
           <dl class="ficha-juego">
@@ -249,6 +254,7 @@
     <h2 id="creditos-titulo">Créditos del proyecto</h2><p id="creditos-descripcion">LazySoft. Proyecto universitario en desarrollo.</p>
     <p id="creditos-equipo">Ángel Bermúdez, Alberto Caro, Daniel Corbacho, Alejandro Hernández, Paula Ortiz e Iván Palacios.</p>
     <p>Logotipo facilitado por LazySoft. La mascota de la portada forma parte de la presentación visual del estudio. Bocetos, diseños de personajes, renders de escenarios, prototipos de interfaz y retratos del equipo facilitados por LazySoft. Las imágenes muestran material de trabajo; no son capturas de una versión final del videojuego.</p>
+    <p>Los juegos citados en el apartado de marketing pertenecen a sus respectivos estudios y solo se mencionan como referencia.</p>
     <button class="button dark" type="button" data-cerrar autofocus>Cerrar</button>
   </dialog>
 
@@ -268,6 +274,12 @@
         <p class="art-summary"></p>
       </div>
     </article>
+  </template>
+  <template id="plantilla-similar">
+    <button class="tarjeta-giro tarjeta-recorte" type="button" aria-pressed="false">
+      <span class="tarjeta-cara tarjeta-frente"><span class="recorte-cabecera"><span>Referencia</span><span class="recorte-anio"></span></span><span class="tarjeta-titulo"></span><span class="recorte-pie"><span class="recorte-estudio"></span><span class="tarjeta-pista">Ver más</span></span></span>
+      <span class="tarjeta-cara tarjeta-dorso"><span class="recorte-cabecera"><span>Por qué se parece</span></span><span class="recorte-motivo"></span></span>
+    </button>
   </template>
   <template id="plantilla-integrante">
     <article class="miembro"><span class="member-photo" aria-hidden="true"><img loading="lazy" alt="" width="600" height="800"></span><h3></h3></article>
