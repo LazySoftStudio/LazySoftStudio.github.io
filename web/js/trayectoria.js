@@ -3,11 +3,12 @@
 // Ordeno las fichas desde el proyecto más antiguo hasta el más reciente.
 // Mantengo borrador: true mientras falten datos; lo cambio a false cuando termino la ficha.
 // Guardo las imágenes en assets/trayectoria/ y escribo esa misma ruta en src.
-// Los juegos anteriores siguen en borrador hasta que tengan su portada en assets/trayectoria/.
+// La imagen es opcional: si un proyecto no tiene, la web le pone un cartel con su título.
+// En la web salen al revés, del más reciente al más antiguo.
 window.LazySoft.trayectoria = [
   {
     id: 'time-trouble',
-    borrador: true,
+    borrador: false,
     fecha: 'GameGen Game Jam, 5.ª edición', // Año, mes y año o periodo; por ejemplo: '2023–2024'.
     titulo: 'Time Trouble',
     tipo: 'Game jam', // Videojuego, prototipo, game jam, proyecto de clase…
@@ -17,7 +18,7 @@ window.LazySoft.trayectoria = [
   },
   {
     id: 'plof-battle',
-    borrador: true,
+    borrador: false,
     fecha: 'Proyecto de asignatura',
     titulo: 'Plof Battle',
     tipo: 'Videojuego multijugador',
@@ -27,7 +28,7 @@ window.LazySoft.trayectoria = [
   },
   {
     id: 'el-enigma-de-la-torre-encantada',
-    borrador: true,
+    borrador: false,
     fecha: 'Juego para navegador',
     titulo: 'El Enigma de la Torre Encantada',
     tipo: 'Multijugador colaborativo',
@@ -37,7 +38,7 @@ window.LazySoft.trayectoria = [
   },
   {
     id: 'el-mago-canijo',
-    borrador: true,
+    borrador: false,
     fecha: 'Plataformas en 2D',
     titulo: 'El Mago Canijo',
     tipo: 'Videojuego',

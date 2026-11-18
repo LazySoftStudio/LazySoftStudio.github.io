@@ -7,10 +7,9 @@ html {
   -webkit-text-size-adjust:100%;
   tab-size:4
 }
-@font-face{
+@font-face {
   font-family:"Monteviejo";
   src:url("../assets/Tipografia/Monteviejo.ttf") format("truetype");
-
 }
 body {
   margin:0
@@ -382,11 +381,11 @@ em {
   padding:90px 0 100px;
   border-top:1px solid #362c21
 }
+/* El tráiler ocupa todo el ancho; el título y el texto van encima, en una fila. */
 .trailer-layout {
   display:grid;
-  grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);
-  gap:clamp(32px,4.5vw,72px);
-  align-items:start
+  grid-template-columns:minmax(0,1fr);
+  gap:28px
 }
 .trailer-player {
   position:relative;
@@ -445,17 +444,19 @@ em {
 .trailer-play:hover {
   background:#ffe3b6
 }
+.trailer-info {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px 40px
+}
 .trailer-info h2 {
-  font-size:clamp(28px,3.4vw,46px);
-  margin-bottom:18px
+  font-size:clamp(28px,3.4vw,46px)
 }
 .trailer-info>p {
   color:#c4beb3;
-  max-width:420px;
-  margin: 40px 0px 0px 0px; 
-}
-.trailer-info .button {
-  margin-top:24px
+  max-width:460px
 }
 /* Versión jugable dentro de la web, debajo del tráiler. */
 .juego-bloque {
@@ -805,6 +806,38 @@ em {
   font-size:13px;
   line-height:1.5
 }
+/* KPIs: el número en grande delante y la fuente del dato detrás. */
+.resultados {
+  margin-top:48px
+}
+.kpi-lista {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(14px,1.6vw,22px)
+}
+.tarjeta-kpi {
+  height:180px
+}
+.tarjeta-kpi .tarjeta-frente {
+  justify-content:flex-start;
+  gap:8px
+}
+.kpi-valor {
+  font-size:clamp(34px,3.6vw,52px);
+  line-height:1;
+  font-weight:700;
+  color:var(--ocre-claro)
+}
+.kpi-nombre {
+  flex:1;
+  font-size:13px;
+  line-height:1.3;
+  color:#f3ecd5
+}
+.kpi-detalle {
+  font-size:12px;
+  line-height:1.5
+}
 /* Apartados plegables: solo se abren si el usuario quiere verlos. */
 .plegable {
   margin-top:48px;
@@ -899,7 +932,7 @@ em {
   gap:8px
 }
 /* Filtros en papel claro sobre el fondo de la sección; el elegido, en el naranja de los botones de jugar. */
-.filters button {
+.filters button,.devlog-filtros button {
   border:1px solid #6f6250;
   background:#f3eee5;
   color:#2a2116;
@@ -909,11 +942,11 @@ em {
   box-shadow:0 2px 0 #8c7f68;
   transition:background .2s,border-color .2s
 }
-.filters button:hover {
+.filters button:hover,.devlog-filtros button:hover {
   background:#fff8ea;
   border-color:#2a2116
 }
-.filters button[aria-pressed=true] {
+.filters button[aria-pressed=true],.devlog-filtros button[aria-pressed=true] {
   background:var(--orange);
   border-color:#7a5300;
   color:#1d150c;
@@ -1220,6 +1253,12 @@ em {
   line-height:1.15;
   margin-top:14px
 }
+.miembro-rol {
+  margin-top:6px;
+  font-size:11px;
+  line-height:1.4;
+  color:#5c5548
+}
 .contact-section {
   background:var(--orange);
   color:#292313;
@@ -1378,12 +1417,6 @@ em {
   .hero-caption>div {
     max-width:300px
   }
-  .trailer-layout {
-    grid-template-columns:minmax(0,1fr)
-  }
-  .trailer-info .button {
-    justify-self:start
-  }
   .publico {
     grid-template-columns:minmax(0,1fr);
     gap:28px
@@ -1391,7 +1424,7 @@ em {
   .team-list {
     grid-template-columns:repeat(3,minmax(0,1fr))
   }
-  .art-grid {
+  .art-grid,.trayectoria-grid {
     grid-template-columns:repeat(2,minmax(0,1fr))
   }
   .juego-zona {
@@ -1538,6 +1571,13 @@ em {
   .similares-lista {
     grid-template-columns:minmax(0,1fr);
     gap:14px
+  }
+  .kpi-lista {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px
+  }
+  .tarjeta-kpi {
+    height:150px
   }
   .ficha-juego {
     grid-template-columns:repeat(2,minmax(0,1fr))
@@ -1768,8 +1808,8 @@ h2,h3,.email-link {
     gap:16px
   }
 }
-/* El menú completo solo cabe en una línea a partir de unos 1150 px con esta tipografía. */
-@media(max-width:1150px) {
+/* El menú completo solo cabe en una línea a partir de unos 1250 px con esta tipografía. */
+@media(max-width:1250px) {
   .header {
     position:sticky
   }
@@ -1863,7 +1903,7 @@ h2,h3,.email-link {
   transform: scale(1.1);
   transition: transform 0.3s ease;
 }
-/* Trayectoria: fichas editables conectadas por una línea de tiempo. */
+/* Trayectoria: una tarjeta por juego, con el mismo formato que las fichas de arte. */
 .trayectoria {
   background:#211e18;
   color:#f0eeec;
@@ -1872,213 +1912,447 @@ h2,h3,.email-link {
 .trayectoria .outline-tag {
   border-color:#655e52
 }
+/* El título va en una sola línea y la frase, debajo y también a lo ancho. */
 .trayectoria-intro {
   display:grid;
-  grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
-  gap:6vw;
-  align-items:end;
+  grid-template-columns:minmax(0,1fr);
+  gap:18px;
   margin-bottom:36px
 }
 .trayectoria-intro h2 {
-  font-size:clamp(38px,6.7vw,88px);
-  letter-spacing:-.025em
+  font-size:clamp(26px,4.6vw,66px);
+  line-height:1.2;
+  letter-spacing:-.025em;
+  text-wrap:balance
 }
 .trayectoria-intro>p {
   color:#c1bbb3;
-  max-width:340px;
   padding-bottom:8px
 }
-.trayectoria-lista {
-  list-style:none;
-  padding:0;
-  margin:60px 0 0
-}
-.trayectoria-hito {
+.trayectoria-grid {
   display:grid;
-  grid-template-columns:minmax(120px,190px) minmax(0,1fr);
-  gap:32px;
-  position:relative;
-  padding:0 0 56px 30px
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:28px 24px;
+  margin-top:48px
 }
-.trayectoria-hito::before {
-  content:'';
-  position:absolute;
-  left:5px;
-  top:12px;
-  bottom:-12px;
-  width:1px;
-  background:#5b5242
-}
-.trayectoria-hito:last-child {
-  padding-bottom:0
-}
-.trayectoria-hito:last-child::before {
-  bottom:0;
-  background:linear-gradient(#5b5342,transparent)
-}
-.trayectoria-fecha {
-  position:relative;
-  padding-top:2px;
-  overflow-wrap:anywhere
-}
-.trayectoria-fecha .eyebrow {
-  color:#a59788
-}
-.trayectoria-fecha p {
-  font-size:clamp(14px,2vw,20px);
-  line-height:1.3;
-  letter-spacing:-.03em;
-  font-weight:700;
-  margin-top:12px
-}
-.trayectoria-punto {
-  position:absolute;
-  left:-30px;
-  top:8px;
-  width:11px;
-  height:11px;
-  background:var(--orange);
-  border:3px solid #211d18;
-  outline:1px solid #f4cb79;
-  border-radius:50%
-}
-.trayectoria-ficha {
-  min-width:0;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  background:#2d2920;
-  border:1px solid #514b3c
-}
-.trayectoria-galeria {
-  min-width:0;
-  padding:14px;
-  border-right:1px solid #514b3c
-}
-.trayectoria-imagen,.trayectoria-sin-imagen {
-  width:100%;
-  aspect-ratio:4/3;
-  background:#201c17;
-  object-fit:contain
-}
-.trayectoria-sin-imagen {
+.proyecto {
   display:flex;
   flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:8px;
-  border:1px dashed #686052;
-  color:#d0cabe;
-  text-align:center;
-  padding:20px
+  overflow:hidden;
+  border:1px solid #4a4438;
+  border-radius:6px;
+  background:#2b2720
 }
-.trayectoria-sin-imagen svg {
-  margin-bottom:10px;
-  color:#f4c779
+.proyecto-imagen {
+  position:relative;
+  aspect-ratio:4/3;
+  overflow:hidden;
+  background:#1b1814
 }
-.trayectoria-sin-imagen small {
-  font-size:8px;
-  color:#a8a291
-}
-.trayectoria-galeria figcaption {
-  font-size:8px;
-  line-height:1.5;
-  color:#c1beb3;
-  margin-top:10px;
-  overflow-wrap:anywhere
-}
-.trayectoria-miniaturas {
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:12px
-}
-.trayectoria-miniaturas button {
-  width:58px;
-  height:44px;
-  background:#201d17;
-  border:2px solid transparent;
-  padding:2px
-}
-.trayectoria-miniaturas button[aria-pressed=true] {
-  border-color:var(--orange)
-}
-.trayectoria-miniaturas img {
+.proyecto-imagen img {
   width:100%;
   height:100%;
   object-fit:cover
 }
-.trayectoria-texto {
-  min-width:0;
-  padding:clamp(20px,3vw,36px);
-  align-self:center;
-  overflow-wrap:anywhere
-}
-.trayectoria-etiquetas {
+/* Cartel para los juegos sin imagen: el papel y las rayas de los periódicos de Monteviejo. */
+.proyecto-cartel {
+  position:absolute;
+  inset:14px;
   display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  align-items:center;
-  margin-bottom:20px
+  flex-direction:column;
+  padding:14px 18px;
+  border-radius:3px;
+  background:radial-gradient(ellipse at 50% 30%,#e6d8ac 0,#d6c393 55%,#b9a36d 100%);
+  color:#2a2116
 }
-.trayectoria-etiquetas .eyebrow {
-  color:#c1bcb3;
-  font-size:6px;
-  text-transform:uppercase
+.proyecto-cartel-titulo {
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:clamp(22px,2.2vw,30px);
+  line-height:1.15;
+  font-weight:700
 }
 .trayectoria-borrador {
-  font-size:6px;
-  line-height:1.5;
-  border:1px solid #74705e;
+  position:absolute;
+  top:10px;
+  right:10px;
   padding:3px 9px;
   border-radius:20px;
-  color:#d6d0c7
+  background:#211e18;
+  color:#f0e9d2;
+  font-size:9px
 }
-.trayectoria-texto h3 {
-  font-size:clamp(20px,2.6vw,34px);
-  line-height:1.1
-}
-.trayectoria-descripcion {
-  white-space:pre-line;
-  font-size:10px;
-  line-height:1.75;
-  color:#c8c1ba;
-  margin-top:20px
-}
-.trayectoria-enlace {
-  display:inline-flex;
-  align-items:center;
+.proyecto-texto {
+  display:flex;
+  flex-direction:column;
   gap:8px;
-  color:var(--orange);
-  font-size:10px;
-  margin-top:24px;
-  border-bottom:1px solid #746254;
-  padding-bottom:4px
+  flex:1;
+  padding:16px 18px 18px
 }
-.trayectoria-enlace:hover {
-  color:white
+.proyecto-meta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px 10px;
+  font-size:10px;
+  color:#b3aa98
+}
+.proyecto-fecha {
+  padding-left:10px;
+  border-left:1px solid #5b5642
+}
+.proyecto-texto h3 {
+  font-size:clamp(19px,1.8vw,24px);
+  line-height:1.15
+}
+.proyecto-descripcion {
+  white-space:pre-line;
+  font-size:11px;
+  line-height:1.6;
+  color:#cfc8bd
+}
+.proyecto-enlace {
+  align-self:flex-start;
+  margin-top:auto;
+  padding-top:6px;
+  border-bottom:1px solid currentColor;
+  color:var(--ocre-claro);
+  font-size:11px
+}
+.proyecto-enlace:hover {
+  color:#fff3d6
 }
 .trayectoria-vacia {
   padding:30px 0;
   color:#c8c3ba;
   border-top:1px solid #5b5642
 }
-@media(max-width:1000px) {
-  .trayectoria-hito {
-    grid-template-columns:110px minmax(0,1fr);
-    gap:20px
+/* Devlog: línea de tiempo horizontal sobre papel de periódico, con recortes que se pueden recorrer. */
+.devlog {
+  --tinta:#2a2116;
+  --papel-recorte:#f4ebcf;
+  background:radial-gradient(ellipse at 50% 20%,#e9dcb3 0,#dccb9c 60%,#c9b37f 100%);
+  color:var(--tinta);
+  padding:100px 0 90px;
+  overflow:hidden
+}
+.devlog-intro {
+  display:grid;
+  grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+  gap:6vw;
+  align-items:end;
+  padding-bottom:44px;
+  border-bottom:3px solid var(--tinta);
+  box-shadow:0 5px 0 -3px var(--tinta)
+}
+.devlog-intro h2 {
+  font-size:clamp(38px,6.7vw,88px);
+  line-height:1.2;
+  letter-spacing:-.025em
+}
+.devlog-intro p {
+  max-width:380px;
+  padding-bottom:8px;
+  font-size:13px
+}
+.devlog-barra {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px 24px;
+  margin:30px 0 8px
+}
+.devlog-filtros {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px
+}
+.devlog-navegacion {
+  display:flex;
+  align-items:center;
+  gap:10px
+}
+.devlog-contador {
+  min-width:70px;
+  margin-right:6px;
+  font-size:13px;
+  letter-spacing:.14em;
+  font-variant-numeric:tabular-nums
+}
+.devlog-flecha {
+  display:grid;
+  place-items:center;
+  width:48px;
+  height:48px;
+  border:2px solid var(--tinta);
+  border-radius:50%;
+  background:transparent;
+  color:var(--tinta);
+  font-size:18px;
+  cursor:pointer;
+  transition:background .2s,color .2s,opacity .2s,transform .2s
+}
+.devlog-flecha:hover:not(:disabled) {
+  background:var(--tinta);
+  color:#efe3bd
+}
+.devlog-flecha:active:not(:disabled) {
+  transform:scale(.94)
+}
+.devlog-flecha:disabled {
+  opacity:.3;
+  cursor:default
+}
+/* La pista ocupa todo el ancho, pero la primera entrada empieza alineada con el resto de la página. */
+.devlog-pista {
+  --margen:calc(max(0px,(100% - var(--max)) / 2) + 4vw);
+  position:relative;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:26px var(--margen) 44px;
+  scroll-padding-inline:var(--margen);
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  cursor:grab;
+  outline:none
+}
+.devlog-pista::-webkit-scrollbar {
+  display:none
+}
+.devlog-pista:focus-visible {
+  outline:2px dashed rgb(42 33 22 / .55);
+  outline-offset:-10px
+}
+.devlog-pista.arrastrando {
+  scroll-snap-type:none;
+  cursor:grabbing;
+  user-select:none
+}
+.devlog-pista.arrastrando .devlog-tarjeta {
+  pointer-events:none
+}
+.devlog-lista {
+  position:relative;
+  display:flex;
+  align-items:flex-start;
+  gap:28px;
+  width:max-content;
+  margin:0;
+  padding:0;
+  list-style:none
+}
+/* Línea de tiempo que une todos los puntos. */
+.devlog-lista::before {
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:38px;
+  height:2px;
+  background:var(--tinta);
+  transform-origin:left
+}
+.devlog-entrada {
+  display:flex;
+  flex-direction:column;
+  flex:0 0 clamp(280px,25vw,350px);
+  scroll-snap-align:start
+}
+.devlog-entrada.devlog-ancha {
+  flex-basis:clamp(300px,44vw,620px)
+}
+.devlog-marca {
+  display:flex;
+  flex-direction:column-reverse;
+  align-items:flex-start;
+  gap:12px
+}
+.devlog-fecha {
+  height:18px;
+  font-size:11px;
+  line-height:18px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  -webkit-text-stroke:.3px currentColor
+}
+.devlog-punto {
+  position:relative;
+  z-index:1;
+  width:18px;
+  height:18px;
+  border:3px solid var(--tinta);
+  border-radius:50%;
+  background:#efe3bd;
+  transition:background .3s
+}
+.devlog-entrada.es-actual .devlog-punto {
+  background:var(--orange)
+}
+/* Cada entrada es un recorte de periódico colgado de la línea. */
+.devlog-tarjeta {
+  position:relative;
+  margin-top:20px;
+  padding:20px 22px 24px;
+  background:var(--papel-recorte);
+  border:1px solid #9a8659;
+  box-shadow:0 14px 28px -18px rgb(42 33 22 / .55);
+  transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s
+}
+.devlog-tarjeta::before {
+  content:"";
+  position:absolute;
+  left:7px;
+  top:-21px;
+  width:2px;
+  height:20px;
+  background:var(--tinta)
+}
+.devlog-cabecera {
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding-bottom:12px;
+  border-bottom:2px solid var(--tinta)
+}
+.devlog-cabecera::after {
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-6px;
+  height:1px;
+  background:var(--tinta)
+}
+.devlog-tipo {
+  padding:3px 11px;
+  border:1px solid var(--tinta);
+  border-radius:20px;
+  font-size:10px;
+  letter-spacing:.08em;
+  text-transform:uppercase
+}
+.devlog-entrada[data-tipo="Marketing"] .devlog-tipo {
+  background:var(--orange);
+  border-color:#7a5300
+}
+.devlog-entrada[data-tipo="Equipo"] .devlog-tipo {
+  background:var(--tinta);
+  color:#efe3bd
+}
+.devlog-numero {
+  font-size:30px;
+  line-height:1;
+  letter-spacing:-.02em;
+  color:#a08b5c
+}
+.devlog-tarjeta h3 {
+  margin-top:20px;
+  font-size:clamp(20px,1.7vw,24px);
+  line-height:1.2
+}
+.devlog-texto {
+  margin-top:12px;
+  font-size:13px;
+  line-height:1.6;
+  color:#3b3022
+}
+.devlog-roles {
+  display:grid;
+  gap:6px 20px;
+  margin:14px 0 0;
+  padding:14px 0 0;
+  border-top:1px solid #9a8659;
+  list-style:none;
+  font-size:12px;
+  line-height:1.45
+}
+.devlog-ancha .devlog-roles {
+  grid-template-columns:repeat(2,minmax(0,1fr))
+}
+.devlog-futuro .devlog-tarjeta {
+  background:rgb(244 235 207 / .5);
+  border:2px dashed #8c7a52;
+  box-shadow:none
+}
+.devlog-futuro .devlog-tarjeta::before {
+  left:6px
+}
+.devlog-progreso {
+  height:3px;
+  background:rgb(42 33 22 / .18)
+}
+.devlog-progreso span {
+  display:block;
+  height:100%;
+  background:var(--tinta);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .15s linear
+}
+@media(hover:hover) {
+  .devlog-tarjeta:hover {
+    transform:translateY(-6px);
+    box-shadow:0 24px 34px -20px rgb(42 33 22 / .65)
   }
-  .trayectoria-ficha {
+}
+/* Entrada: la línea se dibuja y los recortes aparecen uno detrás de otro. Sin movimiento reducido no se aplica. */
+.devlog-esperando::before {
+  transform:scaleX(0)
+}
+.devlog-esperando .devlog-punto,.devlog-esperando .devlog-fecha,.devlog-esperando .devlog-tarjeta {
+  opacity:0
+}
+.devlog-entra::before {
+  animation:devlog-linea 1.2s cubic-bezier(.65,0,.35,1) both
+}
+.devlog-entra .devlog-punto {
+  animation:devlog-punto .5s calc(min(var(--orden),6) * 90ms + 250ms) cubic-bezier(.3,1.6,.5,1) both
+}
+.devlog-entra .devlog-fecha {
+  animation:devlog-aparece .5s calc(min(var(--orden),6) * 90ms + 300ms) ease-out both
+}
+.devlog-entra .devlog-tarjeta {
+  --desde:36px;
+  animation:devlog-aparece .75s calc(min(var(--orden),6) * 90ms + 380ms) cubic-bezier(.2,.7,.2,1) both
+}
+@keyframes devlog-linea {
+  from {
+    transform:scaleX(0)
+  }
+  to {
+    transform:scaleX(1)
+  }
+}
+@keyframes devlog-punto {
+  from {
+    scale:0
+  }
+  to {
+    scale:1
+  }
+}
+@keyframes devlog-aparece {
+  from {
+    opacity:0;
+    translate:0 var(--desde,10px)
+  }
+  to {
+    opacity:1;
+    translate:0 0
+  }
+}
+@media(max-width:760px) {
+  .devlog-pista {
+    --margen:22px
+  }
+  .devlog-ancha .devlog-roles {
     grid-template-columns:minmax(0,1fr)
-  }
-  .trayectoria-galeria {
-    border-right:0;
-    border-bottom:1px solid #51473c
-  }
-  .trayectoria-imagen,.trayectoria-sin-imagen {
-    max-height:340px
-  }
-  .trayectoria-texto {
-    padding:26px
   }
 }
 @media(max-width:600px) {
@@ -2095,38 +2369,48 @@ h2,h3,.email-link {
     gap:24px
   }
   .trayectoria-intro h2 {
+    font-size:clamp(24px,8vw,44px)
+  }
+  .trayectoria-grid {
+    grid-template-columns:minmax(0,1fr)
+  }
+  .devlog {
+    padding:65px 0
+  }
+  .devlog-intro {
+    grid-template-columns:minmax(0,1fr);
+    gap:18px
+  }
+  .devlog-intro h2 {
     font-size:clamp(32px,10vw,52px)
   }
-  .trayectoria-lista {
-    margin-top:32px
+  .devlog-entrada,.devlog-entrada.devlog-ancha {
+    flex-basis:82vw
   }
-  .trayectoria-hito {
-    grid-template-columns:minmax(0,1fr);
-    gap:18px;
-    padding-left:24px;
-    padding-bottom:40px
+  .devlog-pista {
+    transition:height .35s ease
   }
-  .trayectoria-fecha {
-    display:flex;
-    flex-wrap:wrap;
-    align-items:baseline;
-    gap:14px
+  .devlog-barra {
+    margin-top:24px
   }
-  .trayectoria-fecha p {
-    margin:0;
-    font-size:15px
+  .devlog-filtros {
+    flex-wrap:nowrap;
+    gap:6px;
+    width:100%;
+    overflow-x:auto;
+    padding-bottom:3px;
+    scrollbar-width:none
   }
-  .trayectoria-punto {
-    left:-24px
+  .devlog-filtros button {
+    flex:0 0 auto;
+    padding:8px 12px;
+    font-size:9px
   }
-  .trayectoria-texto {
-    padding:20px
+  .devlog-navegacion {
+    width:100%
   }
-  .trayectoria-texto h3 {
-    font-size:24px
-  }
-  .trayectoria-galeria {
-    padding:10px
+  .devlog-contador {
+    margin-right:auto
   }
 }
 /* Ventanas nativas: Escape, foco y fondo bloqueado mediante dialog. */
@@ -2165,11 +2449,4 @@ body.ventana-abierta {
 }
 .credits-dialog .button {
   justify-self:start
-}
-.trayectoria-sin-imagen .icono-imagen {
-  width:38px;
-  height:38px;
-  color:var(--orange);
-  font-size:28px;
-  line-height:1
 }

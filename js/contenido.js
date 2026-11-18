@@ -19,6 +19,15 @@ window.LazySoft.site = {
     // Si la dejo vacía, el formulario de contacto abre el programa de correo con el mensaje escrito.
     contactForm: '',
     team: ['Ángel Bermúdez', 'Alberto Caro', 'Daniel Corbacho', 'Alejandro Hernández', 'Paula Ortiz', 'Iván Palacios'],
+    // Qué hace cada uno, en el mismo orden que team. Salen en Equipo y en el devlog.
+    teamRoles: [
+        'Diseño y modelado de props',
+        'Texturizado de interiores',
+        'Modelado de escenarios, personajes y props, cinemáticas, rigging y skinning',
+        'Diseño e implementación de interfaces',
+        'Arte 2D, iluminación, texturizado de exteriores y de personajes, animación de personajes, tipografía y asistencia en programación',
+        'Programación del juego'
+    ],
         socials:{
         instagram: 'https://www.instagram.com/lazysoftstudio', 
         youtube: 'https://www.youtube.com/@LazySoftStudio',
@@ -54,6 +63,87 @@ window.LazySoft.similares = [
         anio: 1996,
         motivo: 'Referencia visual del documento de diseño: modelos de pocos polígonos y texturas sencillas.'
     },
+];
+
+// Devlog: entradas en orden, de la más antigua a la más reciente. tipo puede ser Equipo, Desarrollo o Marketing.
+// La entrada con roles: true muestra debajo lo que hace cada integrante (sale de teamRoles).
+window.LazySoft.devlog = [
+    {
+        fecha: 'Septiembre de 2026',
+        tipo: 'Equipo',
+        titulo: 'Nace LazySoft',
+        texto: 'Seis estudiantes nos juntamos para hacer un videojuego como proyecto de la universidad. Elegimos el nombre, dibujamos el perezoso del logo y empezamos a dar vueltas a la idea de un pueblo que esconde un secreto.'
+    },
+    {
+        fecha: 'Septiembre de 2026',
+        tipo: 'Desarrollo',
+        titulo: 'Todo empieza en papel',
+        texto: 'Antes de abrir Unity dibujamos el plano del pueblo, sus calles y la plaza, y los primeros bocetos de Antonio, Eugenia, los camareros gemelos y el alcalde.'
+    },
+    {
+        fecha: 'Octubre de 2026',
+        tipo: 'Desarrollo',
+        titulo: 'El documento de diseño',
+        texto: 'Escribimos el GDD: la historia de Antonio, los cuerpos que hay que identificar, los diálogos con opciones, el inventario de pistas y los controles. También definimos cómo se comporta cada tipo de vecino.'
+    },
+    {
+        fecha: 'Octubre de 2026',
+        tipo: 'Equipo',
+        titulo: 'Nos repartimos el trabajo',
+        texto: 'Hicimos una tabla con lo que se le da bien a cada uno y lo que le apetece hacer, y a partir de ahí repartimos las tareas:',
+        roles: true
+    },
+    {
+        fecha: 'Octubre de 2026',
+        tipo: 'Marketing',
+        titulo: 'Público y modelo de negocio',
+        texto: 'Decidimos para quién es el juego, sobre todo jugadores exploradores según la taxonomía de Bartle, y cómo financiarlo: un crowdfunding de «paga lo que quieras» al principio, compra única y DLC con nuevos cuerpos que identificar.'
+    },
+    {
+        fecha: 'Octubre de 2026',
+        tipo: 'Marketing',
+        titulo: 'Abrimos la web y las redes',
+        texto: 'Publicamos este portfolio en GitHub Pages para enseñar el juego, el arte y el equipo, y lo enlazamos con nuestras redes: Instagram, YouTube, X, itch.io y Linktree.'
+    },
+    {
+        fecha: 'Octubre de 2026',
+        tipo: 'Desarrollo',
+        titulo: 'Del boceto al 3D',
+        texto: 'Levantamos el pueblo con volúmenes sencillos, empezamos a modelar a Antonio y a Eugenia, les hicimos el desplegado de UV y texturizamos los primeros interiores, empezando por la casa de Eugenia.'
+    },
+    {
+        fecha: 'Noviembre de 2026',
+        tipo: 'Desarrollo',
+        titulo: 'Texturas, interfaces y tipografía',
+        texto: 'El pueblo ya tiene piedra, cal y tejas. Diseñamos las pantallas del juego, desde el título hasta los diálogos, y dibujamos letra a letra la tipografía Monteviejo.'
+    },
+    {
+        fecha: 'Noviembre de 2026',
+        tipo: 'Desarrollo',
+        titulo: 'Primera versión jugable',
+        texto: 'Subimos a itch.io una versión que se juega en el navegador: se puede recorrer el pueblo, hablar con los vecinos, ver la cinemática del principio y usar el inventario, con un ciclo de día y noche de unos 15 minutos.'
+    },
+    {
+        fecha: 'Noviembre de 2026',
+        tipo: 'Marketing',
+        titulo: 'El juego, dentro de la web',
+        texto: 'Metimos la versión jugable en este portfolio, con sus controles al lado, para que cualquiera pueda probarla sin salir de aquí.'
+    },
+    {
+        fecha: 'Próximamente',
+        tipo: 'Marketing',
+        titulo: 'Tráiler y campaña',
+        texto: 'Lo siguiente es montar el tráiler y preparar la campaña de crowdfunding que recoge nuestro plan de negocio.'
+    },
+];
+
+// KPIs del apartado de marketing. Escribimos el número en «valor» y el día en que lo miramos en «fecha».
+// Mientras «valor» esté vacío, la tarjeta solo se ve en local y no sale en la web publicada.
+window.LazySoft.kpis = [
+    { nombre: 'Visitas a la página de itch.io', valor: '', fuente: 'Estadísticas de itch.io', fecha: '' },
+    { nombre: 'Partidas en el navegador', valor: '', fuente: 'Estadísticas de itch.io', fecha: '' },
+    { nombre: 'Seguidores en Instagram', valor: '', fuente: 'Perfil de @lazysoftstudio', fecha: '' },
+    { nombre: 'Suscriptores en YouTube', valor: '', fuente: 'Canal de YouTube de LazySoft', fecha: '' },
 ];
 
 // Grupos de la galería de arte, en el orden en que se muestran. Cada ficha usa uno de estos nombres en category.

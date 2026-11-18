@@ -23,6 +23,7 @@
       <a href="#marketing">Marketing</a>
       <a href="#arte">Arte y desarrollo</a>
       <a href="#equipo">Equipo</a>
+      <a href="#devlog">Devlog</a>
       <a href="#trayectoria">Trayectoria</a>
       <a href="#contacto">Contacto</a>
       <a class="nav-jugar" href="#jugar">Jugar</a>
@@ -50,6 +51,9 @@
     <!-- Tráiler y versión jugable. El vídeo se configura en js/contenido.js. -->
     <section class="trailer-section" id="trailer" aria-labelledby="titulo-trailer">
       <div class="wrap trailer-layout">
+        <div class="trailer-info">
+          <h2 id="titulo-trailer">Tráiler y versión jugable</h2>
+        </div>
         <div class="trailer-player" id="reproductor">
           <img class="trailer-poster" src="assets/plaza-volumen.jpeg" alt="" loading="lazy">
           <div class="trailer-aviso">
@@ -57,11 +61,6 @@
             <p>Cuando esté listo lo verás aquí y en nuestro <a data-red="youtube" href="https://www.youtube.com/@LazySoftStudio" target="_blank" rel="noopener noreferrer">canal de YouTube</a>.</p>
           </div>
           <button class="trailer-play" type="button" hidden><span aria-hidden="true">▶</span> Reproducir el tráiler</button>
-        </div>
-        <div class="trailer-info">
-          <h2 id="titulo-trailer">Tráiler y versión jugable</h2>
-          <p>La versión en desarrollo se puede jugar aquí mismo, sin instalar nada. Es temprana y la vamos actualizando según avanza el proyecto.</p>
-          <a class="button light" href="#jugar">Jugar aquí</a>
         </div>
       </div>
       <!-- El juego se carga desde itch.io al pulsar el botón. La dirección está en js/contenido.js (game.embedUrl). -->
@@ -97,10 +96,22 @@
           </aside>
         </div>
         <p class="juego-nota">Necesitas teclado y ratón. Si lo prefieres a pantalla completa, <a href="https://lazysoftstudio.itch.io/el-secreto-de-monteviejo" target="_blank" rel="noopener noreferrer" data-enlace-jugar>ábrelo en itch.io</a>.</p>
+        <details class="plegable">
+          <summary>Ver detalles técnicos</summary>
+          <dl class="ficha-juego">
+            <div><dt>Género</dt><dd>Aventura narrativa de investigación</dd></div>
+            <div><dt>Perspectiva</dt><dd>Tercera persona en exteriores / Primera persona en interiores</dd></div>
+            <div><dt>Plataforma</dt><dd>PC, con teclado y ratón</dd></div>
+            <div><dt>Motor</dt><dd>Unity</dd></div>
+            <div><dt>Idioma</dt><dd>Español</dd></div>
+            <div><dt>Edad</dt><dd>A partir de 7 años</dd></div>
+            <div><dt>Modelo de negocio</dt><dd>Compra única, con crowdfunding inicial y DLC con nuevos cuerpos que identificar</dd></div>
+          </dl>
+        </details>
       </div>
     </section>
 
-    <!-- Marketing: a quién va dirigido el juego y su ficha técnica. -->
+    <!-- Marketing: a quién va dirigido el juego, juegos parecidos y KPIs. -->
     <section class="marketing-section" id="marketing" aria-labelledby="titulo-marketing">
       <div class="wrap">
         <div class="section-heading"><span class="outline-tag">Marketing</span></div>
@@ -135,18 +146,11 @@
           <h3>Juegos parecidos</h3>
           <div class="similares-lista" id="lista-similares"></div>
         </div>
-        <details class="plegable">
-          <summary>Ver detalles técnicos</summary>
-          <dl class="ficha-juego">
-            <div><dt>Género</dt><dd>Aventura narrativa de investigación</dd></div>
-            <div><dt>Perspectiva</dt><dd>Tercera persona en exteriores / Primera persona en interiores</dd></div>
-            <div><dt>Plataforma</dt><dd>PC, con teclado y ratón</dd></div>
-            <div><dt>Motor</dt><dd>Unity</dd></div>
-            <div><dt>Idioma</dt><dd>Español</dd></div>
-            <div><dt>Edad</dt><dd>A partir de 7 años</dd></div>
-            <div><dt>Modelo de negocio</dt><dd>Compra única, con crowdfunding inicial y DLC con nuevos cuerpos que identificar</dd></div>
-          </dl>
-        </details>
+        <!-- Los KPIs se rellenan en window.LazySoft.kpis (js/contenido.js). -->
+        <div class="publico resultados">
+          <h3>KPIs</h3>
+          <div class="kpi-lista" id="lista-kpis"></div>
+        </div>
       </div>
     </section>
 
@@ -180,11 +184,38 @@
       </div>
     </section>
 
+    <!-- Devlog: cómo nos organizamos, cómo avanza el juego y qué hacemos para darlo a conocer. Las entradas están en js/contenido.js. -->
+    <section class="devlog" id="devlog" aria-labelledby="titulo-devlog">
+      <div class="wrap">
+        <div class="devlog-intro"><h2 id="titulo-devlog">Devlog.</h2><p>Cómo nos hemos organizado, cómo ha ido creciendo el juego y qué hemos hecho para darlo a conocer desde el principio.</p></div>
+        <div class="devlog-barra">
+          <div class="devlog-filtros" role="group" aria-label="Filtrar entradas del devlog">
+            <button type="button" data-devlog="Todo" aria-pressed="true">Todo</button>
+            <button type="button" data-devlog="Equipo" aria-pressed="false">Equipo</button>
+            <button type="button" data-devlog="Desarrollo" aria-pressed="false">Desarrollo</button>
+            <button type="button" data-devlog="Marketing" aria-pressed="false">Marketing</button>
+          </div>
+          <div class="devlog-navegacion">
+            <span class="devlog-contador" aria-live="polite"></span>
+            <button type="button" class="devlog-flecha" id="devlog-anterior" aria-label="Entrada anterior"><span aria-hidden="true">←</span></button>
+            <button type="button" class="devlog-flecha" id="devlog-siguiente" aria-label="Entrada siguiente"><span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+      </div>
+      <!-- La pista ocupa todo el ancho: se recorre con las flechas, arrastrando con el ratón o deslizando en el móvil. -->
+      <div class="devlog-pista" id="devlog-pista" tabindex="0" aria-label="Entradas del devlog. Usa las flechas del teclado para moverte.">
+        <ol class="devlog-lista" id="lista-devlog"></ol>
+      </div>
+      <div class="wrap">
+        <div class="devlog-progreso" aria-hidden="true"><span></span></div>
+      </div>
+    </section>
+
     <!-- Edito los proyectos anteriores en js/trayectoria.js. -->
     <section class="trayectoria" id="trayectoria" aria-labelledby="titulo-trayectoria">
       <div class="wrap">
-        <div class="trayectoria-intro"><h2 id="titulo-trayectoria">La trayectoria<br>de LazySoft.</h2><p>Los juegos y proyectos que hemos desarrollado como equipo.</p></div>
-        <ol class="trayectoria-lista" id="lista-trayectoria"></ol>
+        <div class="trayectoria-intro"><h2 id="titulo-trayectoria">La trayectoria de LazySoft.</h2><p>Juegos que hemos hecho los miembros del equipo, todos juntos o en grupos más pequeños.</p></div>
+        <div class="trayectoria-grid" id="lista-trayectoria"></div>
         <p class="trayectoria-vacia" hidden>Próximamente compartiremos aquí nuestros proyectos anteriores.</p>
       </div>
     </section>
@@ -281,24 +312,40 @@
       <span class="tarjeta-cara tarjeta-dorso"><span class="recorte-cabecera"><span>Por qué se parece</span></span><span class="recorte-motivo"></span></span>
     </button>
   </template>
-  <template id="plantilla-integrante">
-    <article class="miembro"><span class="member-photo" aria-hidden="true"><img loading="lazy" alt="" width="600" height="800"></span><h3></h3></article>
+  <template id="plantilla-kpi">
+    <button class="tarjeta-giro tarjeta-kpi" type="button" aria-pressed="false">
+      <span class="tarjeta-cara tarjeta-frente"><span class="kpi-valor"></span><span class="kpi-nombre"></span><span class="tarjeta-pista">Ver más</span></span>
+      <span class="tarjeta-cara tarjeta-dorso"><span class="kpi-detalle"></span></span>
+    </button>
   </template>
-  <template id="plantilla-trayectoria">
-    <li class="trayectoria-hito">
-      <div class="trayectoria-fecha"><span class="trayectoria-punto" aria-hidden="true"></span><span class="eyebrow"></span><p></p></div>
-      <article class="trayectoria-ficha">
-        <div class="trayectoria-galeria">
-          <figure hidden><img class="trayectoria-imagen" loading="lazy" alt=""><figcaption aria-live="polite"></figcaption></figure>
-          <div class="trayectoria-sin-imagen"><span class="icono-imagen" aria-hidden="true">▧</span><span>Imagen del proyecto</span><small>Portada, captura o boceto</small></div>
-          <div class="trayectoria-miniaturas" role="group" hidden></div>
-        </div>
-        <div class="trayectoria-texto">
-          <div class="trayectoria-etiquetas"><p class="eyebrow"></p><span class="trayectoria-borrador">Por completar</span></div>
-          <h3></h3><p class="trayectoria-descripcion"></p><a class="trayectoria-enlace" target="_blank" rel="noopener noreferrer" hidden>Ver proyecto <span aria-hidden="true">↗</span></a>
-        </div>
+  <template id="plantilla-integrante">
+    <article class="miembro"><span class="member-photo" aria-hidden="true"><img loading="lazy" alt="" width="600" height="800"></span><h3></h3><p class="miembro-rol"></p></article>
+  </template>
+  <template id="plantilla-devlog">
+    <li class="devlog-entrada">
+      <div class="devlog-marca"><span class="devlog-punto" aria-hidden="true"></span><span class="devlog-fecha"></span></div>
+      <article class="devlog-tarjeta">
+        <div class="devlog-cabecera"><span class="devlog-tipo"></span><span class="devlog-numero"></span></div>
+        <h3></h3>
+        <p class="devlog-texto"></p>
+        <ul class="devlog-roles" hidden></ul>
       </article>
     </li>
+  </template>
+  <template id="plantilla-trayectoria">
+    <article class="proyecto">
+      <div class="proyecto-imagen">
+        <img loading="lazy" alt="" hidden>
+        <span class="proyecto-cartel" aria-hidden="true"><span class="recorte-cabecera"><span>LazySoft</span><span class="proyecto-cartel-tipo"></span></span><span class="proyecto-cartel-titulo"></span></span>
+        <span class="trayectoria-borrador" hidden>Por completar</span>
+      </div>
+      <div class="proyecto-texto">
+        <p class="proyecto-meta"><span class="proyecto-tipo"></span><span class="proyecto-fecha"></span></p>
+        <h3></h3>
+        <p class="proyecto-descripcion"></p>
+        <a class="proyecto-enlace" target="_blank" rel="noopener noreferrer" hidden></a>
+      </div>
+    </article>
   </template>
   <noscript><p class="wrap">Activa JavaScript para consultar la galería, el equipo y la trayectoria.</p></noscript>
 </body>

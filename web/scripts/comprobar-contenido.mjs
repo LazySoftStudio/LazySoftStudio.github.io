@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import vm from 'node:vm';
 import { carpetaWeb, leerDatos } from './leer-datos.mjs';
 
-const { site, artworks, trayectoria, similares = [], categoriasArte = [] } = await leerDatos();
+const { site, artworks, trayectoria, similares = [], categoriasArte = [], devlog = [], kpis = [] } = await leerDatos();
 const categorias = categoriasArte.map(grupo => grupo.nombre);
 const texto = valor => typeof valor === 'string' && valor.trim().length > 0;
 const enlaceValido = valor => { try { return ['http:', 'https:'].includes(new URL(valor).protocol); } catch { return false; } };
@@ -37,7 +37,7 @@ for (const proyecto of trayectoria) {
   if (!texto(proyecto.id) || proyectos.has(proyecto.id)) throw new Error('Identificador de trayectoria vacío o repetido: ' + proyecto.id);
   proyectos.add(proyecto.id);
   if (typeof proyecto.borrador !== 'boolean') throw new Error('Indica borrador: true o false en ' + proyecto.id);
-  if (!proyecto.borrador && (['fecha', 'titulo', 'tipo', 'descripcion'].some(campo => !texto(proyecto[campo])) || !proyecto.imagenes.length)) throw new Error('Completa la ficha antes de publicarla: ' + proyecto.id);
+  if (!proyecto.borrador && ['fecha', 'titulo', 'tipo', 'descripcion'].some(campo => !texto(proyecto[campo]))) throw new Error('Completa la ficha antes de publicarla: ' + proyecto.id);
   if (proyecto.enlace && !enlaceValido(proyecto.enlace)) throw new Error('El enlace debe ser una URL http o https válida: ' + proyecto.id);
   for (const imagen of proyecto.imagenes) {
     if (!texto(imagen.alt)) throw new Error('Falta describir una imagen de: ' + proyecto.id);
@@ -53,6 +53,12 @@ if (site.trailer?.poster) await comprobarRuta(site.trailer.poster);
 for (const juego of similares) {
   if (['titulo', 'estudio', 'anio', 'motivo'].some(campo => !texto(String(juego[campo] ?? '')))) throw new Error('Completa los datos del juego parecido: ' + (juego.titulo || 'sin título'));
 }
+for (const entrada of devlog) {
+  if (['fecha', 'tipo', 'titulo', 'texto'].some(campo => !texto(entrada[campo]))) throw new Error('Completa la entrada del devlog: ' + (entrada.titulo || 'sin título'));
+  if (!['Equipo', 'Desarrollo', 'Marketing'].includes(entrada.tipo)) throw new Error('Tipo de entrada desconocido en el devlog: ' + entrada.titulo);
+}
+for (const kpi of kpis) if (!texto(kpi.nombre) || !texto(kpi.fuente)) throw new Error('Cada KPI necesita nombre y fuente.');
+if (site.teamRoles && site.teamRoles.length !== site.team.length) throw new Error('teamRoles debe tener un rol por cada integrante, en el mismo orden.');
 const html = await readFile(join(carpetaWeb, 'index.html'), 'utf8');
 for (const coincidencia of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
   if (!/^(#|https?:|mailto:)/.test(coincidencia[1])) await comprobarRuta(coincidencia[1]);
@@ -63,5 +69,6 @@ for (const archivo of await readdir(join(carpetaWeb, 'js'))) {
 }
 console.log(`Contenido revisado: ${artworks.length} fichas, ${imagenes} imágenes y ${site.team.length} integrantes.`);
 console.log(`Trayectoria: ${trayectoria.filter(p => !p.borrador).length} fichas completas y ${trayectoria.filter(p => p.borrador).length} borradores locales.`);
+console.log(`Devlog: ${devlog.length} entradas. KPIs: ${kpis.filter(k => texto(String(k.valor ?? ''))).length} con dato y ${kpis.filter(k => !texto(String(k.valor ?? ''))).length} por completar.`);
 console.log(`Marketing: ${similares.length} juegos parecidos. Tráiler: ${site.trailer?.youtube || site.trailer?.video ? 'configurado' : 'pendiente'}.`);
 console.log('HTML y JavaScript revisados. Todas las rutas locales existen.');

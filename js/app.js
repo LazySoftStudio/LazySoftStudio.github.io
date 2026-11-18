@@ -7,7 +7,6 @@
   const buscarTodos = (selector, dentro = document) => [...dentro.querySelectorAll(selector)];
   const clonar = id => buscar(id).content.firstElementChild.cloneNode(true);
   const escribir = (selector, texto, dentro = document) => { buscar(selector, dentro).textContent = texto; };
-  const numero = valor => String(valor).padStart(2, '0');
   const enlaceValido = url => /^https?:\/\//i.test(url);
   const esLocal = location.protocol === 'file:' || ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
   const mostrarBorradores = esLocal && !document.body.hasAttribute('data-version-publica');
@@ -83,7 +82,7 @@
       botonMenu.focus();
     }
   });
-  matchMedia('(min-width:1151px)').addEventListener('change', evento => { if (evento.matches) cambiarMenu(false); });
+  matchMedia('(min-width:1251px)').addEventListener('change', evento => { if (evento.matches) cambiarMenu(false); });
 
   // Pongo en negrita el apartado del menú que se está viendo.
   // Vigilo una franja fina a media pantalla: la sección que la cruza es la actual.
@@ -225,11 +224,151 @@
   site.team.forEach((nombre, indice) => {
     const ficha = clonar('#plantilla-integrante');
     escribir('h3', nombre, ficha);
+    const rol = (site.teamRoles || [])[indice] || '';
+    escribir('.miembro-rol', rol, ficha);
+    buscar('.miembro-rol', ficha).hidden = !rol;
     buscar('img', ficha).src = `assets/equipo/${indice}.jpeg`;
     buscar('#lista-equipo').append(ficha);
   });
   escribir('#numero-integrantes', `${site.team.length} integrantes`);
   escribir('#creditos-equipo', new Intl.ListFormat('es').format(site.team) + '.');
+
+  // Devlog: línea de tiempo horizontal. Se mueve con las flechas, arrastrando o deslizando, y se puede filtrar por tipo.
+  const devlog = window.LazySoft.devlog || [];
+  const pista = buscar('#devlog-pista');
+  const listaDevlog = buscar('#lista-devlog');
+  const sinAnimacion = matchMedia('(prefers-reduced-motion: reduce)');
+  const pantallaEstrecha = matchMedia('(max-width:600px)');
+  devlog.forEach((entrada, indice) => {
+    const ficha = clonar('#plantilla-devlog');
+    ficha.dataset.tipo = entrada.tipo;
+    escribir('.devlog-fecha', entrada.fecha, ficha);
+    escribir('.devlog-tipo', entrada.tipo, ficha);
+    escribir('.devlog-numero', String(indice + 1).padStart(2, '0'), ficha);
+    escribir('h3', entrada.titulo, ficha);
+    escribir('.devlog-texto', entrada.texto, ficha);
+    // Lo que aún no ha pasado se marca con un recorte de borde discontinuo.
+    if (/próximamente/i.test(entrada.fecha)) ficha.classList.add('devlog-futuro');
+    // La entrada del reparto de tareas usa los nombres y roles del equipo, para no repetirlos.
+    if (entrada.roles) {
+      ficha.classList.add('devlog-ancha');
+      const lista = buscar('.devlog-roles', ficha);
+      lista.hidden = false;
+      site.team.forEach((nombre, posicion) => {
+        const elemento = document.createElement('li');
+        const quien = document.createElement('strong');
+        quien.textContent = nombre;
+        elemento.append(quien, ': ' + ((site.teamRoles || [])[posicion] || ''));
+        lista.append(elemento);
+      });
+    }
+    listaDevlog.append(ficha);
+  });
+  buscar('#devlog').hidden = devlog.length === 0;
+  const entradasVisibles = () => buscarTodos('.devlog-entrada', listaDevlog).filter(entrada => !entrada.hidden);
+  // Posición de desplazamiento en la que una entrada queda alineada con el margen de la página.
+  const posicionDe = entrada => entrada.getBoundingClientRect().left - pista.getBoundingClientRect().left + pista.scrollLeft - parseFloat(getComputedStyle(pista).paddingLeft);
+
+  // Miro qué entrada está al principio de la pista para el contador, la barra de progreso y los botones.
+  let fotogramaDevlog = 0;
+  function actualizarDevlog() {
+    fotogramaDevlog = 0;
+    const entradas = entradasVisibles();
+    const maximo = pista.scrollWidth - pista.clientWidth;
+    let actual = 0;
+    entradas.forEach((entrada, posicion) => { if (posicionDe(entrada) <= pista.scrollLeft + 40) actual = posicion; });
+    if (maximo > 0 && pista.scrollLeft >= maximo - 4) actual = entradas.length - 1;
+    entradas.forEach((entrada, posicion) => entrada.classList.toggle('es-actual', posicion === actual));
+    // En el móvil solo se ve una entrada, así que la pista toma su altura y no deja hueco debajo de las cortas.
+    const estilo = getComputedStyle(pista);
+    pista.style.height = pantallaEstrecha.matches && entradas[actual] ? `${entradas[actual].offsetHeight + parseFloat(estilo.paddingTop) + parseFloat(estilo.paddingBottom)}px` : '';
+    escribir('.devlog-contador', `${String(actual + 1).padStart(2, '0')} / ${String(entradas.length).padStart(2, '0')}`);
+    buscar('.devlog-progreso span').style.transform = `scaleX(${maximo > 0 ? Math.min(1, pista.scrollLeft / maximo) : 1})`;
+    buscar('#devlog-anterior').disabled = pista.scrollLeft <= 4;
+    buscar('#devlog-siguiente').disabled = pista.scrollLeft >= maximo - 4;
+  }
+  const pedirActualizacion = () => { if (!fotogramaDevlog) fotogramaDevlog = requestAnimationFrame(actualizarDevlog); };
+  pista.addEventListener('scroll', pedirActualizacion, { passive: true });
+  window.addEventListener('resize', pedirActualizacion);
+  // Si una entrada cambia de tamaño (por ejemplo, al terminar de cargar la tipografía), vuelvo a medir.
+  if ('ResizeObserver' in window) {
+    const observadorTamano = new ResizeObserver(pedirActualizacion);
+    buscarTodos('.devlog-entrada', listaDevlog).forEach(entrada => observadorTamano.observe(entrada));
+  }
+
+  function moverDevlog(paso) {
+    const entradas = entradasVisibles();
+    const actual = Math.max(0, entradas.findIndex(entrada => entrada.classList.contains('es-actual')));
+    const destino = entradas[Math.min(entradas.length - 1, Math.max(0, actual + paso))];
+    if (destino) pista.scrollTo({ left: posicionDe(destino), behavior: sinAnimacion.matches ? 'auto' : 'smooth' });
+  }
+  buscar('#devlog-anterior').addEventListener('click', () => moverDevlog(-1));
+  buscar('#devlog-siguiente').addEventListener('click', () => moverDevlog(1));
+  pista.addEventListener('keydown', evento => {
+    if (evento.key === 'ArrowRight' || evento.key === 'ArrowLeft') {
+      evento.preventDefault();
+      moverDevlog(evento.key === 'ArrowRight' ? 1 : -1);
+    }
+  });
+
+  // Con ratón también se puede arrastrar la pista, igual que se desliza con el dedo en el móvil.
+  let arrastre = null;
+  pista.addEventListener('pointerdown', evento => {
+    if (evento.pointerType !== 'mouse' || evento.button !== 0) return;
+    arrastre = { x: evento.clientX, inicio: pista.scrollLeft, movido: false };
+  });
+  pista.addEventListener('pointermove', evento => {
+    if (!arrastre) return;
+    const distancia = evento.clientX - arrastre.x;
+    if (!arrastre.movido && Math.abs(distancia) > 5) {
+      arrastre.movido = true;
+      pista.classList.add('arrastrando');
+      pista.setPointerCapture(evento.pointerId);
+    }
+    if (arrastre.movido) pista.scrollLeft = arrastre.inicio - distancia;
+  });
+  const soltarPista = () => {
+    if (!arrastre) return;
+    const movido = arrastre.movido;
+    arrastre = null;
+    pista.classList.remove('arrastrando');
+    // Al soltar, la pista se coloca en la entrada más cercana.
+    if (movido) {
+      const cercana = entradasVisibles().reduce((mejor, entrada) => Math.abs(posicionDe(entrada) - pista.scrollLeft) < Math.abs(posicionDe(mejor) - pista.scrollLeft) ? entrada : mejor);
+      pista.scrollTo({ left: posicionDe(cercana), behavior: sinAnimacion.matches ? 'auto' : 'smooth' });
+    }
+  };
+  pista.addEventListener('pointerup', soltarPista);
+  pista.addEventListener('pointercancel', soltarPista);
+
+  // Al llegar a la sección la línea se dibuja y las tarjetas aparecen una detrás de otra.
+  function animarDevlog() {
+    if (sinAnimacion.matches) return;
+    listaDevlog.classList.remove('devlog-entra');
+    void listaDevlog.offsetWidth;
+    entradasVisibles().forEach((entrada, posicion) => entrada.style.setProperty('--orden', posicion));
+    listaDevlog.classList.add('devlog-entra');
+  }
+  if (!sinAnimacion.matches && devlog.length) {
+    listaDevlog.classList.add('devlog-esperando');
+    new IntersectionObserver((entradas, observador) => {
+      if (!entradas[0].isIntersecting) return;
+      observador.disconnect();
+      listaDevlog.classList.remove('devlog-esperando');
+      animarDevlog();
+    }, { threshold: 0.2 }).observe(pista);
+  }
+
+  buscarTodos('[data-devlog]').forEach(boton => boton.addEventListener('click', () => {
+    buscarTodos('[data-devlog]').forEach(otro => otro.setAttribute('aria-pressed', String(otro === boton)));
+    buscarTodos('.devlog-entrada', listaDevlog).forEach(entrada => {
+      entrada.hidden = boton.dataset.devlog !== 'Todo' && entrada.dataset.tipo !== boton.dataset.devlog;
+    });
+    pista.scrollLeft = 0;
+    animarDevlog();
+    actualizarDevlog();
+  }));
+  actualizarDevlog();
 
   // Juegos parecidos del apartado de marketing, como recortes de periódico que giran.
   similares.forEach(juego => {
@@ -241,6 +380,17 @@
     buscar('#lista-similares').append(tarjeta);
   });
   buscar('.similares').hidden = similares.length === 0;
+
+  // KPIs: delante el número y detrás de dónde sale. Los que aún no tienen número solo se ven en local.
+  const kpis = (window.LazySoft.kpis || []).filter(kpi => kpi.valor || mostrarBorradores);
+  kpis.forEach(kpi => {
+    const tarjeta = clonar('#plantilla-kpi');
+    escribir('.kpi-valor', kpi.valor || '—', tarjeta);
+    escribir('.kpi-nombre', kpi.nombre, tarjeta);
+    escribir('.kpi-detalle', kpi.valor ? `${kpi.fuente}${kpi.fecha ? ', a ' + kpi.fecha : ''}.` : `Por completar: falta el dato de ${kpi.fuente.toLowerCase()}.`, tarjeta);
+    buscar('#lista-kpis').append(tarjeta);
+  });
+  buscar('.resultados').hidden = kpis.length === 0;
 
   // Las tarjetas de marketing giran al pasar el ratón; al pulsarlas se quedan giradas (móvil y teclado).
   buscarTodos('.tarjeta-giro').forEach(tarjeta => tarjeta.addEventListener('click', () => {
@@ -278,53 +428,34 @@
     }
   });
 
-  // Mantengo la trayectoria en el orden del archivo.
-  const proyectos = trayectoria.filter(proyecto => mostrarBorradores || !proyecto.borrador);
+  // Trayectoria en tarjetas, del proyecto más reciente al más antiguo. Si un proyecto no tiene imagen, sale un cartel con su título.
+  const proyectos = trayectoria.filter(proyecto => mostrarBorradores || !proyecto.borrador).reverse();
   buscar('.trayectoria-vacia').hidden = proyectos.length > 0;
   buscar('#lista-trayectoria').hidden = proyectos.length === 0;
-  proyectos.forEach((proyecto, indice) => {
+  proyectos.forEach(proyecto => {
     const ficha = clonar('#plantilla-trayectoria');
     const titulo = proyecto.titulo || 'Nombre del proyecto';
-    escribir('.trayectoria-fecha .eyebrow', numero(indice + 1), ficha);
-    escribir('.trayectoria-fecha p', proyecto.fecha || 'Fecha por completar', ficha);
-    escribir('.trayectoria-etiquetas .eyebrow', proyecto.tipo || 'Tipo de proyecto', ficha);
     escribir('h3', titulo, ficha);
-    escribir('.trayectoria-descripcion', proyecto.descripcion || 'Añade una descripción del proyecto: de qué trata, qué desarrolló el equipo y qué aprendisteis al hacerlo.', ficha);
-    buscar('article', ficha).setAttribute('aria-label', titulo);
+    escribir('.proyecto-tipo', proyecto.tipo || 'Tipo de proyecto', ficha);
+    escribir('.proyecto-fecha', proyecto.fecha || 'Fecha por completar', ficha);
+    escribir('.proyecto-descripcion', proyecto.descripcion || 'Añade una descripción del proyecto: de qué trata, qué desarrolló el equipo y qué aprendisteis al hacerlo.', ficha);
+    escribir('.proyecto-cartel-tipo', proyecto.tipo || '', ficha);
+    escribir('.proyecto-cartel-titulo', titulo, ficha);
     buscar('.trayectoria-borrador', ficha).hidden = !proyecto.borrador;
-    const enlace = buscar('.trayectoria-enlace', ficha);
+    const portada = (proyecto.imagenes || [])[0];
+    if (portada) {
+      const imagen = buscar('img', ficha);
+      imagen.src = portada.src;
+      imagen.alt = portada.alt;
+      imagen.hidden = false;
+      buscar('.proyecto-cartel', ficha).hidden = true;
+    }
+    const enlace = buscar('.proyecto-enlace', ficha);
     if (enlaceValido(proyecto.enlace)) {
       enlace.hidden = false;
       enlace.href = proyecto.enlace;
+      enlace.textContent = (proyecto.enlace.includes('itch.io') ? 'Ver en itch.io' : 'Ver proyecto') + ' ↗';
       enlace.setAttribute('aria-label', `Ver ${titulo} (se abre en otra pestaña)`);
-    }
-    if (proyecto.imagenes.length) {
-      buscar('figure', ficha).hidden = false;
-      buscar('.trayectoria-sin-imagen', ficha).hidden = true;
-      const miniaturas = buscar('.trayectoria-miniaturas', ficha);
-      miniaturas.hidden = proyecto.imagenes.length < 2;
-      miniaturas.setAttribute('aria-label', 'Imágenes de ' + titulo);
-      const seleccionar = posicion => {
-        const foto = proyecto.imagenes[posicion];
-        const imagen = buscar('.trayectoria-imagen', ficha);
-        imagen.src = foto.src;
-        imagen.alt = foto.alt;
-        escribir('figcaption', foto.alt, ficha);
-        buscarTodos('button', miniaturas).forEach((boton, indiceFoto) => boton.setAttribute('aria-pressed', String(posicion === indiceFoto)));
-      };
-      proyecto.imagenes.forEach((foto, posicion) => {
-        const boton = document.createElement('button');
-        boton.type = 'button';
-        boton.setAttribute('aria-label', `Ver imagen ${posicion + 1} de ${titulo}`);
-        const imagen = document.createElement('img');
-        imagen.src = foto.src;
-        imagen.alt = '';
-        imagen.loading = 'lazy';
-        boton.append(imagen);
-        boton.addEventListener('click', () => seleccionar(posicion));
-        miniaturas.append(boton);
-      });
-      seleccionar(0);
     }
     buscar('#lista-trayectoria').append(ficha);
   });
