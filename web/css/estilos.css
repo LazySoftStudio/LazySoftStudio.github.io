@@ -285,8 +285,8 @@ em {
   --hero-scroll:0;
   --pointer-x:0;
   --pointer-y:0;
-  min-height:560px;
-  height:calc(100svh - 88px);
+ min-height:0;
+  height:calc(100dvh - 88px);
   max-height:1100px;
   position:relative;
   isolation:isolate;
@@ -321,13 +321,17 @@ em {
 .hero-title>span:not(.sr-only) {
   color:var(--orange)
 }
+.hero-juego{
+  width: 20%;
+
+}
 .hero-object {
   position:absolute;
   z-index:2;
   left:50%;
   top:17%;
   /* También depende del alto para que la portada entera quepa en pantallas bajas. */
-  width:min(46vw,610px,(100svh - 88px)*.62);
+  width:min(46vw,610px,(100dvh - 88px)*.62);
   transform:translateX(-50%) translateY(calc(var(--hero-scroll)*90px)) perspective(900px) rotateY(calc(var(--pointer-x)*16deg)) rotateX(calc(var(--pointer-y)*-10deg)) rotateZ(calc(var(--hero-scroll)*-8deg));
   filter:drop-shadow(0 40px 35px #0007);
   will-change:transform;
@@ -1500,7 +1504,7 @@ em {
     margin-top:50px
   }
   .hero-object {
-    width:min(83vw,430px,(100svh - 76px)*.5);
+    width:min(83vw,430px,(100dvh - 76px)*.5);
     top:20%
   }
   .hero-caption {
@@ -1699,7 +1703,7 @@ em {
   }
   .hero-object {
     top:19%;
-    width:min(84vw,(100svh - 76px)*.5)
+    width:min(84vw,(100dvh - 76px)*.5)
   }
   .hero-caption {
     bottom:24px

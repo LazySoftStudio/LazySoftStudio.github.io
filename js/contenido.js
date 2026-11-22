@@ -10,11 +10,11 @@ window.LazySoft.site = {
         playUrl: 'https://lazysoftstudio.itch.io/el-secreto-de-monteviejo',
         // Versión jugable dentro de la web. En itch.io sale en Editar juego > Distribute > Embed game.
         // Si subimos una versión nueva del juego, el número cambia y hay que copiar el nuevo aquí.
-        embedUrl: 'https://itch.io/embed-upload/20515256?color=15110c'
+        embedUrl: 'https://itch.io/embed-upload/20742239?color=DECEA2'
     },
     // Cuando subamos el tráiler, pego aquí el enlace de YouTube (vale el enlace completo o solo el código del vídeo).
     // Si preferimos un archivo propio, lo guardo en assets/ y escribo su ruta en video, por ejemplo 'assets/trailer.mp4'.
-    trailer: { youtube: '', video: '', poster: 'assets/pueblo-iglesia.jpg' },
+    trailer: { youtube: '', video: '', poster: 'assets/escenarios/pueblo-iglesia.jpg' },
     // Dirección de envío de un servicio de formularios (por ejemplo, Formspree).
     // Si la dejo vacía, el formulario de contacto abre el programa de correo con el mensaje escrito.
     contactForm: '',
@@ -69,10 +69,16 @@ window.LazySoft.similares = [
 // La entrada con roles: true muestra debajo lo que hace cada integrante (sale de teamRoles).
 window.LazySoft.devlog = [
     {
-        fecha: 'Septiembre de 2026',
+        fecha: 'Septiembre de 2023',
         tipo: 'Equipo',
         titulo: 'Nace LazySoft',
-        texto: 'Seis estudiantes nos juntamos para hacer un videojuego como proyecto de la universidad. Elegimos el nombre, dibujamos el perezoso del logo y empezamos a dar vueltas a la idea de un pueblo que esconde un secreto.'
+        texto: 'Seis estudiantes se juntan para hacer un videojuego como proyecto de la universidad. Elegimos el nombre, dibujamos el perezoso del logo. A lo largo de los años el equipo trabajará en muchos proyectos, aceptando nuevos miembros. '
+    },
+    {
+        fecha: 'Septiembre de 2026',
+        tipo: 'Equipo',
+        titulo: 'Surge Monteviejo',
+        texto: 'Empezamos a dar vueltas a la idea de un pueblo que esconde un secreto.'
     },
     {
         fecha: 'Septiembre de 2026',
@@ -140,10 +146,10 @@ window.LazySoft.devlog = [
 // KPIs del apartado de marketing. Escribimos el número en «valor» y el día en que lo miramos en «fecha».
 // Mientras «valor» esté vacío, la tarjeta solo se ve en local y no sale en la web publicada.
 window.LazySoft.kpis = [
-    { nombre: 'Visitas a la página de itch.io', valor: '', fuente: 'Estadísticas de itch.io', fecha: '' },
-    { nombre: 'Partidas en el navegador', valor: '', fuente: 'Estadísticas de itch.io', fecha: '' },
-    { nombre: 'Seguidores en Instagram', valor: '', fuente: 'Perfil de @lazysoftstudio', fecha: '' },
-    { nombre: 'Suscriptores en YouTube', valor: '', fuente: 'Canal de YouTube de LazySoft', fecha: '' },
+    { nombre: 'Visitas a la página de itch.io', valor: '45', fuente: 'Estadísticas de itch.io', fecha: '22 - nov -2026' },
+    { nombre: 'Partidas en el navegador', valor: '23', fuente: 'Estadísticas de itch.io', fecha: '22 - nov -2026' },
+    { nombre: 'Seguidores en Instagram', valor: '29', fuente: 'Perfil de @lazysoftstudio', fecha: '22 - nov -2026' },
+    { nombre: 'Suscriptores en YouTube', valor: '7', fuente: 'Canal de YouTube de LazySoft', fecha: '22 - nov -2026' },
 ];
 
 // Grupos de la galería de arte, en el orden en que se muestran. Cada ficha usa uno de estos nombres en category.
@@ -156,7 +162,69 @@ window.LazySoft.categoriasArte = [
 
 window.LazySoft.artworks = [
     {
-        id: '13',
+        id: '17',
+        title: 'Nuevas interfaces',
+        category: 'Interfaces',
+        type: 'Interfaces',
+        src: ['assets/interfaces/inicio.png', 'assets/interfaces/creditos.png', 'assets/interfaces/inventario.jpeg','assets/interfaces/ajustes.png', 'assets/interfaces/controles.png', 'assets/interfaces/dialogo.png', 'assets/interfaces/pausa.png', 'assets/interfaces/mercadillo.png', 'assets/interfaces/dlcpersonajes.png', 'assets/interfaces/dlcFederico.png', 'assets/interfaces/dlcMarisa.png', 'assets/interfaces/dlcProps.png', 'assets/interfaces/dlcEscenarios.png', 'assets/interfaces/seleccionPartida.png'], 
+        alt: ['Menú de inicio',
+            'Créditos', 
+            'Inventario',
+            'Ajustes',
+            'Controles',
+            'Dialogo',
+            'Menu de pausa',
+            'Mercadillo',
+            'Compra DLC Personajes',
+            'Compra DLC Federico',
+            'Compra DLC Marisa',
+            'Compra DLC Props',
+            'Compra DLC Escenarios',
+            'Seleccion de partidas'
+        ],
+        description: ['Menú de inicio',
+            'Créditos', 
+            'Inventario',
+            'Ajustes',
+            'Controles',
+            'Dialogo',
+            'Menu de pausa',
+            'Mercadillo',
+            'Compra DLC Personajes',
+            'Compra DLC Federico',
+            'Compra DLC Marisa',
+            'Compra DLC Props',
+            'Compra DLC Escenarios',
+            'Seleccion de partidas'
+        ]
+    }, 
+    {
+        id: '16',
+        title: 'Un pueblo iluminado',
+        category: 'Escenarios',
+        type: 'Iluminación',
+        src: ['assets/escenarios/iluminacion7.png', 'assets/escenarios/iluminacion8.png', 'assets/escenarios/iluminacion1.png', 'assets/escenarios/iluminacion2.png', 'assets/escenarios/iluminacion4.png', 'assets/escenarios/iluminacion3.png', 'assets/escenarios/iluminacion5.png', 'assets/escenarios/iluminacion9.png'],
+        alt: ['En Monteviejo van pasando los días. De día sale el sol, y en la oscuridad de la noche, las farolas alumbran las calles del pueblo',
+            'Iluminación de farolas',
+            'Atardecer',
+            'Comienzan a salir las estrellas mientras el sol se esconde',
+            'Estrellas de la noche', 
+            'Amanecer',
+            'Las nubes del día',
+            'Iluminación de la plaza por la noche'],
+        description: ['En Monteviejo van pasando los días. De día sale el sol, y en la oscuridad de la noche, las farolas alumbran las calles del pueblo',
+            'Iluminación de farolas',
+            'Atardecer',
+            'Comienzan a salir las estrellas mientras el sol se esconde',
+            'Estrellas de la noche', 
+            'Amanecer',
+            'Las nubes del día',
+            'Iluminación de la plaza por la noche'
+
+        ]
+    },
+    {
+        id: '15',
         title: 'Tipografía Monteviejo',
         category: 'Tipografía',
         type: 'Diseño tipográfico',
@@ -169,7 +237,7 @@ window.LazySoft.artworks = [
             'Las minúsculas, dibujadas con el mismo trazo para que el texto del juego tenga un aire antiguo.']
     },
     {
-        id: '12',
+        id: '14',
         title: 'Interfaces: primeros prototipos',
         category: 'Interfaces',
         type: 'Prototipo de interfaz',
@@ -190,11 +258,11 @@ window.LazySoft.artworks = [
             'El flujo completo entre pantallas, desde el título hasta la pausa dentro del juego.']
     },
     {
-        id: '11',
+        id: '13',
         title: 'Monteviejo con texturas',
         category: 'Escenarios',
         type: 'Render de escenario',
-        src: ['assets/pueblo-vista.jpg', 'assets/pueblo-iglesia.jpg', 'assets/pueblo-calle.jpg', 'assets/pueblo-edificio.jpg', 'assets/pueblo-fachadas.jpg'],
+        src: ['assets/escenarios/pueblo-vista.jpg', 'assets/escenarios/pueblo-iglesia.jpg', 'assets/escenarios/pueblo-calle.jpg', 'assets/escenarios/pueblo-edificio.jpg', 'assets/escenarios/pueblo-fachadas.jpg'],
         alt: ['Vista aérea del pueblo de Monteviejo en 3D con texturas',
             'Iglesia de piedra con su torre, ya texturizada',
             'Calle estrecha de piedra con la torre de la iglesia al fondo',
@@ -206,109 +274,189 @@ window.LazySoft.artworks = [
             'Uno de los edificios de la plaza, de dos plantas y con balcón.',
             'Piedra, cal y ocre: los colores con los que estamos vistiendo Monteviejo.']
     },
+ 
+
     {
-        id: '10',
-        title: 'UV de Antonio',
+        id: '12',
+        title: 'Antonio: modelo 3D',
         category: 'Personajes',
-        type: 'desplegado UV',
-        src: [ 'assets/UVAntonio.jpg'],
-        alt: ['desplegado UV de Antonio.'],
-        description: ['Hemos despiezado a Antonio y lo hemos aplanado. Este es el resultado de su desplegado UV, que nos permitirá texturizarlo en 3D.']
-    }, 
-    {
-        id: '09',
-        title: 'Eugenia: comienzo de modelado',
-        category: 'Personajes',
-        type: 'Diseño de personaje',
-        src: [ 'assets/Eugenia3Dv1.png', 'assets/UVEugenia.jpg'],
-        alt: ['Primer modelado 3D de Eugenia, vecina de Antonio', 'Desplegado UV de Eugenia'],
-        description: ['Eugenia comienza a tener forma en 3D. Esta es la primera aproximación básica de su futuro modelado.',
-            'Igual que con Antonio, hemos desplegado las UV de Eugenia para poder texturizarla.']
-    }, 
-    {
-        id: '08',
-        title: 'Antonio: comienzo de modelado',
-        category: 'Personajes',
-        type: 'Diseño de personaje',
-        src: [ 'assets/Antonio3Dv2.png' , 'assets/Antonio3Dv1.png'],
-        alt: ['Modelado 3D de Antonio, protagonista del juego', 
-            'Primer modelado básico de Antonio, le falta el pelo y algunos detalles'],
-        description: ['Antonio va tomando vida. Ya se puede comenzar a ver su forma en 3D.', 
-            'Primer modelado básico de Antonio, aunque aún le faltan algunos detalles... Creo que se ha dejado el pelo por ahí.']
+        type: 'Modelado de personaje',
+        src: [ 'assets/Personajes/AntonioFrente.jpg' ,'assets/Personajes/AntonioDetras.jpg' ,'assets/Personajes/Antonio3Dv2.png' , 'assets/Personajes/Antonio3Dv1.png','assets/Personajes/UVAntonio.jpg' ,'assets/Personajes/AntonioTextura.jpg'],
+        alt: ['Modelado 3D final de Antonio por delante',
+            'Modelado 3D final de Antonio por detras',
+            'Segundo modelado 3D de Antonio, protagonista del juego', 
+            'Primer modelado básico de Antonio, le falta el pelo y algunos detalles',
+            'Coordenadas UV de Antonio',
+            'Texturas de Antonio'],
+        description: ['Modelado 3D final de Antonio por delante',
+            'Modelado 3D final de Antonio por detras',
+            'Antonio va tomando vida. Ya se puede comenzar a ver su forma en 3D.', 
+            'Primer modelado básico de Antonio, aunque aún le faltan algunos detalles... Creo que se ha dejado el pelo por ahí.',
+            'Coordenadas UV de Antonio',
+            'Texturas de Antonio']
     },    
     {
-        id: '07',
-        title: 'Eugenia: vecina de Antonio',
-        category: 'Personajes',
-        type: 'Diseño de personaje',
-        src: [ 'assets/vecina-color.jpeg' , 'assets/vecina-vistas.jpeg', 'assets/vecina-boceto.jpeg'],
-        alt: [
-            'Diseño de Eugenia: Personaje de una mujer mayor con gafas, moño y vestido violeta, visto de espalda', 
-            'Vistas de referencia de Eugenia: vistas de frente, perfiles y espalda',
-            'Boceto inicial a lápiz de Eugenia'],
-        description:  ['Diseño de Eugenia: Personaje de una mujer mayor con gafas, moño y vestido violeta, visto de espalda', 
-            'Vistas de referencia de Eugenia, la vecina de Antonio. En ellas se muestran las vistas de frente, espalda y ambos perfiles para que posteriormente se pueda modelar el personaje en 3D.',
-            'Boceto inicial a lápiz de Eugenia'
-        ]
-    },
-    {
-        id: '06',
-        title: 'Gustavo y Basilio: meseros enfrentados',
-        category: 'Personajes',
-        type: 'Diseño de personaje',
-        src: ['assets/camarero-color.jpeg', 'assets/MeseroTurn.jpeg', 'assets/camarero-boceto.jpeg'],
-        alt: ['Diseño de Gustavo y Basilio: dos meseros con uniforme de chaleco, cada uno con un color de pajarita distinto',
-            'Vistas de referencia de Gustavo y Basilio: vistas de frente, perfiles y espalda',
-            'Boceto inicial a lápiz de Gustavo y Basilio'],
-        description: ['Diseño de Gustavo y Basilio: dos meseros con uniforme de chaleco, cada uno con un color de pajarita distinto',
-            'Vistas de referencia de Gustavo y Basilio: vistas de frente, perfiles y espalda',
-            'Boceto inicial a lápiz de Gustavo y Basilio'
-        ]
-    },
-    {
-        id: '05',
+        id: '11',
         title: 'Antonio: protagonista del juego',
         category: 'Personajes',
         type: 'Diseño de personaje',
-        src: ['assets/Antonio.jpg','assets/AntonioTuraround.jpg','assets/AntonioColores.jpeg', 'assets/AntonioBoceto.jpg', 'assets/AntonioBeauty.jpg', 'assets/AntonioPose.jpg'],
+        src: ['assets/Personajes/Antonio.jpg','assets/Personajes/AntonioTuraround.jpg','assets/Personajes/AntonioColores.jpeg', 'assets/Personajes/AntonioBoceto.jpg', 'assets/Personajes/Expresiones.jpg', 'assets/Personajes/AntonioPose.jpg', 'assets/Personajes/AntonioPose2.jpg'],
         alt: ['Dos versiones de Antonio: uno más elegante con camisa, y otro más informal con camiseta roja',
             'Vistas de referencia de Antonio: vistas de frente, perfiles y espalda',
             'Estudio de color de Antonio: cinco variantes de color para la piel, el cabello y la ropa',
             'Boceto inicial a lápiz de Antonio',
-            'Antonio de cuerpo entero con camiseta roja y vaqueros',
-            'Antonio sentado en el suelo con camisa azul'],
-        description: ['Diseño de Antonio: protagonista del juego, con dos versiones de vestuario',
+            'Expresiones faciales de Antonio: Alegría, miedo, aburrido, enfado.',
+            'Antonio sentado en el suelo con camisa azul',
+            'Antonio pensativo con camisa blanca'],
+        description: ['Diseño de Antonio: protagonista del juego, con tres versiones de vestuario',
             'Vistas de referencia de Antonio: vistas de frente, perfiles y espalda',
             'Estudio de color de Antonio: cinco variantes de color para la piel, el cabello y la ropa',
             'Boceto inicial a lápiz de Antonio',
-            'Antonio de cuerpo entero con su versión informal: camiseta roja y vaqueros.',
-            'Prueba de pose: Antonio sentado en el suelo.'
+            'Expresiones faciales de Antonio: Alegría, miedo, aburrido, enfado.',
+            'Prueba de pose: Antonio sentado en el suelo.',
+            'Segunda pose de Antonio. ¿En qué estará pensando?'
         ]
     },
     {
-        id: '04',
-        title: 'Juan Fran',
+        id: '10',
+        title: 'Eugenia: vecina de Antonio',
         category: 'Personajes',
-        type: 'Boceto de personaje',
-        src: ['assets/JuanFranBoceto.jpeg'],
-        alt: ['Boceto inicial de Juan Fran, un hombre mayor sentado en un banco con las manos apoyadas en un bastón'],
-        description: ['Boceto inicial de Juan Francisco, uno de los antiguos vecinos de Monteviejo. ¿Dónde estará ahora?']
+        type: 'Diseño de personaje',
+        src: [ 'assets/Personajes/vecina-color.jpeg' , 'assets/Personajes/vecina-vistas.jpeg', 'assets/Personajes/vecina-boceto.jpeg',  'assets/Personajes/Eugenia3Dv1.png','assets/Personajes/EugeniaFrente.jpg', 'assets/Personajes/EugeniaDetras.jpg', 'assets/Personajes/UVEugenia.jpg', 'assets/Personajes/EugeniaTextura.jpg'],
+        alt: [
+            'Diseño de Eugenia: Personaje de una mujer mayor con gafas, moño y vestido violeta, visto de espalda', 
+            'Vistas de referencia de Eugenia: vistas de frente, perfiles y espalda',
+            'Boceto inicial a lápiz de Eugenia',
+            'Primer modelado 3D de Eugenia, vecina de Antonio', 
+            'Modelado final de Eugenia de frente',
+            'Modelado final de Eugenia por detrás',
+            'Coordenadas UV de Eugenia',
+            'Texturizado de Eugenia'],
+        description:  ['Diseño de Eugenia: vecina de Antonio.', 
+            'Vistas de referencia de Eugenia, la vecina de Antonio. En ellas se muestran las vistas de frente, espalda y ambos perfiles para que posteriormente se pueda modelar el personaje en 3D.',
+            'Boceto inicial a lápiz de Eugenia',
+            'Eugenia comienza a tener forma en 3D. Esta es la primera aproximación básica de su futuro modelado.',
+            'Modelado final de Eugenia de frente',
+            'Modelado final de Eugenia por detrás',
+            'Hemos desplegado las UV de Eugenia para poder texturizarla.',
+            'Texturizado de Eugenia'
+        ]
+    },
+    {
+        id: '09',
+        title: 'Gustavo y Basilio: meseros enfrentados',
+        category: 'Personajes',
+        type: 'Diseño de personaje',
+        src: ['assets/Personajes/camarero-color.jpeg', 'assets/Personajes/MeseroTurn.jpeg', 'assets/Personajes/Mesero1Frente.jpeg', 'assets/Personajes/Mesero2Frente.jpeg','assets/Personajes/MeseroDetras.jpeg', 'assets/Personajes/camarero-boceto.jpeg','assets/Personajes/UVMesero.jpeg', 'assets/Personajes/Mesero1Textura.jpeg', 'assets/Personajes/Mesero2Textura.jpeg'],
+        alt: ['Diseño de Gustavo y Basilio: dos meseros con uniforme de chaleco, cada uno con un color de pajarita distinto',
+            'Vistas de referencia de Gustavo y Basilio: vistas de frente, perfiles y espalda',
+            'Modelo 3D de Gustavo de frente',
+            'Modelo 3D de Basilio de frente',
+            'Modelo 3D de los meseros por detrás',
+            'Boceto inicial a lápiz de Gustavo y Basilio',
+            'Coordenadas UV de los meseros',
+            'Texturas de Gustavo',
+            'Texturas de Basilio'],
+        description: ['Diseño de Gustavo y Basilio: dos meseros con uniforme de chaleco, cada uno con un color de pajarita distinto',
+            'Vistas de referencia de Gustavo y Basilio: vistas de frente, perfiles y espalda',
+            'Modelo 3D de Gustavo de frente',
+            'Modelo 3D de Basilio de frente',
+            'Modelo 3D de los meseros por detrás',
+            'Boceto inicial a lápiz de Gustavo y Basilio',
+            'Coordenadas UV de los meseros',
+            'Texturas de Gustavo',
+            'Texturas de Basilio'
+        ]
+    },
+    {
+        id: '08',
+        title: '¿Quién es esta persona?',
+        category: 'Personajes',
+        type: 'Diseño de personaje',
+        src: ['assets/Personajes/MisteriosoFrente.jpeg', 'assets/Personajes/MisteriosoDetras.jpeg', 'assets/Personajes/UVMisterioso.jpg', 'assets/Personajes/MisteriosoTextura.jpeg', 'assets/Personajes/MisteriosoSinCapuchaFrente.jpeg', 'assets/Personajes/MisteriosoSinCapuchaDetras.jpeg', 'assets/Personajes/UVMisteriosoSinCapucha.jpg', 'assets/Personajes/MisteriosoSinCapuchaTextura.jpeg'],
+        alt: ['Modelado 3D de un personaje misterioso de frente',
+            'Modelado 3D de un personaje misterioso por detrás',
+            'Coordenadas UV del personaje misterioso',
+            'Texturas del personaje misterioso',
+            'Modelado 3D de un personaje misterioso sin capucha de frente',
+            'Modelado 3D de un personaje misterioso sin capucha por detrás',
+            'Coordenadas UV del personaje misterioso sin capucha',
+            'Texturas del personaje misterioso sin capucha'
+        ],
+        description: ['A aparecido un hombre misterioso por el pueblo, ¿alguien sabe quién es?',
+            'Modelado 3D de un personaje misterioso por detrás',
+            'Coordenadas UV del personaje misterioso',
+            'Texturas del personaje misterioso', 
+            '¿COMO? ¿A desvelado quién es?',
+            'Modelado 3D del personaje misterioso por detrás',
+            'Coordenadas UV del personaje misterioso sin capucha',
+            'Texturas del personaje misterioso sin capucha'
+        ]
+    }, 
+    {
+        id: '07',
+        title: 'Juan Fran ¿Alguien le ha visto por ahí?',
+        category: 'Personajes',
+        type: 'Disseño de personaje',
+        src: ['assets/Personajes/JuanFrancisco.png', 'assets/Personajes/JuanFranBoceto.jpeg'],
+        alt: ['Fotografía antigua de Juan Francisco', 
+            'Boceto inicial de Juan Fran, un hombre mayor sentado en un banco con las manos apoyadas en un bastón'],
+        description: ['Fotografía antigual de Juan Fran, uno de los antiguos vecinos de Monteviejo. ¿Dónde estará ahora?',
+            'Boceto inicial de Juan Francisco']
+    },
+    {
+        id: '06',
+        title: 'Arsenio, alcalde de Monteviejo',
+        category: 'Personajes',
+        type: 'Diseño de personaje',
+        src: ['assets/Personajes/AlcaldeFrente.jpeg', 'assets/Personajes/AlcaldeDetras.jpeg', 'assets/Personajes/ArsenioBoceto.jpeg', 'assets/Personajes/UVAlcalde.jpg',  'assets/Personajes/AlcaldeTextura.jpeg'],
+        alt: ['Modelado 3d y texturizado del alcalde de frente',
+            'Modelado 3d y texturizado del alcalde por detrás',
+            'Boceto a lápiz del alcalde de Monteviejo, un hombre con bigote, camisa, corbata y pantalón',
+            'Coordenadas UV del alcalde',
+            'Texturas del alcalde'],
+        description: ['Modelado 3d y texturizado del alcalde de frente.',
+            'Modelado 3d y texturizado del alcalde por detrás.',
+            'Boceto a lápiz del alcalde de Monteviejo, un hombre con bigote, camisa, corbata y pantalón.',
+            'Coordenadas UV del alcalde.',
+            'Texturas del alcalde.']
+    },    
+    {
+        id: '05',
+        title: 'Francisca, mujer del alcalde',
+        category: 'Personajes',
+        type: 'Diseño de personajes',
+         src: ['assets/Personajes/MujerAlcaldeFrente.jpeg', 'assets/Personajes/MujerAlcaldeDetras.jpeg', 'assets/Personajes/UVMujerAlcalde.jpg',  'assets/Personajes/MujerAlcaldeTextura.jpeg'],
+        alt: ['Esta es Francisca, la mujer del alcalde',
+            'Modelado 3d y texturizado del Francisca por detrás',
+            'Coordenadas UV de Francisca',
+            'Texturas de Francisca'],
+        description: ['Esta es Francisca, la mujer del alcalde',
+            'Modelado 3d y texturizado del Francisca por detrás',
+            'Coordenadas UV de Francisca',
+            'Texturas de Francisca'],
+    }, 
+    {
+        id: '04',
+        title: 'Manola, mejor amiga de Eugenia',
+        category: 'Personajes',
+        type: 'Diseño de personajes',
+         src: ['assets/Personajes/AmigaVecinaFrente.jpeg', 'assets/Personajes/AmigaVecinaDetras.jpeg', 'assets/Personajes/UVAmiga.jpg',  'assets/Personajes/AmigaVecinaTextura.jpeg'],
+        alt: ['Os presentamos a Manola, la mejor amiga de la vecina de Antonio',
+            'Modelado 3d y texturizado del Manola por detrás',
+            'Coordenadas UV de Manola',
+            'Texturas de Manola'],
+        description: ['Os presentamos a Manola, la mejor amiga de la vecina de Antonio',
+            'Modelado 3d y texturizado del Manola por detrás',
+            'Coordenadas UV de Manola',
+            'Texturas de Manola'],
     },
     {
         id: '03',
-        title: 'Arsenio: alcalde de Monteviejo',
-        category: 'Personajes',
-        type: 'Boceto de personaje',
-        src: ['assets/ArsenioBoceto.jpeg'],
-        alt: ['Boceto a lápiz del alcalde de Monteviejo, un hombre con bigote, camisa, corbata y pantalón'],
-        description: ['Boceto inicial de Arsenio, el alcalde de Monteviejo.']
-    },    
-    {
-        id: '02',
         title: 'Primeras fachadas',
         category: 'Escenarios',
         type: 'Diseño de Escenarios',
-        src: ['assets/plaza-volumen.jpeg', 'assets/calle-volumen.png', 'assets/iglesia-volumen.png'],
+        src: ['assets/escenarios/plaza-volumen.jpeg', 'assets/escenarios/calle-volumen.png', 'assets/escenarios/iglesia-volumen.png'],
         alt: ['Primera aproximación a las fachadas de la plaza en 3D, observándose la iglesia, las dos tabernas, el ayuntamiento y algunas de las casas. ',
             'Primera aproximación de modelado en 3D, en la que se ve una de las tabernas y una casa',
             'Primera aproximación de la iglesia de Monteviejo en 3D'
@@ -318,19 +466,32 @@ window.LazySoft.artworks = [
             'Primera aproximación de la iglesia de Monteviejo en 3D'
         ]
     },    
+        {
+        id: '02',
+        title: 'Thumbnails y bocetos',
+        category: 'Escenarios',
+        type: 'Diseño de Escenarios',
+        src: ['assets/escenarios/thumnails.jpg', 'assets/escenarios/bocetosPueblo.jpg'],
+        alt: ['Thumbnails de las calles de monteviejo.',
+            'Bocetos a partir de los Thumbnails. ',
+        ],
+        description: ['Thumbnails de las calles de monteviejo.',
+            'Bocetos a partir de los Thumbnails. ',
+        ]
+    }, 
     {
         id: '01',
         title: 'El pueblo sobre el papel',
         category: 'Escenarios',
         type: 'Estudio de distribución',
-        src: ['assets/plano-pueblo.png', 'assets/calle-boceto.jpg', 'assets/plaza-boceto.jpg'],
-        alt: ['Plano a mano con la distribución inicial de edificios y calles',
-            'Boceto a lápiz de una calle entre viviendas, en la que se encuentra uno de los parques, la biblioteca y una casa en ruinas',
-            'Boceto a lápiz de la plaza de Monteviejo, en el que se ve la fuente, una de las tabernas y la iglesia'
+        src: [ 'assets/escenarios/calle-boceto.jpg', 'assets/escenarios/plaza-boceto.jpg', 'assets/escenarios/plano-pueblo.png'],
+        alt: ['Boceto a lápiz de una calle entre viviendas, en la que se encuentra uno de los parques, la biblioteca y una casa en ruinas',
+            'Boceto a lápiz de la plaza de Monteviejo, en el que se ve la fuente, una de las tabernas y la iglesia',
+            'Plano a mano con la distribución inicial de edificios y calles'
         ],
-        description: ['El primer esquema espacial ayuda a pensar los recorridos y los lugares donde se encontrarán los habitantes.',
-            'Boceto a lápiz de una de las calles entre viviendas, en la que se encuentra uno de los parques, la biblioteca y una casa en ruinas.',
-            'Boceto a lápiz de la plaza de Monteviejo, en el que se ve la fuente, una de las tabernas y la iglesia del pueblo.'
+        description: [ 'Boceto a lápiz de una de las calles entre viviendas, en la que se encuentra uno de los parques, la biblioteca y una casa en ruinas.',
+            'Boceto a lápiz de la plaza de Monteviejo, en el que se ve la fuente, una de las tabernas y la iglesia del pueblo.',
+            'El primer esquema espacial ayuda a pensar los recorridos y los lugares donde se encontrarán los habitantes.'
         ]
     },
 ];
